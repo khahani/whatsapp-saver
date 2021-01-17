@@ -57,7 +57,8 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ChatsVie
     }
 
     private void resizeCardView(Chat chat, ChatsViewHolder chatsViewHolder) {
-        if (chat.getLastMessage().length() < 60) {
+        if (chat.getLastMessage().length() < 50) {
+
             ConstraintLayout.LayoutParams params =
                     (ConstraintLayout.LayoutParams) chatsViewHolder.cardView.getLayoutParams();
 
@@ -68,8 +69,9 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ChatsVie
             newParams.topToTop = params.topToTop;
             newParams.startToStart = params.startToStart;
             newParams.leftToLeft = params.leftToLeft;
-            newParams.setMarginStart(params.getMarginStart());
             newParams.topMargin = params.topMargin;
+            newParams.setMarginStart(params.getMarginStart());
+            newParams.setMarginEnd(params.getMarginEnd());
 
             chatsViewHolder.cardView.setLayoutParams(newParams);
         }
