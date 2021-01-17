@@ -6,9 +6,13 @@ import androidx.room.PrimaryKey;
 
 @Entity
 public class ReceivedMessage {
+
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "_id")
     public int rid;
+
+    @ColumnInfo(name = "group")
+    public String group;
 
     @ColumnInfo(name = "sender")
     public String sender;
