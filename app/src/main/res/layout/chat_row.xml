@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/chat_row_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/bgColor"
+    android:paddingStart="12dp"
+    android:paddingTop="12dp"
+    android:paddingEnd="12dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_image"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="12dp"
+        android:src="@drawable/profile" />
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_toStartOf="@id/tvTime"
+        android:layout_toEndOf="@id/profile_image"
+        android:maxLines="1"
+        android:textColor="?attr/textColor"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        tools:text="Robert Downey" />
+
+    <TextView
+        android:id="@+id/tvLastMsg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvName"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="6dp"
+        android:layout_toEndOf="@id/profile_image"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="?attr/metaTextColor"
+        tools:text="Okay, Bye." />
+
+
+    <TextView
+        android:id="@+id/tvTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/tvName"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="3dp"
+        android:maxLines="1"
+        android:textColor="?metaTextColor"
+        android:textSize="12sp"
+        tools:text="Yesterday" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/profile_image"
+        android:layout_marginStart="62dp"
+        android:background="?attr/dividerColor"
+        android:orientation="horizontal" />
+
+
+</RelativeLayout>
