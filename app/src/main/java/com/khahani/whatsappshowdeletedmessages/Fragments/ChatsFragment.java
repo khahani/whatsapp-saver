@@ -81,7 +81,7 @@ public class ChatsFragment extends Fragment {
             chats.clear();
             DateFormat format;
             for (ReceivedMessage rm : receivedMessages) {
-                format = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT);
+                format = DateFormat.getTimeInstance(DateFormat.SHORT);
                 chats.add(new Chat(rm.sender, rm.text, format.format(rm.date)));
             }
             adapter.setChats(chats);
