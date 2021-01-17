@@ -25,4 +25,7 @@
     <string name="native1">ca-app-pub-3940256099942544/2247696110</string>
     <string name="chat_image_content_description">Chat image</string>
     <string name="dark_mode">Dark Mode</string>
+    <string name="share">Share</string>
+    <string name="share_message">\nLet me recommend you this application\n\n</string>
+    <string name="choose_one">choose one</string>
 </resources>

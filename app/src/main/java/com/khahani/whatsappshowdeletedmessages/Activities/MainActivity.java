@@ -17,6 +17,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 import com.khahani.whatsappshowdeletedmessages.Adapters.PagerAdapter;
+import com.khahani.whatsappshowdeletedmessages.BuildConfig;
 import com.khahani.whatsappshowdeletedmessages.R;
 
 
@@ -137,14 +138,6 @@ public class MainActivity extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.mainscreen_menu, menu);
 
-        //Updating Toolbar icon according to the Theme
-        MenuItem item = menu.findItem(R.id.imgDarkMode);
-        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
-            item.setIcon(R.drawable.ic_day);
-        } else {
-            item.setIcon(R.drawable.ic_night);
-        }
-
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -152,22 +145,24 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        if (item.getItemId() == R.id.imgDarkMode) {
-            toggleTheme();
+        if (item.getItemId() == R.id.share) {
+            shareApp();
         }
         return super.onOptionsItemSelected(item);
     }
 
-    private void toggleTheme() {
-
-        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        } else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+    private void shareApp() {
+        try {
+            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+            shareIntent.setType("text/plain");
+            shareIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
+            String shareMessage = getString(R.string.share_message);
+            shareMessage = shareMessage + "https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID + "\n\n";
+            shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+            startActivity(Intent.createChooser(shareIntent, getString(R.string.choose_one)));
+        } catch (Exception e) {
+            //e.toString();
         }
-
-        this.finish();
-        startActivity(new Intent(this, this.getClass()));
-
     }
+
 }
