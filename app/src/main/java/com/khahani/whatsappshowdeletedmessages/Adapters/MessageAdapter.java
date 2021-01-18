@@ -50,6 +50,13 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ChatsVie
 //			.load(chat.getImage())
 //			.apply(new RequestOptions().placeholder(R.drawable.profile))
 //			.into(chatsViewHolder.profilePic);
+
+        if (chat.getGroup() != null)
+            if (!chat.getGroup().equals("c")) {
+                chatsViewHolder.group.setText(chat.getGroup());
+                chatsViewHolder.group.setVisibility(View.VISIBLE);
+            }
+
         resizeCardView(chat, chatsViewHolder);
         chatsViewHolder.message.setText(chat.getLastMessage());
         chatsViewHolder.date.setText(chat.getLastMessageTime());
@@ -90,6 +97,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ChatsVie
         public TextView date;
         public TextView message;
         public CardView cardView;
+        public TextView group;
 
         ChatsViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -97,6 +105,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ChatsVie
             message = itemView.findViewById(R.id.tv_message);
             date = itemView.findViewById(R.id.tv_date);
             cardView = itemView.findViewById(R.id.cardView);
+            group = itemView.findViewById(R.id.tv_group);
 
         }
     }

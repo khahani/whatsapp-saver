@@ -2,6 +2,7 @@ package com.khahani.whatsappshowdeletedmessages.Model;
 
 public class Chat {
     private String image;
+    private String group;
     private String name;
     private String lastMessage;
     private String lastMessageTime;
@@ -10,17 +11,19 @@ public class Chat {
     }
 
 
-    public Chat(String name, String lastMessage, String lastMessageTime) {
+    public Chat(String name, String lastMessage, String lastMessageTime, String group) {
         this.name = name;
         this.lastMessage = lastMessage;
         this.lastMessageTime = lastMessageTime;
+        this.group = group;
     }
 
-    public Chat(String image, String name, String lastMessage, String lastMessageTime) {
+    public Chat(String image, String name, String lastMessage, String lastMessageTime, String group) {
         this.image = image;
         this.name = name;
         this.lastMessage = lastMessage;
         this.lastMessageTime = lastMessageTime;
+        this.group = group;
     }
 
 
@@ -54,5 +57,13 @@ public class Chat {
 
     public void setLastMessageTime(String lastMessageTime) {
         this.lastMessageTime = lastMessageTime;
+    }
+
+    public String getGroup() {
+        return group;
+    }
+
+    public void setGroup(String group) {
+        this.group = group;
     }
 }

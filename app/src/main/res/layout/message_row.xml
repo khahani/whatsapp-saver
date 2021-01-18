@@ -32,6 +32,19 @@
                 tools:ignore="RtlSymmetry">
 
                 <TextView
+                    android:id="@+id/tv_group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:textColor="#FF5722"
+                    android:textStyle="bold"
+                    android:visibility="gone"
+                    tools:text="گروه بادصبا" />
+
+                <TextView
                     android:id="@+id/tv_message"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -39,13 +52,7 @@
                     android:layout_marginTop="4dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp"
-                    android:paddingStart="0dp"
-                    android:paddingEnd="0dp"
                     android:textColor="@color/black"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/tv_date"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
                     tools:text="ایول 💪💪 منم دارم روی پلن تبلیغاتش کار میکنمایوایول 💪💪 منم دارم روی پلن تبلیغاتش کار میکنمایو" />
             </LinearLayout>
 

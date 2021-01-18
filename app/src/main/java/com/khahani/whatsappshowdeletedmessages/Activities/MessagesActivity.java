@@ -103,7 +103,7 @@ public class MessagesActivity extends AppCompatActivity {
             DateFormat format;
             for (ReceivedMessage rm : receivedMessages) {
                 format = DateFormat.getTimeInstance(DateFormat.SHORT);
-                chats.add(new Chat(rm.sender, rm.text, format.format(rm.date)));
+                chats.add(new Chat(rm.sender, rm.text, format.format(rm.date), rm.group));
             }
             adapter.setChats(chats);
             adapter.notifyDataSetChanged();
