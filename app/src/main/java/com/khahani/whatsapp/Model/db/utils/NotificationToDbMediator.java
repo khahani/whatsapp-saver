@@ -4,6 +4,7 @@ import android.content.Context;
 import android.service.notification.StatusBarNotification;
 import android.util.Log;
 
+import com.khahani.whatsapp.BuildConfig;
 import com.khahani.whatsapp.Model.db.Db;
 import com.khahani.whatsapp.Model.db.ReceivedMessage;
 
@@ -27,6 +28,17 @@ public class NotificationToDbMediator {
         this.db = Db.getInstance(context);
     }
 
+    //khahani: use it for the free time on next version
+//    private void triggerActions(StatusBarNotification sbn) {
+//
+//        Bundle b = sbn.getNotification().extras;
+//        Notification.Action[] actions = sbn.getNotification().actions;
+//        Uri sound = sbn.getNotification().sound;
+//        PendingIntent i = sbn.getNotification().contentIntent;
+//        RemoteViews big = sbn.getNotification().bigContentView;
+//
+//    }
+
     public void insert() {
         ReceivedMessage rm = new ReceivedMessage();
         rm.sender = notification.getNotification().extras.getString("android.title");
@@ -43,7 +55,8 @@ public class NotificationToDbMediator {
 
         logMessage.append(String.format("date: %s\n", rm.date));
 
-        Log.d("Khahani", logMessage.toString());
+        if (BuildConfig.DEBUG)
+            Log.d("Khahani", logMessage.toString());
 
         Thread t = new Thread(() -> {
             try {
@@ -110,9 +123,7 @@ public class NotificationToDbMediator {
 
     private String removeWhatsappThingsFromSender(String sender) {
         if (sender.startsWith("(messages")) {
-//            sender = sender.replaceFirst("\\(messages [0-9]\\)", "");
             sender = sender.replaceFirst("\\(messages ([0-9]|[0-9][0-9])\\)", ""); //khahani: need to test
-            //todo: check unread messages with 2 digits format
         }
         return sender;
     }
