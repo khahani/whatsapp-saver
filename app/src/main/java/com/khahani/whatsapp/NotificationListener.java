@@ -1,4 +1,4 @@
-package com.khahani.whatsappshowdeletedmessages;
+package com.khahani.whatsapp;
 
 import android.content.Intent;
 import android.os.IBinder;
@@ -6,7 +6,7 @@ import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
 import android.util.Log;
 
-import com.khahani.whatsappshowdeletedmessages.Model.db.utils.NotificationToDbMediator;
+import com.khahani.whatsapp.Model.db.utils.NotificationToDbMediator;
 
 
 public class NotificationListener extends NotificationListenerService {

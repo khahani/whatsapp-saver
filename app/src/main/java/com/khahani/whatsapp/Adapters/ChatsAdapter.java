@@ -1,4 +1,4 @@
-package com.khahani.whatsappshowdeletedmessages.Adapters;
+package com.khahani.whatsapp.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,9 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.khahani.whatsappshowdeletedmessages.Activities.MessagesActivity;
-import com.khahani.whatsappshowdeletedmessages.Model.Chat;
-import com.khahani.whatsappshowdeletedmessages.R;
+import com.khahani.whatsapp.Activities.MessagesActivity;
+import com.khahani.whatsapp.Model.Chat;
+import com.khahani.whatsapp.R;
 
 import java.util.ArrayList;
 

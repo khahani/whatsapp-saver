@@ -1,4 +1,4 @@
-package com.khahani.whatsappshowdeletedmessages.Adapters;
+package com.khahani.whatsapp.Adapters;
 
 
 import androidx.annotation.NonNull;
@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.khahani.whatsappshowdeletedmessages.Fragments.ChatsFragment;
+import com.khahani.whatsapp.Fragments.ChatsFragment;
 
 public class PagerAdapter extends FragmentPagerAdapter {
 

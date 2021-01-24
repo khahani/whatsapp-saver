@@ -1,4 +1,4 @@
-package com.khahani.whatsappshowdeletedmessages.Model.db;
+package com.khahani.whatsapp.Model.db;
 
 import android.content.Context;
 

@@ -1,11 +1,11 @@
-package com.khahani.whatsappshowdeletedmessages.Model.db.utils;
+package com.khahani.whatsapp.Model.db.utils;
 
 import android.content.Context;
 import android.service.notification.StatusBarNotification;
 import android.util.Log;
 
-import com.khahani.whatsappshowdeletedmessages.Model.db.Db;
-import com.khahani.whatsappshowdeletedmessages.Model.db.ReceivedMessage;
+import com.khahani.whatsapp.Model.db.Db;
+import com.khahani.whatsapp.Model.db.ReceivedMessage;
 
 import java.util.HashMap;
 import java.util.Map;

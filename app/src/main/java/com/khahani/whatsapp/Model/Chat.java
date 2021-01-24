@@ -1,4 +1,4 @@
-package com.khahani.whatsappshowdeletedmessages.Model;
+package com.khahani.whatsapp.Model;
 
 public class Chat {
     private String image;

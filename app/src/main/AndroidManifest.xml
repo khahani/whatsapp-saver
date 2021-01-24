@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.khahani.whatsappshowdeletedmessages">
+    package="com.khahani.whatsapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/> -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
-        android:name=".MyApplication"
+        android:name="com.khahani.whatsapp.MyApplication"
         android:allowBackup="true"
         android:fullBackupContent="@xml/backup_descriptor"
         android:icon="@drawable/ic_launcher"
@@ -16,10 +16,10 @@
         android:supportsRtl="true"
         android:theme="@style/App.Light">
         <activity
-            android:name=".Activities.MessagesActivity"
+            android:name="com.khahani.whatsapp.Activities.MessagesActivity"
             android:label="@string/title_activity_chats"
             android:theme="@style/App.Light.NoActionBar" />
-        <activity android:name=".Activities.MainActivity">
+        <activity android:name="com.khahani.whatsapp.Activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -27,7 +27,7 @@
         </activity>
 
         <service
-            android:name=".NotificationListener"
+            android:name="com.khahani.whatsapp.NotificationListener"
             android:label="@string/service_name"
             android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
             <intent-filter>

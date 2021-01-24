@@ -1,4 +1,4 @@
-package com.khahani.whatsappshowdeletedmessages.Adapters;
+package com.khahani.whatsapp.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,8 +11,8 @@ import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.khahani.whatsappshowdeletedmessages.Model.Chat;
-import com.khahani.whatsappshowdeletedmessages.R;
+import com.khahani.whatsapp.Model.Chat;
+import com.khahani.whatsapp.R;
 
 import java.util.ArrayList;
 

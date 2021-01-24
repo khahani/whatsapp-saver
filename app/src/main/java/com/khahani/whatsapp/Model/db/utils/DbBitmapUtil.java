@@ -1,4 +1,4 @@
-package com.khahani.whatsappshowdeletedmessages.Model.db.utils;
+package com.khahani.whatsapp.Model.db.utils;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

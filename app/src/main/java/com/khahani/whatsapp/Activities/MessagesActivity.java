@@ -1,4 +1,4 @@
-package com.khahani.whatsappshowdeletedmessages.Activities;
+package com.khahani.whatsapp.Activities;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -14,11 +14,11 @@ import com.google.android.gms.ads.AdLoader;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.formats.NativeAdOptions;
-import com.khahani.whatsappshowdeletedmessages.Adapters.MessageAdapter;
-import com.khahani.whatsappshowdeletedmessages.Model.Chat;
-import com.khahani.whatsappshowdeletedmessages.Model.db.Db;
-import com.khahani.whatsappshowdeletedmessages.Model.db.ReceivedMessage;
-import com.khahani.whatsappshowdeletedmessages.R;
+import com.khahani.whatsapp.Adapters.MessageAdapter;
+import com.khahani.whatsapp.Model.Chat;
+import com.khahani.whatsapp.Model.db.Db;
+import com.khahani.whatsapp.Model.db.ReceivedMessage;
+import com.khahani.whatsapp.R;
 
 import java.text.DateFormat;
 import java.util.ArrayList;

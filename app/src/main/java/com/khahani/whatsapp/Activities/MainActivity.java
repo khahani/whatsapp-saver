@@ -1,4 +1,4 @@
-package com.khahani.whatsappshowdeletedmessages.Activities;
+package com.khahani.whatsapp.Activities;
 
 import android.content.ComponentName;
 import android.content.Intent;
@@ -16,9 +16,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
-import com.khahani.whatsappshowdeletedmessages.Adapters.PagerAdapter;
-import com.khahani.whatsappshowdeletedmessages.BuildConfig;
-import com.khahani.whatsappshowdeletedmessages.R;
+import com.khahani.whatsapp.Adapters.PagerAdapter;
+import com.khahani.whatsapp.BuildConfig;
+import com.khahani.whatsapp.R;
 
 
 public class MainActivity extends AppCompatActivity {

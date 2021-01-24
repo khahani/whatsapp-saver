@@ -1,4 +1,4 @@
-package com.khahani.whatsappshowdeletedmessages.Fragments;
+package com.khahani.whatsapp.Fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,11 +15,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
-import com.khahani.whatsappshowdeletedmessages.Adapters.ChatsAdapter;
-import com.khahani.whatsappshowdeletedmessages.Model.Chat;
-import com.khahani.whatsappshowdeletedmessages.Model.db.Db;
-import com.khahani.whatsappshowdeletedmessages.Model.db.ReceivedMessage;
-import com.khahani.whatsappshowdeletedmessages.R;
+import com.khahani.whatsapp.Adapters.ChatsAdapter;
+import com.khahani.whatsapp.Model.Chat;
+import com.khahani.whatsapp.Model.db.Db;
+import com.khahani.whatsapp.Model.db.ReceivedMessage;
+import com.khahani.whatsapp.R;
 
 import java.text.DateFormat;
 import java.util.ArrayList;

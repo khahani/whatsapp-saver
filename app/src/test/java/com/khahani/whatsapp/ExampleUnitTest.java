@@ -1,4 +1,4 @@
-package com.khahani.whatsappshowdeletedmessages;
+package com.khahani.whatsapp;
 
 import org.junit.Test;
 
