@@ -12,14 +12,13 @@ import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
 import com.khahani.whatsapp.Adapters.ChatsAdapter;
 import com.khahani.whatsapp.Model.Chat;
 import com.khahani.whatsapp.Model.db.Db;
 import com.khahani.whatsapp.Model.db.ReceivedMessage;
 import com.khahani.whatsapp.R;
+import com.khahani.whatsapp.admob.AdapterBanner;
+import com.khahani.whatsapp.admob.Interstitial;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -32,18 +31,11 @@ public class ChatsFragment extends Fragment {
     private RecyclerView rvChats;
     private ChatsAdapter adapter;
     private Observer<List<ReceivedMessage>> observer;
-    private AdView mAdView;
+
     private View layout;
     private Db db;
+    private Interstitial interstitial;
 
-    private void initAds() {
-        MobileAds.initialize(getContext(), initializationStatus -> {
-        });
-
-        mAdView = layout.findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
-    }
 
     @Nullable
     @Override
@@ -59,7 +51,20 @@ public class ChatsFragment extends Fragment {
         initialize(view);
         populateChats();
         setAdapter();
-        initAds();
+
+        //khahani: determine which ads show based on firebase config
+        initBannerAds();
+        initInterstitialAds();
+    }
+
+    private void initBannerAds() {
+        AdapterBanner adaptiveBanner = new AdapterBanner(getActivity(), layout);
+        adaptiveBanner.initAds();
+    }
+
+    private void initInterstitialAds() {
+        interstitial = new Interstitial(getActivity(), () -> interstitial.show());
+        interstitial.loadAd();
     }
 
     @Override

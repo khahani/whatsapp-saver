@@ -35,12 +35,12 @@
             </intent-filter>
         </service>
 
+        <!-- //khahani: remove with real value of admob -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-2492036339953896~5504546308" />
-        <!--        <meta-data-->
-        <!--            android:name="com.google.android.gms.ads.com.khahani.whatsappsaver"-->
-        <!--            android:value="ca-app-pub-3940256099942544~3347511713"/>-->
+
+
     </application>
 
 </manifest>

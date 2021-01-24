@@ -9,11 +9,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdLoader;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.LoadAdError;
-import com.google.android.gms.ads.formats.NativeAdOptions;
 import com.khahani.whatsapp.Adapters.MessageAdapter;
 import com.khahani.whatsapp.Model.Chat;
 import com.khahani.whatsapp.Model.db.Db;
@@ -60,35 +55,7 @@ public class MessagesActivity extends AppCompatActivity {
     }
 
     private void initAds() {
-        final AdLoader adLoader = new AdLoader.Builder(this, getString(R.string.native1))
-                .forUnifiedNativeAd(ad -> {
-
-
-//                        if (adLoader.isLoading()) {
-//                            // The AdLoader is still loading ads.
-//                            // Expect more adLoaded or onAdFailedToLoad callbacks.
-//                        } else {
-//                            // The AdLoader has finished loading ads.
-//                        }
-
-                    if (isDestroyed()) {
-                        ad.destroy();
-                    }
-
-                })
-                .withAdListener(new AdListener() {
-                    @Override
-                    public void onAdFailedToLoad(LoadAdError adError) {
-                        // Handle the failure by logging, altering the UI, and so on.
-                    }
-                })
-                .withNativeAdOptions(new NativeAdOptions.Builder()
-                        // Methods in the NativeAdOptions.Builder class can be
-                        // used here to specify individual options settings.
-                        .build())
-                .build();
-
-        adLoader.loadAd(new AdRequest.Builder().build());
+        //khahani: not yet implemented
     }
 
     private void setupViews() {
@@ -122,7 +89,6 @@ public class MessagesActivity extends AppCompatActivity {
         chats = new ArrayList<>();
         adapter = new MessageAdapter(this, chats);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-//        linearLayoutManager.setReverseLayout(true);
         linearLayoutManager.setStackFromEnd(true);
         rvMessages.setLayoutManager(linearLayoutManager);
         rvMessages.setAdapter(adapter);
