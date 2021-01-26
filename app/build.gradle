@@ -2,6 +2,11 @@ plugins {
     id 'com.android.application'
 }
 
+// Apply the Crashlytics Gradle plugin
+apply plugin: 'com.google.firebase.crashlytics'
+// Add the following line:
+apply plugin: 'com.google.gms.google-services'  // Google Services plugin
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"

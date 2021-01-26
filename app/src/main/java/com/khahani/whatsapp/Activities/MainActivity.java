@@ -10,7 +10,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
@@ -21,7 +20,7 @@ import com.khahani.whatsapp.BuildConfig;
 import com.khahani.whatsapp.R;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     private static final String TAG = "MainActivity";
 
@@ -37,9 +36,11 @@ public class MainActivity extends AppCompatActivity {
 
     private PagerAdapter adapter;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
             setTheme(R.style.App_Dark);
         }
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         initialize();
         setUpViewPager();
         setUpNotifService();
+
     }
 
     @Override
