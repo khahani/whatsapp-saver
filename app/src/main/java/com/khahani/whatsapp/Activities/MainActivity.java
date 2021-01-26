@@ -21,6 +21,7 @@ import com.khahani.whatsapp.BuildConfig;
 import com.khahani.whatsapp.R;
 import com.khahani.whatsapp.firebase.analytic.LogEvent;
 import com.khahani.whatsapp.firebase.analytic.click.AnalyticDialogClickListener;
+import com.khahani.whatsapp.firebase.analytic.click.AnalyticDismissListener;
 import com.khahani.whatsapp.firebase.analytic.screen.TrackScreen;
 
 
@@ -117,11 +118,27 @@ public class MainActivity extends BaseActivity {
 
             @Override
             protected String getId() {
-                return "revoke_access_to_notification_service";
+                return getString(R.string.revoke_access_to_notification_service);
             }
 
             @Override
             protected void click(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        }).setOnDismissListener(new AnalyticDismissListener(getAnalytic()) {
+
+            @Override
+            protected String getName() {
+                return "Dismiss";
+            }
+
+            @Override
+            protected String getId() {
+                return getString(R.string.revoke_access_to_notification_service);
+            }
+
+            @Override
+            protected void dismiss(DialogInterface dialog) {
                 dialog.dismiss();
             }
         });

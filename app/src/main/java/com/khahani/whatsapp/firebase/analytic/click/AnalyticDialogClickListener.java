@@ -4,24 +4,23 @@ import android.content.DialogInterface;
 
 import com.khahani.whatsapp.firebase.analytic.Analytics;
 
-public abstract class AnalyticDialogClickListener implements DialogInterface.OnClickListener {
-
-    private final Analytics analytics;
+public abstract class AnalyticDialogClickListener extends AnalyticClickListener
+        implements DialogInterface.OnClickListener {
 
     protected AnalyticDialogClickListener(Analytics analytics) {
-        this.analytics = analytics;
+        super(analytics);
     }
 
     @Override
     public void onClick(DialogInterface dialog, int which) {
-        TrackClick trackClick = new TrackClick(analytics, getId(), getName(), TrackClick.Type.Dialog);
-        trackClick.run();
+        trackClick();
         this.click(dialog, which);
     }
 
-    protected abstract String getName();
-
-    protected abstract String getId();
+    @Override
+    protected TrackClick.Type getType() {
+        return TrackClick.Type.DialogButton;
+    }
 
     protected abstract void click(DialogInterface dialog, int which);
 }
