@@ -33,4 +33,8 @@ public abstract class BaseActivity extends AppCompatActivity implements Trackabl
     }
 
     protected abstract TrackScreen initTrackScreen(LogEvent logger);
+
+    public Analytics getAnalytic() {
+        return analytic;
+    }
 }

@@ -1,6 +1,7 @@
 package com.khahani.whatsapp.Activities;
 
 import android.content.ComponentName;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -19,6 +20,7 @@ import com.khahani.whatsapp.Adapters.PagerAdapter;
 import com.khahani.whatsapp.BuildConfig;
 import com.khahani.whatsapp.R;
 import com.khahani.whatsapp.firebase.analytic.LogEvent;
+import com.khahani.whatsapp.firebase.analytic.click.AnalyticDialogClickListener;
 import com.khahani.whatsapp.firebase.analytic.screen.TrackScreen;
 
 
@@ -91,9 +93,38 @@ public class MainActivity extends BaseActivity {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setTitle(R.string.notification_listener_service);
         alertDialogBuilder.setMessage(R.string.notification_listener_service_explanation);
-        alertDialogBuilder.setPositiveButton(R.string.yes,
-                (dialog, id) -> startActivity(new Intent(ACTION_NOTIFICATION_LISTENER_SETTINGS)));
-        alertDialogBuilder.setNegativeButton(R.string.no, null);
+        alertDialogBuilder.setPositiveButton(R.string.yes, new AnalyticDialogClickListener(getAnalytic()) {
+            @Override
+            protected String getName() {
+                return "Yes";
+            }
+
+            @Override
+            protected String getId() {
+                return "grant_access_to_notification_service";
+            }
+
+            @Override
+            protected void click(DialogInterface dialog, int which) {
+                startActivity(new Intent(ACTION_NOTIFICATION_LISTENER_SETTINGS));
+            }
+        });
+        alertDialogBuilder.setNegativeButton(R.string.no, new AnalyticDialogClickListener(getAnalytic()) {
+            @Override
+            protected String getName() {
+                return "No";
+            }
+
+            @Override
+            protected String getId() {
+                return "revoke_access_to_notification_service";
+            }
+
+            @Override
+            protected void click(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
         return (alertDialogBuilder.create());
     }
 

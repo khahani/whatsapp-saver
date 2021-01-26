@@ -31,10 +31,13 @@ public class Analytics implements Runnable, LogEvent {
     public static class Param {
         public static final String SCREEN_NAME = FirebaseAnalytics.Param.SCREEN_NAME;
         public static final String SCREEN_CLASS = FirebaseAnalytics.Param.SCREEN_CLASS;
+        public static final String ITEM_ID = FirebaseAnalytics.Param.ITEM_ID;
+        public static final String ITEM_NAME = FirebaseAnalytics.Param.ITEM_NAME;
+        public static final String CONTENT_TYPE = FirebaseAnalytics.Param.CONTENT_TYPE;
     }
 
     public static class Event {
         public static final String SCREEN_VIEW = FirebaseAnalytics.Event.SCREEN_VIEW;
-        private static final String SELECTED_ITEM = FirebaseAnalytics.Event.SELECT_ITEM;
+        public static final String SELECTED_ITEM = FirebaseAnalytics.Event.SELECT_ITEM;
     }
 }
