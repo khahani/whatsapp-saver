@@ -22,6 +22,7 @@ import com.khahani.whatsapp.R;
 import com.khahani.whatsapp.firebase.analytic.LogEvent;
 import com.khahani.whatsapp.firebase.analytic.click.AnalyticDialogClickListener;
 import com.khahani.whatsapp.firebase.analytic.click.AnalyticDismissListener;
+import com.khahani.whatsapp.firebase.analytic.click.TrackClick;
 import com.khahani.whatsapp.firebase.analytic.screen.TrackScreen;
 
 
@@ -203,9 +204,15 @@ public class MainActivity extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         if (item.getItemId() == R.id.share) {
+            trackClick();
             shareApp();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void trackClick() {
+        TrackClick trackClick = new TrackClick(getAnalytic(), "share_app", "share app", TrackClick.Type.ToolbarButton);
+        trackClick.run();
     }
 
     private void shareApp() {

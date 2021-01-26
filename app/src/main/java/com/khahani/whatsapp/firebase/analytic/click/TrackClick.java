@@ -36,7 +36,8 @@ public class TrackClick implements Runnable {
 
     public enum Type {
         DialogButton("Dialog button"),
-        DialogDismiss("Dialog dismiss");
+        DialogDismiss("Dialog dismiss"),
+        ToolbarButton("Toolbar button");
 
         private final String type;
 
