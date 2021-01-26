@@ -5,11 +5,12 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.khahani.whatsapp.firebase.Analytics;
 import com.khahani.whatsapp.firebase.Crashlytics;
 import com.khahani.whatsapp.firebase.RemoteConfig;
+import com.khahani.whatsapp.firebase.analytic.Analytics;
+import com.khahani.whatsapp.firebase.analytic.screen.TrackableScreen;
 
-public class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity implements TrackableScreen {
 
     private Analytics analytic;
     private RemoteConfig remoteConfig;

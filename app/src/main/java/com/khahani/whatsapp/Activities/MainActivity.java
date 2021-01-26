@@ -167,4 +167,13 @@ public class MainActivity extends BaseActivity {
         }
     }
 
+    @Override
+    public String getScreenName() {
+        return "Main screen";
+    }
+
+    @Override
+    public String getClassName() {
+        return MainActivity.class.getName();
+    }
 }

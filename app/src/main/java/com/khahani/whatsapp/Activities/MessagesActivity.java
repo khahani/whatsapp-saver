@@ -94,4 +94,13 @@ public class MessagesActivity extends BaseActivity {
 
     }
 
+    @Override
+    public String getScreenName() {
+        return "messages screen";
+    }
+
+    @Override
+    public String getClassName() {
+        return MessagesActivity.class.getName();
+    }
 }

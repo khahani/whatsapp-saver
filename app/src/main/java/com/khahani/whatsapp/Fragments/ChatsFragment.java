@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,7 +23,7 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChatsFragment extends Fragment {
+public class ChatsFragment extends BaseFragment {
 
     private ArrayList<Chat> chats;
 
@@ -106,5 +105,15 @@ public class ChatsFragment extends Fragment {
     public void onStop() {
         super.onStop();
         db.receivedMessageDao().getSenders().removeObserver(observer);
+    }
+
+    @Override
+    public String getScreenName() {
+        return "contacts and groups screen";
+    }
+
+    @Override
+    public String getClassName() {
+        return ChatsFragment.class.getName();
     }
 }
