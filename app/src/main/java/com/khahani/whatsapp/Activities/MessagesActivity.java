@@ -13,6 +13,8 @@ import com.khahani.whatsapp.Model.Chat;
 import com.khahani.whatsapp.Model.db.Db;
 import com.khahani.whatsapp.Model.db.ReceivedMessage;
 import com.khahani.whatsapp.R;
+import com.khahani.whatsapp.firebase.analytic.LogEvent;
+import com.khahani.whatsapp.firebase.analytic.screen.TrackScreen;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -51,6 +53,11 @@ public class MessagesActivity extends BaseActivity {
         populateChats();
 
         initAds();
+    }
+
+    @Override
+    protected TrackScreen initTrackScreen(LogEvent logger) {
+        return new TrackScreen(logger, this);
     }
 
     private void initAds() {

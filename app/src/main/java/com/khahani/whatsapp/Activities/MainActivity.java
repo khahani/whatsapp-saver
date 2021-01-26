@@ -18,6 +18,8 @@ import com.google.android.material.tabs.TabLayout;
 import com.khahani.whatsapp.Adapters.PagerAdapter;
 import com.khahani.whatsapp.BuildConfig;
 import com.khahani.whatsapp.R;
+import com.khahani.whatsapp.firebase.analytic.LogEvent;
+import com.khahani.whatsapp.firebase.analytic.screen.TrackScreen;
 
 
 public class MainActivity extends BaseActivity {
@@ -49,6 +51,11 @@ public class MainActivity extends BaseActivity {
         setUpViewPager();
         setUpNotifService();
 
+    }
+
+    @Override
+    protected TrackScreen initTrackScreen(LogEvent logger) {
+        return new TrackScreen(logger, this);
     }
 
     @Override

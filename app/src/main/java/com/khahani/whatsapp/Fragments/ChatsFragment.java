@@ -18,6 +18,8 @@ import com.khahani.whatsapp.Model.db.ReceivedMessage;
 import com.khahani.whatsapp.R;
 import com.khahani.whatsapp.admob.AdapterBanner;
 import com.khahani.whatsapp.admob.Interstitial;
+import com.khahani.whatsapp.firebase.analytic.LogEvent;
+import com.khahani.whatsapp.firebase.analytic.screen.TrackScreen;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -115,5 +117,10 @@ public class ChatsFragment extends BaseFragment {
     @Override
     public String getClassName() {
         return ChatsFragment.class.getName();
+    }
+
+    @Override
+    protected TrackScreen initTrackScreen(LogEvent logger) {
+        return new TrackScreen(logger, this);
     }
 }
