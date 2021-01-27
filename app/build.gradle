@@ -1,18 +1,16 @@
 plugins {
     id 'com.android.application'
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
+    id 'com.google.firebase.firebase-perf'
 }
-
-// Apply the Crashlytics Gradle plugin
-apply plugin: 'com.google.firebase.crashlytics'
-// Add the following line:
-apply plugin: 'com.google.gms.google-services'  // Google Services plugin
 
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
 
     defaultConfig {
-        applicationId "com.khahani.whatsapp"
+        applicationId "com.testing.whatsapp"
         minSdkVersion 19
         targetSdkVersion 30
         versionCode 1
@@ -48,6 +46,10 @@ dependencies {
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation 'com.google.firebase:firebase-config'
     implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.google.firebase:firebase-crashlytics'
+    implementation 'com.google.firebase:firebase-perf'
+    implementation 'com.google.firebase:firebase-messaging'
+    implementation 'com.google.firebase:firebase-inappmessaging-display'
 
     //google admob
     implementation 'com.google.android.gms:play-services-ads:19.7.0'
@@ -55,6 +57,7 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.0.0'
 
     implementation 'com.github.bumptech.glide:glide:4.11.0'
+
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 
     implementation 'androidx.appcompat:appcompat:1.2.0'

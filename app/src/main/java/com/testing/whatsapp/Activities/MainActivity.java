@@ -54,7 +54,6 @@ public class MainActivity extends BaseActivity {
         initialize();
         setUpViewPager();
         setUpNotifService();
-
     }
 
     @Override

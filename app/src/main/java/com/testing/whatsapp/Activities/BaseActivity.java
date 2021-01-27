@@ -28,7 +28,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Trackabl
         trackScreen = initTrackScreen(analytic);
         analytic.run();
         remoteConfig.run();
-        crashlytics.run();
+//        crashlytics.run();
         trackScreen.run();
     }
 

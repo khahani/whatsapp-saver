@@ -16,8 +16,8 @@ import com.testing.whatsapp.Model.Chat;
 import com.testing.whatsapp.Model.db.Db;
 import com.testing.whatsapp.Model.db.ReceivedMessage;
 import com.testing.whatsapp.R;
-import com.testing.whatsapp.admob.AdapterBanner;
-import com.testing.whatsapp.admob.Interstitial;
+import com.testing.whatsapp.firebase.admob.AdapterBanner;
+import com.testing.whatsapp.firebase.admob.Interstitial;
 import com.testing.whatsapp.firebase.analytic.LogEvent;
 import com.testing.whatsapp.firebase.analytic.screen.TrackScreen;
 

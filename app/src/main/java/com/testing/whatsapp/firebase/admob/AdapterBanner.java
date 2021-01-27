@@ -1,4 +1,4 @@
-package com.testing.whatsapp.admob;
+package com.testing.whatsapp.firebase.admob;
 
 import android.app.Activity;
 import android.util.DisplayMetrics;
