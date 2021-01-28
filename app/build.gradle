@@ -5,6 +5,7 @@ plugins {
     id 'com.google.firebase.firebase-perf'
 }
 
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
@@ -25,9 +26,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
-        debug{
+        debug {
             debuggable true
             minifyEnabled false
+            ext.alwaysUpdateBuildId = false
             proguardFiles getDefaultProguardFile('proguard-android.txt')
         }
     }
@@ -50,6 +52,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-perf'
     implementation 'com.google.firebase:firebase-messaging'
     implementation 'com.google.firebase:firebase-inappmessaging-display'
+
 
     //google admob
     implementation 'com.google.android.gms:play-services-ads:19.7.0'
