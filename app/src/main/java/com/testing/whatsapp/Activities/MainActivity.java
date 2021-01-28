@@ -16,14 +16,14 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
+import com.testing.firebase.analytic.LogEvent;
+import com.testing.firebase.analytic.click.AnalyticDialogClickListener;
+import com.testing.firebase.analytic.click.AnalyticDismissListener;
+import com.testing.firebase.analytic.click.TrackClick;
+import com.testing.firebase.analytic.screen.TrackScreen;
 import com.testing.whatsapp.Adapters.PagerAdapter;
 import com.testing.whatsapp.BuildConfig;
 import com.testing.whatsapp.R;
-import com.testing.whatsapp.firebase.analytic.LogEvent;
-import com.testing.whatsapp.firebase.analytic.click.AnalyticDialogClickListener;
-import com.testing.whatsapp.firebase.analytic.click.AnalyticDismissListener;
-import com.testing.whatsapp.firebase.analytic.click.TrackClick;
-import com.testing.whatsapp.firebase.analytic.screen.TrackScreen;
 
 
 public class MainActivity extends BaseActivity {

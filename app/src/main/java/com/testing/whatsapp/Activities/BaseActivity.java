@@ -7,13 +7,13 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.testing.whatsapp.firebase.Crashlytics;
-import com.testing.whatsapp.firebase.InAppMessage;
-import com.testing.whatsapp.firebase.RemoteConfig;
-import com.testing.whatsapp.firebase.analytic.Analytics;
-import com.testing.whatsapp.firebase.analytic.LogEvent;
-import com.testing.whatsapp.firebase.analytic.screen.TrackScreen;
-import com.testing.whatsapp.firebase.analytic.screen.TrackableScreen;
+import com.testing.firebase.Crashlytics;
+import com.testing.firebase.InAppMessage;
+import com.testing.firebase.RemoteConfig;
+import com.testing.firebase.analytic.Analytics;
+import com.testing.firebase.analytic.LogEvent;
+import com.testing.firebase.analytic.screen.TrackScreen;
+import com.testing.firebase.analytic.screen.TrackableScreen;
 
 public abstract class BaseActivity extends AppCompatActivity implements TrackableScreen {
 
@@ -35,13 +35,10 @@ public abstract class BaseActivity extends AppCompatActivity implements Trackabl
 //        crashlytics.run();
         trackScreen.run();
         //khahani: check why in app device id not shown in toast or log
-        inAppMessage = new InAppMessage(new Runnable() {
-            @Override
-            public void run() {
-                String deviceId = inAppMessage.getDeviceId();
-                Log.d("Khahani", deviceId);
-                Toast.makeText(getApplicationContext(), deviceId, Toast.LENGTH_LONG).show();
-            }
+        inAppMessage = new InAppMessage(() -> {
+            String deviceId = inAppMessage.getDeviceId();
+            Log.d("Khahani", deviceId);
+            Toast.makeText(getApplicationContext(), deviceId, Toast.LENGTH_LONG).show();
         });
         inAppMessage.run();
     }

@@ -1,2 +1,3 @@
+include ':firebase'
 include ':app'
 rootProject.name = "Whatsap"

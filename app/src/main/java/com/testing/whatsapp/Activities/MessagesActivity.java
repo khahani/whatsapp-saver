@@ -8,13 +8,13 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.testing.firebase.analytic.LogEvent;
+import com.testing.firebase.analytic.screen.TrackScreen;
 import com.testing.whatsapp.Adapters.MessageAdapter;
 import com.testing.whatsapp.Model.Chat;
 import com.testing.whatsapp.Model.db.Db;
 import com.testing.whatsapp.Model.db.ReceivedMessage;
 import com.testing.whatsapp.R;
-import com.testing.whatsapp.firebase.analytic.LogEvent;
-import com.testing.whatsapp.firebase.analytic.screen.TrackScreen;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
