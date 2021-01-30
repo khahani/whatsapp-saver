@@ -1,6 +1,8 @@
 package com.testing.firebase;
 
-public class Crashlytics implements Runnable {
+import com.khahani.usecase_firebase.CrashlyticsBase;
+
+public class Crashlytics extends CrashlyticsBase {
     @Override
     public void run() {
         if (BuildConfig.DEBUG)
