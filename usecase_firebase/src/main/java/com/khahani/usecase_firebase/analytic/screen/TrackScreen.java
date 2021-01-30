@@ -1,9 +1,9 @@
-package com.testing.firebase.analytic.screen;
+package com.khahani.usecase_firebase.analytic.screen;
 
 import android.os.Bundle;
 
-import com.testing.firebase.analytic.AnalyticsBase;
-import com.testing.firebase.analytic.LogEvent;
+import com.khahani.usecase_firebase.analytic.AnalyticsBase;
+import com.khahani.usecase_firebase.analytic.LogEvent;
 
 
 public class TrackScreen implements Runnable {

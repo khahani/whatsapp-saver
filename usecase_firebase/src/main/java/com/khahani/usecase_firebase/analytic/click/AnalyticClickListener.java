@@ -1,6 +1,6 @@
-package com.testing.firebase.analytic.click;
+package com.khahani.usecase_firebase.analytic.click;
 
-import com.testing.firebase.analytic.AnalyticsBase;
+import com.khahani.usecase_firebase.analytic.AnalyticsBase;
 
 public abstract class AnalyticClickListener {
     protected final AnalyticsBase analytics;

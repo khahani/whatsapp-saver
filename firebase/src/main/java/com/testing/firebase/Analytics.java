@@ -1,9 +1,10 @@
-package com.testing.firebase.analytic;
+package com.testing.firebase;
 
 import android.content.Context;
 import android.os.Bundle;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.khahani.usecase_firebase.analytic.AnalyticsBase;
 
 public class Analytics extends AnalyticsBase {
 

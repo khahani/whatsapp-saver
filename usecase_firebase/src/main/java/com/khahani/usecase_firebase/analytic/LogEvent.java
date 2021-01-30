@@ -1,4 +1,4 @@
-package com.testing.firebase.analytic;
+package com.khahani.usecase_firebase.analytic;
 
 import android.os.Bundle;
 

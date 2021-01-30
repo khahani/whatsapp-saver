@@ -1,4 +1,4 @@
-package com.testing.firebase.analytic.screen;
+package com.khahani.usecase_firebase.analytic.screen;
 
 public interface TrackableScreen {
     String getScreenName();

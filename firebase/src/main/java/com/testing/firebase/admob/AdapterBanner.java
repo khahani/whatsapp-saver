@@ -15,7 +15,7 @@ import com.testing.firebase.R;
 
 import java.util.Objects;
 
-public class AdapterBanner {
+public class AdapterBanner implements Runnable {
     private final Activity activity;
     private final View layout;
     private AdView adView;
@@ -75,4 +75,8 @@ public class AdapterBanner {
         return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(activity, adWidth);
     }
 
+    @Override
+    public void run() {
+        initAds();
+    }
 }

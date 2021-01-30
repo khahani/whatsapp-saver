@@ -1,11 +1,11 @@
-package com.testing.firebase.analytic.click;
+package com.khahani.usecase_firebase.analytic.click;
 
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 
-import com.testing.firebase.analytic.AnalyticsBase;
-import com.testing.firebase.analytic.LogEvent;
+import com.khahani.usecase_firebase.analytic.AnalyticsBase;
+import com.khahani.usecase_firebase.analytic.LogEvent;
 
 public class TrackClick implements Runnable {
 

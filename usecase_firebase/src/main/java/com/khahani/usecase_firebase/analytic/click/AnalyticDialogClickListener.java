@@ -1,8 +1,8 @@
-package com.testing.firebase.analytic.click;
+package com.khahani.usecase_firebase.analytic.click;
 
 import android.content.DialogInterface;
 
-import com.testing.firebase.analytic.AnalyticsBase;
+import com.khahani.usecase_firebase.analytic.AnalyticsBase;
 
 public abstract class AnalyticDialogClickListener extends AnalyticClickListener
         implements DialogInterface.OnClickListener {
