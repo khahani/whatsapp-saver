@@ -11,10 +11,11 @@ import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
+import com.khahani.usecase_firebase.admob.InterstitialBase;
 import com.testing.firebase.BuildConfig;
 import com.testing.firebase.R;
 
-public class Interstitial {
+public class Interstitial extends InterstitialBase {
 
     private final Activity activity;
     private final InterstitialInteraction listener;
@@ -27,6 +28,7 @@ public class Interstitial {
         this.adUid = adUid;
     }
 
+    @Override
     public void loadAd() {
         AdRequest adRequest = new AdRequest.Builder().build();
 
@@ -66,6 +68,7 @@ public class Interstitial {
         });
     }
 
+    @Override
     public void show() {
         if (mInterstitialAd != null) {
             mInterstitialAd.show(activity);
@@ -74,7 +77,4 @@ public class Interstitial {
         }
     }
 
-    public interface InterstitialInteraction {
-        void onInterstitialReady();
-    }
 }
