@@ -52,15 +52,11 @@ android {
 
 dependencies {
 
-
-
-
+    implementation project(path: ':firebase')
 
     implementation 'de.hdodenhof:circleimageview:3.0.0'
 
     implementation 'com.github.bumptech.glide:glide:4.11.0'
-    implementation project(path: ':firebase')
-
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 
     implementation 'androidx.appcompat:appcompat:1.2.0'

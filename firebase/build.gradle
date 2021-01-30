@@ -30,6 +30,17 @@ android {
             ext.alwaysUpdateBuildId = false
         }
     }
+
+    flavorDimensions 'stage'
+    productFlavors {
+        dev {
+            dimension 'stage'
+        }
+        pro {
+            dimension 'stage'
+        }
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
