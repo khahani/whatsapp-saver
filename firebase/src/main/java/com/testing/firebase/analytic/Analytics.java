@@ -5,13 +5,12 @@ import android.os.Bundle;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
 
-public class Analytics implements Runnable, LogEvent {
+public class Analytics extends AnalyticsBase {
 
-    private final Context context;
     private FirebaseAnalytics mFirebaseAnalytics;
 
     public Analytics(Context context) {
-        this.context = context;
+        super(context);
     }
 
     private void enable() {
@@ -28,16 +27,4 @@ public class Analytics implements Runnable, LogEvent {
         mFirebaseAnalytics.logEvent(key, value);
     }
 
-    public static class Param {
-        public static final String SCREEN_NAME = "screen_name";
-        public static final String SCREEN_CLASS = "screen_class";
-        public static final String ITEM_ID = "item_id";
-        public static final String ITEM_NAME = "item_name";
-        public static final String CONTENT_TYPE = "content_type";
-    }
-
-    public static class Event {
-        public static final String SCREEN_VIEW = "screen_view";
-        public static final String SELECTED_ITEM = "select_item";
-    }
 }

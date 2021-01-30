@@ -1,3 +1,4 @@
+include ':usecase_firebase'
 include ':firebase'
 include ':app'
 rootProject.name = "Whatsap"

@@ -2,12 +2,12 @@ package com.testing.firebase.analytic.click;
 
 import android.content.DialogInterface;
 
-import com.testing.firebase.analytic.Analytics;
+import com.testing.firebase.analytic.AnalyticsBase;
 
 public abstract class AnalyticDialogClickListener extends AnalyticClickListener
         implements DialogInterface.OnClickListener {
 
-    protected AnalyticDialogClickListener(Analytics analytics) {
+    protected AnalyticDialogClickListener(AnalyticsBase analytics) {
         super(analytics);
     }
 

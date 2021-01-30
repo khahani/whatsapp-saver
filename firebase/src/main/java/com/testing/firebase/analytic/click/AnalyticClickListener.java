@@ -1,11 +1,11 @@
 package com.testing.firebase.analytic.click;
 
-import com.testing.firebase.analytic.Analytics;
+import com.testing.firebase.analytic.AnalyticsBase;
 
 public abstract class AnalyticClickListener {
-    protected final Analytics analytics;
+    protected final AnalyticsBase analytics;
 
-    public AnalyticClickListener(Analytics analytics) {
+    public AnalyticClickListener(AnalyticsBase analytics) {
         this.analytics = analytics;
     }
 

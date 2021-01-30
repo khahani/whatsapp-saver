@@ -2,11 +2,11 @@ package com.testing.firebase.analytic.click;
 
 import android.content.DialogInterface;
 
-import com.testing.firebase.analytic.Analytics;
+import com.testing.firebase.analytic.AnalyticsBase;
 
 public abstract class AnalyticDismissListener extends AnalyticClickListener implements DialogInterface.OnDismissListener {
 
-    public AnalyticDismissListener(Analytics analytics) {
+    public AnalyticDismissListener(AnalyticsBase analytics) {
         super(analytics);
     }
 
