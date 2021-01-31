@@ -5,10 +5,10 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.khahani.usecase_firebase.CrashlyticsBase;
-import com.khahani.usecase_firebase.InAppMessageBase;
-import com.khahani.usecase_firebase.RemoteConfigBase;
-import com.khahani.usecase_firebase.analytic.AnalyticsBase;
+import com.khahani.usecase_firebase.Crashlytics;
+import com.khahani.usecase_firebase.InAppMessage;
+import com.khahani.usecase_firebase.RemoteConfig;
+import com.khahani.usecase_firebase.analytic.Analytics;
 import com.khahani.usecase_firebase.analytic.LogEvent;
 import com.khahani.usecase_firebase.analytic.screen.TrackScreen;
 import com.khahani.usecase_firebase.analytic.screen.TrackableScreen;
@@ -17,11 +17,11 @@ import com.testing.whatsapp.creator.firebase.CrashlyticCreator;
 
 public abstract class BaseActivity extends AppCompatActivity implements TrackableScreen {
 
-    private AnalyticsBase analytic;
-    private RemoteConfigBase remoteConfig;
-    private CrashlyticsBase crashlytics;
+    private Analytics analytic;
+    private RemoteConfig remoteConfig;
+    private Crashlytics crashlytics;
     private TrackScreen trackScreen;
-    private InAppMessageBase inAppMessage;
+    private InAppMessage inAppMessage;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,7 +41,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Trackabl
 
     protected abstract TrackScreen initTrackScreen(LogEvent logger);
 
-    public AnalyticsBase getAnalytic() {
+    public Analytics getAnalytic() {
         return analytic;
     }
 }

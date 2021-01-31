@@ -1,12 +1,12 @@
 package com.testing.whatsapp.creator.firebase;
 
 import com.khahani.usecase_firebase.Creator;
-import com.khahani.usecase_firebase.InAppMessageBase;
+import com.khahani.usecase_firebase.InAppMessage;
 import com.khahani.usecase_firebase.NullInAppMessage;
 
-public class InAppMessageCreator extends Creator<InAppMessageBase> {
+public class InAppMessageCreator extends Creator<InAppMessage> {
     @Override
-    public InAppMessageBase factoryMethod() {
+    public InAppMessage factoryMethod() {
         return new NullInAppMessage();
         //return new InAppMessageImpl(new InAppMessageUnderTest());
     }

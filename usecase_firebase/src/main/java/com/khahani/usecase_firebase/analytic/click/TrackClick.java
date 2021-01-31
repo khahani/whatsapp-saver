@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 
-import com.khahani.usecase_firebase.analytic.AnalyticsBase;
+import com.khahani.usecase_firebase.analytic.Analytics;
 import com.khahani.usecase_firebase.analytic.LogEvent;
 
 public class TrackClick implements Runnable {
@@ -28,10 +28,10 @@ public class TrackClick implements Runnable {
 
     private void logEvent() {
         Bundle bundle = new Bundle();
-        bundle.putString(AnalyticsBase.Param.ITEM_ID, id);
-        bundle.putString(AnalyticsBase.Param.ITEM_NAME, name);
-        bundle.putString(AnalyticsBase.Param.CONTENT_TYPE, type.toString());
-        logger.logEvent(AnalyticsBase.Event.SELECTED_ITEM, bundle);
+        bundle.putString(Analytics.Param.ITEM_ID, id);
+        bundle.putString(Analytics.Param.ITEM_NAME, name);
+        bundle.putString(Analytics.Param.CONTENT_TYPE, type.toString());
+        logger.logEvent(Analytics.Event.SELECTED_ITEM, bundle);
     }
 
     public enum Type {

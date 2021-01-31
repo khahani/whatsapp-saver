@@ -11,11 +11,11 @@ import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
-import com.khahani.usecase_firebase.admob.InterstitialBase;
+import com.khahani.usecase_firebase.admob.Interstitial;
 import com.testing.firebase.BuildConfig;
 import com.testing.firebase.R;
 
-public class InterstitialImpl extends InterstitialBase {
+public class InterstitialImpl extends Interstitial {
 
     private final Activity activity;
     private final InterstitialInteraction listener;

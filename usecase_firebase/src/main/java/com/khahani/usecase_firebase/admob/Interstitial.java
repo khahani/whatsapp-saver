@@ -1,6 +1,6 @@
 package com.khahani.usecase_firebase.admob;
 
-public abstract class InterstitialBase {
+public abstract class Interstitial {
     public abstract void loadAd();
 
     public abstract void show();

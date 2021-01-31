@@ -4,13 +4,13 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.khahani.usecase_firebase.InAppMessageBase;
+import com.khahani.usecase_firebase.InAppMessage;
 
 public class InAppMessageUnderTest implements Runnable {
     private final Context context;
-    private final InAppMessageBase inAppMessage;
+    private final InAppMessage inAppMessage;
 
-    public InAppMessageUnderTest(Context context, InAppMessageBase inAppMessage) {
+    public InAppMessageUnderTest(Context context, InAppMessage inAppMessage) {
         this.context = context;
         this.inAppMessage = inAppMessage;
     }

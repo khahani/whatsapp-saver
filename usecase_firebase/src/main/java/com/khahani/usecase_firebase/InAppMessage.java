@@ -1,10 +1,10 @@
 package com.khahani.usecase_firebase;
 
-public abstract class InAppMessageBase implements Runnable {
+public abstract class InAppMessage implements Runnable {
     protected final Runnable listener;
     protected String uniqueId;
 
-    public InAppMessageBase(Runnable listener) {
+    public InAppMessage(Runnable listener) {
         this.listener = listener;
     }
 

@@ -1,11 +1,11 @@
 package com.khahani.usecase_firebase.analytic.click;
 
-import com.khahani.usecase_firebase.analytic.AnalyticsBase;
+import com.khahani.usecase_firebase.analytic.Analytics;
 
 public abstract class AnalyticClickListener {
-    protected final AnalyticsBase analytics;
+    protected final Analytics analytics;
 
-    public AnalyticClickListener(AnalyticsBase analytics) {
+    public AnalyticClickListener(Analytics analytics) {
         this.analytics = analytics;
     }
 

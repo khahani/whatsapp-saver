@@ -2,10 +2,10 @@ package com.khahani.usecase_firebase.analytic;
 
 import android.content.Context;
 
-public abstract class AnalyticsBase implements Runnable, LogEvent {
+public abstract class Analytics implements Runnable, LogEvent {
     protected final Context context;
 
-    public AnalyticsBase(Context context) {
+    public Analytics(Context context) {
         this.context = context;
     }
 

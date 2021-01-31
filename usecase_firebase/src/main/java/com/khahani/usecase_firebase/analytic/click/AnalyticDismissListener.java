@@ -2,11 +2,11 @@ package com.khahani.usecase_firebase.analytic.click;
 
 import android.content.DialogInterface;
 
-import com.khahani.usecase_firebase.analytic.AnalyticsBase;
+import com.khahani.usecase_firebase.analytic.Analytics;
 
 public abstract class AnalyticDismissListener extends AnalyticClickListener implements DialogInterface.OnDismissListener {
 
-    public AnalyticDismissListener(AnalyticsBase analytics) {
+    public AnalyticDismissListener(Analytics analytics) {
         super(analytics);
     }
 

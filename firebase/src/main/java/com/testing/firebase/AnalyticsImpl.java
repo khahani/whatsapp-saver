@@ -4,9 +4,9 @@ import android.content.Context;
 import android.os.Bundle;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
-import com.khahani.usecase_firebase.analytic.AnalyticsBase;
+import com.khahani.usecase_firebase.analytic.Analytics;
 
-public class AnalyticsImpl extends AnalyticsBase {
+public class AnalyticsImpl extends Analytics {
 
     private FirebaseAnalytics mFirebaseAnalytics;
 

@@ -2,7 +2,7 @@ package com.khahani.usecase_firebase.analytic.screen;
 
 import android.os.Bundle;
 
-import com.khahani.usecase_firebase.analytic.AnalyticsBase;
+import com.khahani.usecase_firebase.analytic.Analytics;
 import com.khahani.usecase_firebase.analytic.LogEvent;
 
 
@@ -23,8 +23,8 @@ public class TrackScreen implements Runnable {
 
     private void logEvent() {
         Bundle bundle = new Bundle();
-        bundle.putString(AnalyticsBase.Param.SCREEN_NAME, trackableScreen.getScreenName());
-        bundle.putString(AnalyticsBase.Param.SCREEN_CLASS, trackableScreen.getClassName());
-        logger.logEvent(AnalyticsBase.Event.SCREEN_VIEW, bundle);
+        bundle.putString(Analytics.Param.SCREEN_NAME, trackableScreen.getScreenName());
+        bundle.putString(Analytics.Param.SCREEN_CLASS, trackableScreen.getClassName());
+        logger.logEvent(Analytics.Event.SCREEN_VIEW, bundle);
     }
 }

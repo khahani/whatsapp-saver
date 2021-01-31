@@ -2,9 +2,9 @@ package com.testing.firebase;
 
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
-import com.khahani.usecase_firebase.RemoteConfigBase;
+import com.khahani.usecase_firebase.RemoteConfig;
 
-public class RemoteConfigImpl extends RemoteConfigBase {
+public class RemoteConfigImpl extends RemoteConfig {
 
     private FirebaseRemoteConfig mFirebaseRemoteConfig;
 
