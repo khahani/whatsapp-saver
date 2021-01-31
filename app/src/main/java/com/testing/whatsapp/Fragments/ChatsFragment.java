@@ -21,6 +21,7 @@ import com.testing.whatsapp.Model.db.Db;
 import com.testing.whatsapp.Model.db.ReceivedMessage;
 import com.testing.whatsapp.R;
 import com.testing.whatsapp.creator.firebase.AdapterBannerCreator;
+import com.testing.whatsapp.creator.firebase.InterstitialCreator;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -68,7 +69,7 @@ public class ChatsFragment extends BaseFragment {
 
     private void initInterstitialAds() {
         String realInterstitialId = getString(R.string.interstitial_real_uid);
-        interstitial = new Interstitial(getActivity(), () -> interstitial.show(), realInterstitialId);
+        interstitial = new InterstitialCreator().factoryMethod();
         interstitial.loadAd();
     }
 
