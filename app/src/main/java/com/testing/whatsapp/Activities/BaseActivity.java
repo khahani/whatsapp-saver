@@ -14,6 +14,7 @@ import com.khahani.usecase_firebase.analytic.AnalyticsBase;
 import com.khahani.usecase_firebase.analytic.LogEvent;
 import com.khahani.usecase_firebase.analytic.screen.TrackScreen;
 import com.khahani.usecase_firebase.analytic.screen.TrackableScreen;
+import com.testing.whatsapp.firebase.CrashlyticCreator;
 
 public abstract class BaseActivity extends AppCompatActivity implements TrackableScreen {
 
@@ -26,7 +27,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Trackabl
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        crashlytics = new Crashlytics();
+        crashlytics = new CrashlyticCreator().factoryMethod();
         analytic = new Analytics(this);
         remoteConfig = new RemoteConfig();
         trackScreen = initTrackScreen(analytic);
