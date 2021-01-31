@@ -3,9 +3,9 @@ package com.testing.firebase;
 import com.google.firebase.installations.FirebaseInstallations;
 import com.khahani.usecase_firebase.InAppMessageBase;
 
-public class InAppMessage extends InAppMessageBase {
+public class InAppMessageImpl extends InAppMessageBase {
 
-    public InAppMessage(Runnable listener) {
+    public InAppMessageImpl(Runnable listener) {
         super(listener);
     }
 

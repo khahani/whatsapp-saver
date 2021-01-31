@@ -1,8 +1,6 @@
 package com.testing.whatsapp.Activities;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,7 +12,8 @@ import com.khahani.usecase_firebase.analytic.AnalyticsBase;
 import com.khahani.usecase_firebase.analytic.LogEvent;
 import com.khahani.usecase_firebase.analytic.screen.TrackScreen;
 import com.khahani.usecase_firebase.analytic.screen.TrackableScreen;
-import com.testing.whatsapp.firebase.CrashlyticCreator;
+import com.testing.whatsapp.creator.InAppMessageListener;
+import com.testing.whatsapp.creator.firebase.CrashlyticCreator;
 
 public abstract class BaseActivity extends AppCompatActivity implements TrackableScreen {
 
@@ -36,11 +35,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Trackabl
         //crashlytics.run();
         trackScreen.run();
         //khahani: check why in app device id not shown in toast or log
-        inAppMessage = new InAppMessage(() -> {
-            String deviceId = inAppMessage.getDeviceId();
-            Log.d("Khahani", deviceId);
-            Toast.makeText(getApplicationContext(), deviceId, Toast.LENGTH_LONG).show();
-        });
+        inAppMessage = new InAppMessageListener()
         inAppMessage.run();
     }
 

@@ -16,14 +16,14 @@ import com.testing.firebase.R;
 
 import java.util.Objects;
 
-public class AdapterBanner extends AdapterBannerBase {
+public class AdapterBannerImpl extends AdapterBannerBase {
     private final Activity activity;
     private final View layout;
     private AdView adView;
     private final int frameLayoutId;
     private final String firebaseBannerUID;
 
-    public AdapterBanner(Activity activity, View layout, int frameLayoutId, String firebaseBannerUID) {
+    public AdapterBannerImpl(Activity activity, View layout, int frameLayoutId, String firebaseBannerUID) {
         this.activity = activity;
         this.layout = layout;
         this.frameLayoutId = frameLayoutId;

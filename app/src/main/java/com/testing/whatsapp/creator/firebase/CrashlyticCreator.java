@@ -1,4 +1,4 @@
-package com.testing.whatsapp.firebase;
+package com.testing.whatsapp.creator.firebase;
 
 import com.khahani.usecase_firebase.CrashlyticsBase;
 import com.khahani.usecase_firebase.Creator;
@@ -9,5 +9,6 @@ public class CrashlyticCreator extends Creator<CrashlyticsBase> {
     @Override
     public CrashlyticsBase factoryMethod() {
         return new NullCrashlytics();
+        //return new Crashlytics();
     }
 }

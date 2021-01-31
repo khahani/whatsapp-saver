@@ -4,7 +4,7 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.khahani.usecase_firebase.RemoteConfigBase;
 
-public class RemoteConfig extends RemoteConfigBase {
+public class RemoteConfigImpl extends RemoteConfigBase {
 
     private FirebaseRemoteConfig mFirebaseRemoteConfig;
 

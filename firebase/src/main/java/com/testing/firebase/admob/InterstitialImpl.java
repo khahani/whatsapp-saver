@@ -15,14 +15,14 @@ import com.khahani.usecase_firebase.admob.InterstitialBase;
 import com.testing.firebase.BuildConfig;
 import com.testing.firebase.R;
 
-public class Interstitial extends InterstitialBase {
+public class InterstitialImpl extends InterstitialBase {
 
     private final Activity activity;
     private final InterstitialInteraction listener;
     private InterstitialAd mInterstitialAd;
     private String adUid;
 
-    public Interstitial(Activity activity, InterstitialInteraction listener, String adUid) {
+    public InterstitialImpl(Activity activity, InterstitialInteraction listener, String adUid) {
         this.activity = activity;
         this.listener = listener;
         this.adUid = adUid;

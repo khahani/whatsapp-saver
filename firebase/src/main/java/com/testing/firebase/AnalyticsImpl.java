@@ -6,11 +6,11 @@ import android.os.Bundle;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.khahani.usecase_firebase.analytic.AnalyticsBase;
 
-public class Analytics extends AnalyticsBase {
+public class AnalyticsImpl extends AnalyticsBase {
 
     private FirebaseAnalytics mFirebaseAnalytics;
 
-    public Analytics(Context context) {
+    public AnalyticsImpl(Context context) {
         super(context);
     }
 
