@@ -9,6 +9,7 @@ public class CrashlyticCreator extends Creator<Crashlytics> {
     @Override
     public Crashlytics factoryMethod() {
         return new NullCrashlytics();
-        //return new Crashlytics();
+        // The line below only fire an exception that cause crash
+//            return new CrashlyticsImpl();
     }
 }

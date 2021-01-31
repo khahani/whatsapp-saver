@@ -2,25 +2,25 @@ package com.testing.whatsapp.creator.firebase;
 
 import android.app.Activity;
 
-import androidx.annotation.StringRes;
-
 import com.khahani.usecase_firebase.Creator;
 import com.khahani.usecase_firebase.admob.Interstitial;
-import com.khahani.usecase_firebase.admob.Nullnterstitial;
+import com.testing.firebase.admob.InterstitialImpl;
 
 public class InterstitialCreator extends Creator<Interstitial> {
-    private Activity activity;
-    @StringRes
-    private int realInterstitialId;
+    private final Activity activity;
+    private final String realInterstitialId;
+    private Interstitial interstitial;
+
+    public InterstitialCreator(Activity activity, String realInterstitialId, Interstitial interstitial) {
+        this.activity = activity;
+        this.realInterstitialId = realInterstitialId;
+        this.interstitial = interstitial;
+    }
 
     @Override
     public Interstitial factoryMethod() {
-        return new Nullnterstitial();
-        //khahani: should test in release
-        //return new Interstitial(getActivity(), new InterstitialListenerImpl(), realInterstitialId);
-    }
-
-    private void init() {
-        //Interstitial i = new InterstitialImpl(activity, new InterstitialListenerImpl(this), realInterstitialId);
+//        return new Nullnterstitial();
+        interstitial = new InterstitialImpl(activity, () -> interstitial.show(), realInterstitialId);
+        return interstitial;
     }
 }

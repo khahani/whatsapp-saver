@@ -15,7 +15,7 @@ import com.khahani.usecase_firebase.analytic.screen.TrackableScreen;
 import com.testing.whatsapp.creator.firebase.AnalyticsCreator;
 import com.testing.whatsapp.creator.firebase.CrashlyticCreator;
 import com.testing.whatsapp.creator.firebase.InAppMessageCreator;
-import com.testing.whatsapp.creator.firebase.RemotConfigCreator;
+import com.testing.whatsapp.creator.firebase.RemoteConfigCreator;
 
 public abstract class BaseActivity extends AppCompatActivity implements TrackableScreen {
 
@@ -30,14 +30,14 @@ public abstract class BaseActivity extends AppCompatActivity implements Trackabl
         super.onCreate(savedInstanceState);
         crashlytics = new CrashlyticCreator().factoryMethod();
         analytic = new AnalyticsCreator(this).factoryMethod();
-        remoteConfig = new RemotConfigCreator().factoryMethod();
+        remoteConfig = new RemoteConfigCreator().factoryMethod();
         trackScreen = initTrackScreen(analytic);
         analytic.run();
         remoteConfig.run();
         //crashlytics.run();
         trackScreen.run();
         //khahani: check why in app device id not shown in toast or log
-        inAppMessage = new InAppMessageCreator().factoryMethod();
+        inAppMessage = new InAppMessageCreator(this).factoryMethod();
         inAppMessage.run();
     }
 

@@ -62,14 +62,14 @@ public class ChatsFragment extends BaseFragment {
 
     private void initBannerAds() {
         String realBannerId = getString(R.string.banner_real_uid);
-        AdapterBanner adaptiveBanner = new AdapterBannerCreator(getContext(),
+        AdapterBanner adaptiveBanner = new AdapterBannerCreator(getActivity(),
                 layout, R.id.bannerContainer, realBannerId).factoryMethod();
         adaptiveBanner.run();
     }
 
     private void initInterstitialAds() {
         String realInterstitialId = getString(R.string.interstitial_real_uid);
-        interstitial = new InterstitialCreator().factoryMethod();
+        interstitial = new InterstitialCreator(getActivity(), realInterstitialId, interstitial).factoryMethod();
         interstitial.loadAd();
     }
 

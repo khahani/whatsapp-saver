@@ -7,9 +7,7 @@ import androidx.annotation.StringRes;
 
 import com.khahani.usecase_firebase.Creator;
 import com.khahani.usecase_firebase.admob.AdapterBanner;
-import com.khahani.usecase_firebase.admob.NullAdapterBanner;
 import com.testing.firebase.admob.AdapterBannerImpl;
-import com.testing.whatsapp.BuildConfig;
 
 public class AdapterBannerCreator extends Creator<AdapterBanner> {
 
@@ -28,10 +26,7 @@ public class AdapterBannerCreator extends Creator<AdapterBanner> {
 
     @Override
     public AdapterBanner factoryMethod() {
-        if (!BuildConfig.INCLUDE_FIREBASE) {
-            return new NullAdapterBanner();
-        } else {
+//            return new NullAdapterBanner();
             return new AdapterBannerImpl(context, layout, bannerContainerId, realBannerId);
-        }
     }
 }
