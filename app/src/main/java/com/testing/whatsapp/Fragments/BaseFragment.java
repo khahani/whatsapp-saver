@@ -9,6 +9,7 @@ import com.khahani.usecase_firebase.analytic.Analytics;
 import com.khahani.usecase_firebase.analytic.LogEvent;
 import com.khahani.usecase_firebase.analytic.screen.TrackScreen;
 import com.khahani.usecase_firebase.analytic.screen.TrackableScreen;
+import com.testing.whatsapp.creator.firebase.AnalyticsCreator;
 
 public abstract class BaseFragment extends Fragment implements TrackableScreen {
     private TrackScreen trackScreen;
@@ -17,7 +18,7 @@ public abstract class BaseFragment extends Fragment implements TrackableScreen {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        analytic = new Analytics(getContext());
+        analytic = new AnalyticsCreator(getContext()).factoryMethod();
         trackScreen = initTrackScreen(analytic);
     }
 
