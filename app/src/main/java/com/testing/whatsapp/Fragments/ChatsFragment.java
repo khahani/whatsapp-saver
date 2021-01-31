@@ -20,6 +20,7 @@ import com.testing.whatsapp.Model.Chat;
 import com.testing.whatsapp.Model.db.Db;
 import com.testing.whatsapp.Model.db.ReceivedMessage;
 import com.testing.whatsapp.R;
+import com.testing.whatsapp.creator.firebase.AdapterBannerCreator;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -60,8 +61,9 @@ public class ChatsFragment extends BaseFragment {
 
     private void initBannerAds() {
         String realBannerId = getString(R.string.banner_real_uid);
-        AdapterBanner adaptiveBanner = new AdapterBanner(getActivity(), layout, R.id.bannerContainer, realBannerId);
-        adaptiveBanner.initAds();
+        AdapterBanner adaptiveBanner = new AdapterBannerCreator(getContext(),
+                layout, R.id.bannerContainer, realBannerId).factoryMethod();
+        adaptiveBanner.run();
     }
 
     private void initInterstitialAds() {
