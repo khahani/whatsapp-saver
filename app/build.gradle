@@ -23,10 +23,12 @@ android {
 
     buildTypes {
         release {
+            buildConfigField "boolean", "TEST_CRASHLYTIC", "true"
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
+            buildConfigField "boolean", "TEST_CRASHLYTIC", "false"
             debuggable true
             minifyEnabled false
             ext.alwaysUpdateBuildId = false

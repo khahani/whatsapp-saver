@@ -7,21 +7,21 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.testing.firebase.Crashlytics;
-import com.testing.firebase.InAppMessage;
-import com.testing.firebase.RemoteConfig;
-import com.testing.firebase.analytic.Analytics;
-import com.testing.firebase.analytic.LogEvent;
-import com.testing.firebase.analytic.screen.TrackScreen;
-import com.testing.firebase.analytic.screen.TrackableScreen;
+import com.khahani.usecase_firebase.CrashlyticsBase;
+import com.khahani.usecase_firebase.InAppMessageBase;
+import com.khahani.usecase_firebase.RemoteConfigBase;
+import com.khahani.usecase_firebase.analytic.AnalyticsBase;
+import com.khahani.usecase_firebase.analytic.LogEvent;
+import com.khahani.usecase_firebase.analytic.screen.TrackScreen;
+import com.khahani.usecase_firebase.analytic.screen.TrackableScreen;
 
 public abstract class BaseActivity extends AppCompatActivity implements TrackableScreen {
 
-    private Analytics analytic;
-    private RemoteConfig remoteConfig;
-    private Crashlytics crashlytics;
-    protected TrackScreen trackScreen;
-    private InAppMessage inAppMessage;
+    private AnalyticsBase analytic;
+    private RemoteConfigBase remoteConfig;
+    private CrashlyticsBase crashlytics;
+    private TrackScreen trackScreen;
+    private InAppMessageBase inAppMessage;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -32,7 +32,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Trackabl
         trackScreen = initTrackScreen(analytic);
         analytic.run();
         remoteConfig.run();
-//        crashlytics.run();
+        //crashlytics.run();
         trackScreen.run();
         //khahani: check why in app device id not shown in toast or log
         inAppMessage = new InAppMessage(() -> {
@@ -45,7 +45,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Trackabl
 
     protected abstract TrackScreen initTrackScreen(LogEvent logger);
 
-    public Analytics getAnalytic() {
+    public AnalyticsBase getAnalytic() {
         return analytic;
     }
 }

@@ -8,8 +8,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.testing.firebase.analytic.LogEvent;
-import com.testing.firebase.analytic.screen.TrackScreen;
+import com.khahani.usecase_firebase.analytic.LogEvent;
+import com.khahani.usecase_firebase.analytic.screen.TrackScreen;
 import com.testing.whatsapp.Adapters.MessageAdapter;
 import com.testing.whatsapp.Model.Chat;
 import com.testing.whatsapp.Model.db.Db;

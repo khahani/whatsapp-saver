@@ -11,10 +11,10 @@ import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.khahani.usecase_firebase.analytic.screen.TrackScreen;
 import com.testing.firebase.admob.AdapterBanner;
 import com.testing.firebase.admob.Interstitial;
 import com.testing.firebase.analytic.LogEvent;
-import com.testing.firebase.analytic.screen.TrackScreen;
 import com.testing.whatsapp.Adapters.ChatsAdapter;
 import com.testing.whatsapp.Model.Chat;
 import com.testing.whatsapp.Model.db.Db;

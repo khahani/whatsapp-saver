@@ -16,11 +16,11 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
-import com.testing.firebase.analytic.LogEvent;
-import com.testing.firebase.analytic.click.AnalyticDialogClickListener;
-import com.testing.firebase.analytic.click.AnalyticDismissListener;
-import com.testing.firebase.analytic.click.TrackClick;
-import com.testing.firebase.analytic.screen.TrackScreen;
+import com.khahani.usecase_firebase.analytic.LogEvent;
+import com.khahani.usecase_firebase.analytic.click.AnalyticDialogClickListener;
+import com.khahani.usecase_firebase.analytic.click.AnalyticDismissListener;
+import com.khahani.usecase_firebase.analytic.click.TrackClick;
+import com.khahani.usecase_firebase.analytic.screen.TrackScreen;
 import com.testing.whatsapp.Adapters.PagerAdapter;
 import com.testing.whatsapp.BuildConfig;
 import com.testing.whatsapp.R;
