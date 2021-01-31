@@ -24,11 +24,13 @@ android {
     buildTypes {
         release {
             buildConfigField "boolean", "TEST_CRASHLYTIC", "true"
+            buildConfigField "boolean", "INCLUDE_FIREBASE", "true"
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
-            buildConfigField "boolean", "TEST_CRASHLYTIC", "false"
+            buildConfigField "boolean", "TEST_CRASHLYTIC", "true"
+            buildConfigField "boolean", "INCLUDE_FIREBASE", "true"
             debuggable true
             minifyEnabled false
             ext.alwaysUpdateBuildId = false
@@ -41,20 +43,12 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    flavorDimensions 'stage'
-    productFlavors {
-        dev {
-            dimension 'stage'
-        }
-        pro {
-            dimension 'stage'
-        }
-    }
 }
 
 dependencies {
 
     implementation project(path: ':usecase_firebase')
+    implementation project(path: ':firebase')
 
     implementation 'de.hdodenhof:circleimageview:3.0.0'
 
