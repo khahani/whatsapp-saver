@@ -5,6 +5,8 @@ import android.content.Context;
 import com.khahani.usecase_firebase.Creator;
 import com.khahani.usecase_firebase.analytic.Analytics;
 import com.khahani.usecase_firebase.analytic.NullAnalytics;
+import com.testing.firebase.AnalyticsImpl;
+import com.testing.whatsapp.BuildConfig;
 
 public class AnalyticsCreator extends Creator<Analytics> {
     private final Context context;
@@ -15,6 +17,10 @@ public class AnalyticsCreator extends Creator<Analytics> {
 
     @Override
     public Analytics factoryMethod() {
-        return new NullAnalytics(context);
+        if (!BuildConfig.INCLUDE_FIREBASE) {
+            return new NullAnalytics(context);
+        } else {
+            return new AnalyticsImpl(context);
+        }
     }
 }
