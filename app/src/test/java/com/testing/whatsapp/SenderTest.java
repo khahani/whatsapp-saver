@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class FilterNotificationTest {
+public class SenderTest {
 
     private ArrayList<Message> possibleMessages;
 
@@ -48,7 +48,8 @@ public class FilterNotificationTest {
 
         String[] regexSenderValidator = new String[]{
                 "([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed voice calls",
-                "([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed video calls"
+                "([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed video calls",
+                "\\(messages ([0-9]|[0-9][0-9])\\)"
         };
 
         // if sender is one of invalidSenders should reject
@@ -84,46 +85,7 @@ public class FilterNotificationTest {
         return isFixedSenderValid && isRegexSenderValid;
     }
 
-    @Test
-    public void group_test() {
 
-        String[] group = new String[]{
-                "E @ Thebook",
-                "حسین داداشی @ Distance",
-        };
-
-        // if sender contains @ then left side is the sender and right side is the group
-
-    }
-
-    @Test
-    public void message_test() {
-        // these messages should check with corresponding translated one.
-        String[] invalidMessages = new String[]{
-                "null",
-                "Checking for new messages",// the sender of this message is whatsapp so by default will removes.
-                "Incoming voice call",
-                "Incoming video call",
-                "Missed voice call",
-                "Missed video call",
-                "\uD83D\uDCF7 Photo",
-                "Calling…",
-                "Ringing…",
-                "Ongoing voice call",
-                "Ongoing video call",
-                "\uD83D\uDCF9 Incoming video call",
-                "E, +98 902 570 4390" //this message show up when the sender is "2 missed voice calls" (for video must test)
-        };
-
-        String[] invalidMessagesRegexRequired = new String[]{
-                "2 new messages",
-                "3 messages from 2 chats", // the sender of this message is whatsapp so by default will removes.
-                "2 missed voice calls",
-                "3 missed calls",
-                "\uD83C\uDFA4 Voice message (0:06)",
-                "\uD83C\uDFA5 Video (0:36)"
-        };
-    }
 
     private void initData() {
         possibleMessages = new ArrayList<>();
@@ -164,7 +126,7 @@ public class FilterNotificationTest {
         possibleMessages.add(new Message("حسین جوان بادصبا @ \uD83D\uDE80 موج همراه \uD83C\uDFE9", "مبارکه. \n" +
                 "فردا جهت تست نرم افزار گوشی شما به واحد پشتیبانی منتقل میشه\uD83D\uDE01"));
         possibleMessages.add(new Message("WhatsApp", "12 messages from 2 chats"));
-        possibleMessages.add(new Message("", ""));
+        possibleMessages.add(new Message("(3 messages) E", ""));//khahani: this should be check with real device
         possibleMessages.add(new Message("", ""));
         possibleMessages.add(new Message("", ""));
         possibleMessages.add(new Message("", ""));
