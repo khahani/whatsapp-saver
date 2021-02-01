@@ -1,14 +1,27 @@
 package com.testing.whatsapp;
 
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class FilterNotificationTest {
 
     private ArrayList<Message> possibleMessages;
+
+    String[] wrongSenders = new String[]{
+            "WhatsApp", // and translated in different languages
+            "null",
+            "2 missed voice calls", // and translated
+            "2 missed video calls", // if there is any (should test)
+            "10 missed video calls",
+            "152 missed video calls",
+            "999 missed video calls"
+    };
 
     @Before
     public void setup() {
@@ -16,19 +29,63 @@ public class FilterNotificationTest {
     }
 
     @Test
-    public void sender_test() {
+    public void wrong_sender_test() {
+        for (String sender : wrongSenders) {
+            assertWrongSender(sender);
+        }
+    }
 
+    private void assertWrongSender(String sender) {
+        boolean isValid = isValidSender(sender);
+        Assert.assertFalse(String.format("sender: %s", sender), isValid);
+    }
+
+    private boolean isValidSender(String sender) {
         String[] invalidSenders = new String[]{
                 "WhatsApp", // and translated in different languages
                 "null"
         };
 
-        String[] invalidSenderRegex = new String[]{
-                "2 missed voice calls", // and translated
-                "2 missed video calls" // if there is any (should test)
+        String[] regexSenderValidator = new String[]{
+                "([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed voice calls",
+                "([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed video calls"
         };
 
         // if sender is one of invalidSenders should reject
+
+        boolean isFixedSenderValid = false;
+
+        for (int i = 0; i < invalidSenders.length; i++) {
+            if (sender.equals(invalidSenders[i])) {
+                break;
+            }
+
+            if (i == invalidSenders.length - 1) {
+                isFixedSenderValid = true;
+                break;
+            }
+        }
+
+        boolean isRegexSenderValid = false;
+
+        for (int i = 0; i < regexSenderValidator.length; i++) {
+            String regx = regexSenderValidator[i];
+            Pattern p = Pattern.compile(regx);
+            Matcher m = p.matcher(sender);
+            if (m.find()) {
+                isRegexSenderValid = false;
+                break;
+            }
+
+            if (i == regexSenderValidator.length - 1)
+                isRegexSenderValid = true;
+        }
+
+        return isFixedSenderValid && isRegexSenderValid;
+    }
+
+    @Test
+    public void group_test() {
 
         String[] group = new String[]{
                 "E @ Thebook",
@@ -69,6 +126,7 @@ public class FilterNotificationTest {
     }
 
     private void initData() {
+        possibleMessages = new ArrayList<>();
         possibleMessages.add(new Message("E", "Hi, I love you"));
         possibleMessages.add(new Message("E", "2 new messages"));
         possibleMessages.add(new Message("WhatsApp", "3 messages from 2 chats"));
