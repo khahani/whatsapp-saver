@@ -1,6 +1,7 @@
 package com.testing.whatsapp;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 public class GroupTest {
@@ -19,6 +20,7 @@ public class GroupTest {
             "E",
             "حسین داداشی"
     };
+
     private String title;
 
     @Test
@@ -33,24 +35,32 @@ public class GroupTest {
         Assert.assertTrue(String.format("sender:%s", title), isGroup());
     }
 
+    private String sender;
+    private String group;
+
+    @Before
+    public void construct() {
+        title = "";
+    }
+
     @Test
     public void when_a_title_is_group_then_sender_and_group_extract_correctly() {
         for (int i = 0; i < titles.length; i++) {
             title = titles[i];
             if (isGroup()) {
-                String sender = getSender();
-                String group = getGroup();
+                sender = extractSender();
+                group = extractGroup();
                 Assert.assertEquals(senders[i], sender);
                 Assert.assertEquals(groups[i], group);
             }
         }
     }
 
-    private String getGroup() {
+    private String extractGroup() {
         return title.split("@")[1].trim();
     }
 
-    private String getSender() {
+    private String extractSender() {
         return title.split("@")[0].trim();
     }
 

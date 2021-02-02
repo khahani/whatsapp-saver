@@ -13,79 +13,68 @@ public class SenderTest {
 
     private ArrayList<Message> possibleMessages;
 
-    String[] wrongSenders = new String[]{
+    String[] wrongSendersFakeData = new String[]{
             "WhatsApp", // and translated in different languages
             "null",
             "2 missed voice calls", // and translated
             "2 missed video calls", // if there is any (should test)
             "10 missed video calls",
             "152 missed video calls",
-            "999 missed video calls"
+            "999 missed video calls",
+            "(2 messages) E"
     };
-
-    @Before
-    public void setup() {
-        initData();
-    }
-
-    @Test
-    public void wrong_sender_test() {
-        for (String sender : wrongSenders) {
-            assertWrongSender(sender);
-        }
-    }
+    private String[] regexSenderValidator;
+    private String[] invalidSenders;
 
     private void assertWrongSender(String sender) {
         boolean isValid = isValidSender(sender);
         Assert.assertFalse(String.format("sender: %s", sender), isValid);
     }
 
-    private boolean isValidSender(String sender) {
-        String[] invalidSenders = new String[]{
+    @Before
+    public void constuct() {
+        regexSenderValidator = new String[]{
+                "([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed voice calls",
+                "([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed video calls",
+                "\\(messages ([0-9]|[0-9][0-9]|[0-9][0-9][0-9])\\)"
+        };
+
+        invalidSenders = new String[]{
                 "WhatsApp", // and translated in different languages
                 "null"
         };
+    }
 
-        String[] regexSenderValidator = new String[]{
-                "([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed voice calls",
-                "([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed video calls",
-                "\\(messages ([0-9]|[0-9][0-9])\\)"
-        };
-
-        // if sender is one of invalidSenders should reject
-
-        boolean isFixedSenderValid = false;
-
-        for (int i = 0; i < invalidSenders.length; i++) {
-            if (sender.equals(invalidSenders[i])) {
-                break;
-            }
-
-            if (i == invalidSenders.length - 1) {
-                isFixedSenderValid = true;
-                break;
-            }
+    @Test
+    public void wrong_sender_test() {
+        for (String sender : wrongSendersFakeData) {
+            assertWrongSender(sender);
         }
+    }
 
-        boolean isRegexSenderValid = false;
+    private boolean isValidSender(String sender) {
+        return checkWithFixedValues(sender) && checkWithRegexValues(sender);
+    }
 
-        for (int i = 0; i < regexSenderValidator.length; i++) {
-            String regx = regexSenderValidator[i];
+    private boolean checkWithRegexValues(String sender) {
+        for (String regx : regexSenderValidator) {
             Pattern p = Pattern.compile(regx);
             Matcher m = p.matcher(sender);
             if (m.find()) {
-                isRegexSenderValid = false;
-                break;
+                return false;
             }
-
-            if (i == regexSenderValidator.length - 1)
-                isRegexSenderValid = true;
         }
-
-        return isFixedSenderValid && isRegexSenderValid;
+        return true;
     }
 
-
+    private boolean checkWithFixedValues(String sender) {
+        for (String invalidSender : invalidSenders) {
+            if (sender.equals(invalidSender)) {
+                break;
+            }
+        }
+        return false;
+    }
 
     private void initData() {
         possibleMessages = new ArrayList<>();
