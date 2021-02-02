@@ -23,8 +23,6 @@ public class SenderTest {
             "999 missed video calls",
             "(2 messages) E"
     };
-    private String[] regexSenderValidator;
-    private String[] invalidSenders;
 
     private void assertWrongSender(String sender) {
         boolean isValid = isValidSender(sender);
@@ -51,6 +49,9 @@ public class SenderTest {
             assertWrongSender(sender);
         }
     }
+
+    private String[] regexSenderValidator;
+    private String[] invalidSenders;
 
     private boolean isValidSender(String sender) {
         return checkWithFixedValues(sender) && checkWithRegexValues(sender);

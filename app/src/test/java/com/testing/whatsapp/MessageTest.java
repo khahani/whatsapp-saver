@@ -63,28 +63,27 @@ public class MessageTest {
     }
 
     private void assertMessageIsValid() {
-        boolean isInvalidMessage = true;
+        Assert.assertFalse(String.format("Message: %s", message), isValid());
+    }
 
-        for (String iv : invalidMessages) {
-            if (message.equals(iv)) {
-                isInvalidMessage = false;
-                break;
-            }
-        }
+    private boolean isValid() {
+        return checkWithFixedMessages() && checkWithRegexMessages();
+    }
 
-        boolean isInvalidPatternMessage = true;
-
+    private boolean checkWithRegexMessages() {
         for (String regx : regexMessageValidators) {
             Pattern p = Pattern.compile(regx);
             Matcher m = p.matcher(message);
-            if (m.find()) {
-                isInvalidPatternMessage = false;
-                break;
-            }
+            if (m.find())
+                return false;
         }
+        return true;
+    }
 
-        boolean isValid = isInvalidMessage && isInvalidPatternMessage;
-
-        Assert.assertEquals(String.format("Message: %s", message), false, isValid);
+    private boolean checkWithFixedMessages() {
+        for (String iv : invalidMessages)
+            if (message.equals(iv))
+                return false;
+        return true;
     }
 }
