@@ -16,7 +16,7 @@ import java.util.Arrays;
 @RunWith(Enclosed.class)
 public class ExtractorTest {
 
-    //region required data
+    //region fake data
     private static final String[] invalidMessagesRegexRequired = new String[]{
             "2 new messages",
             //"3 messages from 2 chats", // the sender of this message is whatsapp so by default will removes.
@@ -65,6 +65,8 @@ public class ExtractorTest {
             "999 missed video calls",
             "(messages 2) E"
     };
+
+    //endregion
 
     public static class SenderExtractorTest {
 
@@ -163,6 +165,7 @@ public class ExtractorTest {
 
     public static class ExtractAlgorithmTest {
 
+        //khahani: extract algorithm code for production
         private ArrayList<Message> possibleMessages;
         private String receivedSender;
         private String receivedMessage;
@@ -279,6 +282,5 @@ public class ExtractorTest {
         public static class MessageIsNotValid extends RuntimeException {
         }
     }
-    //endregion
 
 }
