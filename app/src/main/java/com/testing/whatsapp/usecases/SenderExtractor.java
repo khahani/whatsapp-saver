@@ -1,7 +1,7 @@
 package com.testing.whatsapp.usecases;
 
 public class SenderExtractor {
-    private static final String CONTACTS_GROUP = "c";
+    public static final String CONTACTS_GROUP = "c";
 
     protected String title;
     protected String sender;

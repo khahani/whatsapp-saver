@@ -16,8 +16,59 @@ import java.util.Arrays;
 @RunWith(Enclosed.class)
 public class ExtractorTest {
 
+    //region required data
+    private static final String[] invalidMessagesRegexRequired = new String[]{
+            "2 new messages",
+            //"3 messages from 2 chats", // the sender of this message is whatsapp so by default will removes.
+            "2 missed voice calls",
+            "3 missed calls"
+    };
+    // these messages should check with corresponding translated one.
+    static String[] invalidMessages = new String[]{
+            "null",
+            "Checking for new messages",// the sender of this message is whatsapp so by default will removes.
+            "Incoming voice call",
+            "Incoming video call",
+            "Missed voice call",
+            "Missed video call",
+            "\uD83D\uDCF7 Photo",
+            "Calling…",
+            "Ringing…",
+            "Ongoing voice call",
+            "Ongoing video call",
+            "\uD83D\uDCF9 Incoming video call"
+//                ,
+//                "\uD83C\uDFA4 Voice message (0:06)",
+//                "\uD83C\uDFA5 Video (0:36)"
+    };
+    static String[] regexMessageValidators = new String[]{
+            "([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) new messages",
+            "([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed voice calls",
+            "([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed calls",
+    };
+    static String[] regexSenderValidator = new String[]{
+            "([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed voice calls",
+            "([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed video calls",
+            "\\(messages ([0-9]|[0-9][0-9]|[0-9][0-9][0-9])\\)"
+    };
+    static String[] invalidSenders = new String[]{
+            "WhatsApp", // and translated in different languages
+            "null"
+    };
+    static String[] wrongSendersFakeData = new String[]{
+            "WhatsApp", // and translated in different languages
+            "null",
+            "2 missed voice calls", // and translated
+            "2 missed video calls", // if there is any (should test)
+            "10 missed video calls",
+            "152 missed video calls",
+            "999 missed video calls",
+            "(2 messages) E"
+    };
+
     public static class SenderExtractorTest {
 
+        //region fake data
         private final String[] titles = new String[]{
                 "E @ Thebook",
                 "حسین داداشی @ Distance",
@@ -36,6 +87,8 @@ public class ExtractorTest {
                 "E"
         };
 
+        //endregion
+
         @Test
         public void when_a_title_is_group_then_sender_and_group_extract_correctly() {
             for (int i = 0; i < titles.length; i++) {
@@ -46,50 +99,20 @@ public class ExtractorTest {
             }
         }
 
-
     }
 
     public static class MessageTest {
 
-        //region fields
-        private final String[] invalidMessagesRegexRequired = new String[]{
-                "2 new messages",
-                //"3 messages from 2 chats", // the sender of this message is whatsapp so by default will removes.
-                "2 missed voice calls",
-                "3 missed calls"
-        };
-        // these messages should check with corresponding translated one.
-        String[] invalidMessages = new String[]{
-                "null",
-                "Checking for new messages",// the sender of this message is whatsapp so by default will removes.
-                "Incoming voice call",
-                "Incoming video call",
-                "Missed voice call",
-                "Missed video call",
-                "\uD83D\uDCF7 Photo",
-                "Calling…",
-                "Ringing…",
-                "Ongoing voice call",
-                "Ongoing video call",
-                "\uD83D\uDCF9 Incoming video call"
-//                ,
-//                "\uD83C\uDFA4 Voice message (0:06)",
-//                "\uD83C\uDFA5 Video (0:36)"
-        };
-        String[] regexMessageValidators = new String[]{
-                "([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) new messages",
-                "([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed voice calls",
-                "([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed calls",
-        };
         private ArrayList<String> wrongMessagesFakeData;
-        //endregion
         private MessageEvaluator extractor;
 
         @Before
         public void construct() {
-
+            initFakeData();
             initExtractor();
+        }
 
+        private void initFakeData() {
             wrongMessagesFakeData = new ArrayList<>();
             wrongMessagesFakeData.addAll(Arrays.asList(invalidMessages));
             wrongMessagesFakeData.addAll(Arrays.asList(invalidMessagesRegexRequired));
@@ -116,32 +139,10 @@ public class ExtractorTest {
 
     public static class SenderTest {
 
-        String[] wrongSendersFakeData = new String[]{
-                "WhatsApp", // and translated in different languages
-                "null",
-                "2 missed voice calls", // and translated
-                "2 missed video calls", // if there is any (should test)
-                "10 missed video calls",
-                "152 missed video calls",
-                "999 missed video calls",
-                "(2 messages) E"
-        };
-        private ArrayList<Message> possibleMessages;
         private SenderEvaluator evaluator;
 
         @Before
         public void construct() {
-            String[] regexSenderValidator = new String[]{
-                    "([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed voice calls",
-                    "([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed video calls",
-                    "\\(messages ([0-9]|[0-9][0-9]|[0-9][0-9][0-9])\\)"
-            };
-
-            String[] invalidSenders = new String[]{
-                    "WhatsApp", // and translated in different languages
-                    "null"
-            };
-
             evaluator = new SenderEvaluator();
             evaluator.setInvalidSenders(invalidSenders);
             evaluator.setRegexSenderValidator(regexSenderValidator);
@@ -156,8 +157,54 @@ public class ExtractorTest {
         }
 
         private void assertWrongSender(String sender) {
-            Assert.assertFalse(String.format("sender: %s", sender), evaluator.isValid());
+            Assert.assertTrue(String.format("sender: %s", sender), evaluator.isValid());
         }
+    }
+
+    public static class ExtractAlgorithmTest {
+
+        private String group;
+        private String sender;
+        private String message;
+
+        @Test
+        public void extract_information_from_received_information() {
+
+            String receivedSender = "E @ Thebook";
+            String receivedMessage = "Hi, I love you";
+
+            SenderExtractor sx = new SenderExtractor(receivedSender);
+            sx.extract();
+            group = sx.getGroup();
+            sender = sx.getSender();
+
+
+            SenderEvaluator se = new SenderEvaluator();
+            se.setInvalidSenders(invalidSenders);
+            se.setRegexSenderValidator(regexSenderValidator);
+            se.setSender(sender);
+
+            if (se.isValid()) {
+
+                MessageEvaluator me = new MessageEvaluator();
+                me.setInvalidMessages(invalidMessages);
+                me.setRegexMessageValidators(invalidMessagesRegexRequired);
+                me.setMessage(receivedMessage);
+
+                if (me.isValid()) {
+                    message = me.getMessage();
+                }
+            }
+
+            Assert.assertEquals("sender", "E", sender);
+            Assert.assertEquals("group", "Thebook", group);
+            Assert.assertEquals("message", receivedMessage, message);
+
+        }
+    }
+
+    public class PosibleMessagesStub {
+        private ArrayList<Message> possibleMessages;
 
         private void initData() {
             possibleMessages = new ArrayList<>();
@@ -206,31 +253,15 @@ public class ExtractorTest {
         }
 
         public class Message {
-            private String sender;
-            private String message;
+            private final String sender;
+            private final String message;
 
             public Message(String sender, String message) {
                 this.sender = sender;
                 this.message = message;
             }
-
-
-            public String getSender() {
-                return sender;
-            }
-
-            public void setSender(String sender) {
-                this.sender = sender;
-            }
-
-            public String getMessage() {
-                return message;
-            }
-
-            public void setMessage(String message) {
-                this.message = message;
-            }
         }
     }
+    //endregion
 
 }

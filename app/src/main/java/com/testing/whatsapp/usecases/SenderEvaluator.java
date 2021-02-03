@@ -21,7 +21,7 @@ public class SenderEvaluator {
     }
 
     public boolean isValid() {
-        return checkWithFixedValues() && checkWithRegexValues();
+        return checkWithFixedValues() || checkWithRegexValues();
     }
 
     private boolean checkWithRegexValues() {
@@ -38,9 +38,9 @@ public class SenderEvaluator {
     private boolean checkWithFixedValues() {
         for (String invalidSender : invalidSenders) {
             if (sender.equals(invalidSender)) {
-                break;
+                return false;
             }
         }
-        return false;
+        return true;
     }
 }
