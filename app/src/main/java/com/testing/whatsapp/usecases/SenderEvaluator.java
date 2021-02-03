@@ -21,26 +21,28 @@ public class SenderEvaluator {
     }
 
     public boolean isValid() {
-        return checkWithFixedValues() || checkWithRegexValues();
+        if (containWrongSender())
+            return false;
+        return !containWrongRegexSender();
     }
 
-    private boolean checkWithRegexValues() {
+    private boolean containWrongRegexSender() {
         for (String regx : regexSenderValidator) {
             Pattern p = Pattern.compile(regx);
             Matcher m = p.matcher(sender);
             if (m.find()) {
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
-    private boolean checkWithFixedValues() {
+    private boolean containWrongSender() {
         for (String invalidSender : invalidSenders) {
             if (sender.equals(invalidSender)) {
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
     }
 }

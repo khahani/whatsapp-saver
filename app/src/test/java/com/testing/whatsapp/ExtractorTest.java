@@ -63,7 +63,7 @@ public class ExtractorTest {
             "10 missed video calls",
             "152 missed video calls",
             "999 missed video calls",
-            "(2 messages) E"
+            "(messages 2) E"
     };
 
     public static class SenderExtractorTest {
@@ -152,59 +152,23 @@ public class ExtractorTest {
         public void wrong_sender_test() {
             for (String sender : wrongSendersFakeData) {
                 evaluator.setSender(sender);
-                assertWrongSender(sender);
+                assertSenderIsNotValid(sender);
             }
         }
 
-        private void assertWrongSender(String sender) {
-            Assert.assertTrue(String.format("sender: %s", sender), evaluator.isValid());
+        private void assertSenderIsNotValid(String sender) {
+            Assert.assertFalse(String.format("sender: %s", sender), evaluator.isValid());
         }
     }
 
     public static class ExtractAlgorithmTest {
 
+        private ArrayList<Message> possibleMessages;
+        private String receivedSender;
+        private String receivedMessage;
         private String group;
         private String sender;
         private String message;
-
-        @Test
-        public void extract_information_from_received_information() {
-
-            String receivedSender = "E @ Thebook";
-            String receivedMessage = "Hi, I love you";
-
-            SenderExtractor sx = new SenderExtractor(receivedSender);
-            sx.extract();
-            group = sx.getGroup();
-            sender = sx.getSender();
-
-
-            SenderEvaluator se = new SenderEvaluator();
-            se.setInvalidSenders(invalidSenders);
-            se.setRegexSenderValidator(regexSenderValidator);
-            se.setSender(sender);
-
-            if (se.isValid()) {
-
-                MessageEvaluator me = new MessageEvaluator();
-                me.setInvalidMessages(invalidMessages);
-                me.setRegexMessageValidators(invalidMessagesRegexRequired);
-                me.setMessage(receivedMessage);
-
-                if (me.isValid()) {
-                    message = me.getMessage();
-                }
-            }
-
-            Assert.assertEquals("sender", "E", sender);
-            Assert.assertEquals("group", "Thebook", group);
-            Assert.assertEquals("message", receivedMessage, message);
-
-        }
-    }
-
-    public class PosibleMessagesStub {
-        private ArrayList<Message> possibleMessages;
 
         private void initData() {
             possibleMessages = new ArrayList<>();
@@ -246,20 +210,73 @@ public class ExtractorTest {
                     "فردا جهت تست نرم افزار گوشی شما به واحد پشتیبانی منتقل میشه\uD83D\uDE01"));
             possibleMessages.add(new Message("WhatsApp", "12 messages from 2 chats"));
             possibleMessages.add(new Message("(3 messages) E", ""));//khahani: this should be check with real device
-            possibleMessages.add(new Message("", ""));
-            possibleMessages.add(new Message("", ""));
-            possibleMessages.add(new Message("", ""));
+
             // When there is some messages that didn't see (unread messages), all messages ITERATES when A new message arrived [duplicate possiblitity]
         }
 
-        public class Message {
-            private final String sender;
-            private final String message;
+        @Test(expected = MessageIsNotValid.class)
+        public void wronge_recives_error_occurs() {
+            receivedSender = "WhatsApp";
+            receivedMessage = "Hi, I love you";
+            extract();
+        }
 
-            public Message(String sender, String message) {
-                this.sender = sender;
-                this.message = message;
+        @Test
+        public void extract_information_from_received_information() {
+
+            receivedSender = "E";
+            receivedMessage = "Hi, I love you";
+            String expectedSender = "E";
+            String expectedGroup = "c";
+            String expectedMessage = "Hi, I love you";
+
+            extract();
+
+            Assert.assertEquals("sender", expectedSender, sender);
+            Assert.assertEquals("group", expectedGroup, group);
+            Assert.assertEquals("message", expectedMessage, message);
+
+        }
+
+        private void extract() {
+            SenderExtractor sx = new SenderExtractor(receivedSender);
+            sx.extract();
+            group = sx.getGroup();
+            sender = sx.getSender();
+
+            SenderEvaluator se = new SenderEvaluator();
+            se.setInvalidSenders(invalidSenders);
+            se.setRegexSenderValidator(regexSenderValidator);
+            se.setSender(sender);
+
+            if (se.isValid()) {
+
+                MessageEvaluator me = new MessageEvaluator();
+                me.setInvalidMessages(invalidMessages);
+                me.setRegexMessageValidators(invalidMessagesRegexRequired);
+                me.setMessage(receivedMessage);
+
+                if (me.isValid()) {
+                    message = me.getMessage();
+                } else {
+                    throw new MessageIsNotValid();
+                }
+            } else {
+                throw new MessageIsNotValid();
             }
+        }
+
+        public static class Message {
+            private final String title;
+            private final String body;
+
+            public Message(String title, String body) {
+                this.title = title;
+                this.body = body;
+            }
+        }
+
+        public static class MessageIsNotValid extends RuntimeException {
         }
     }
     //endregion
