@@ -1,9 +1,4 @@
-package com.testing.whatsapp;
-
-import com.testing.whatsapp.usecases.Extractor;
-import com.testing.whatsapp.usecases.MessageEvaluator;
-import com.testing.whatsapp.usecases.SenderEvaluator;
-import com.testing.whatsapp.usecases.SenderExtractor;
+package com.khahani.extractor;
 
 import org.junit.Assert;
 import org.junit.Before;

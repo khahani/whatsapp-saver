@@ -1,3 +1,4 @@
+include ':extractor'
 include ':usecase_firebase'
 include ':firebase'
 include ':app'

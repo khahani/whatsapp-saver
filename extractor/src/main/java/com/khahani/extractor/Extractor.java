@@ -1,4 +1,4 @@
-package com.testing.whatsapp.usecases;
+package com.khahani.extractor;
 
 public class Extractor implements Runnable {
     protected String group;

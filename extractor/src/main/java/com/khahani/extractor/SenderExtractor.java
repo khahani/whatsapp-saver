@@ -1,4 +1,4 @@
-package com.testing.whatsapp.usecases;
+package com.khahani.extractor;
 
 public class SenderExtractor {
     public static final String CONTACTS_GROUP = "c";
