@@ -161,7 +161,6 @@ public class ExtractorTest {
 
     public static class ExtractAlgorithmTest {
 
-        //khahani: extract algorithm code for production
         private ArrayList<Message> possibleMessages;
         private Extractor extractor;
 
