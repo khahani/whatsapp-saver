@@ -50,4 +50,9 @@ public class RemoteConfigImpl extends RemoteConfig {
                     }
                 });
     }
+
+    @Override
+    public String getString(String key) {
+        return mFirebaseRemoteConfig.getString(key);
+    }
 }

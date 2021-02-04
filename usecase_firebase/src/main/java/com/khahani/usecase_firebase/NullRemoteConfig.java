@@ -5,4 +5,9 @@ public class NullRemoteConfig extends RemoteConfig {
     public void run() {
 
     }
+
+    @Override
+    public String getString(String key) {
+        return null;
+    }
 }
