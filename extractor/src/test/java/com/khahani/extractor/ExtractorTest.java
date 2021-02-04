@@ -13,7 +13,10 @@ import java.util.Arrays;
 public class ExtractorTest {
 
     //region fake data
-    private static final String[] invalidMessagesRegexRequired = new String[]{
+
+    static final String language = "en";
+
+    static final String[] invalidMessagesRegexRequired = new String[]{
             "2 new messages",
             //"3 messages from 2 chats", // the sender of this message is whatsapp so by default will removes.
             "2 missed voice calls",
@@ -260,12 +263,32 @@ public class ExtractorTest {
             private final String title;
 
             private final String body;
+
             public Message(String title, String body) {
                 this.title = title;
                 this.body = body;
             }
 
         }
+    }
+
+    public static class FilterTest {
+        final String json = "[{\"lan\":\"en\",\"invalidSenders\":[\"WhatsApp\",\"null\"],\"regexSenderValidator\":[\"([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed voice calls\",\"([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed video calls\",\"\\\\(messages ([0-9]|[0-9][0-9]|[0-9][0-9][0-9])\\\\)\"],\"invalidMessages\":[\"null\",\"Checking for new messages\",\"Incoming voice call\",\"Incoming video call\",\"Missed voice call\",\"Missed video call\",\"\uD83D\uDCF7 Photo\",\"Calling…\",\"Ringing…\",\"Ongoing voice call\",\"Ongoing video call\",\"\uD83D\uDCF9 Incoming video call\"],\"invalidMessagesRegexRequired\":[\"2 new messages\",\"2 missed voice calls\",\"3 missed calls\"]}]";
+        private final Filter filter = new Filter();
+
+        @Test
+        public void extract_items_from_json_test() {
+
+            filter.setJson(json);
+            filter.run();
+
+            Assert.assertEquals(ExtractorTest.language, filter.getLanguage());
+            Assert.assertArrayEquals(ExtractorTest.invalidSenders, filter.getInvalidSenders());
+            Assert.assertArrayEquals(ExtractorTest.regexSenderValidator, filter.getRegexSenderValidator());
+            Assert.assertArrayEquals(ExtractorTest.invalidMessages, filter.getInvalidMessages());
+            Assert.assertArrayEquals(ExtractorTest.invalidMessagesRegexRequired, filter.getInvalidMessagesRegexRequired());
+        }
+
     }
 
 }
