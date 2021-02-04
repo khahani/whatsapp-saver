@@ -6,7 +6,7 @@ import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
 import android.util.Log;
 
-import com.testing.whatsapp.Model.db.utils.NotificationToDbMediator;
+import com.testing.whatsapp.db.utils.NotificationToDbMediator;
 
 
 public class NotificationListener extends NotificationListenerService {

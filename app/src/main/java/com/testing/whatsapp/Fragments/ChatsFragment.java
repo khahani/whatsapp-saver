@@ -17,11 +17,11 @@ import com.khahani.usecase_firebase.analytic.LogEvent;
 import com.khahani.usecase_firebase.analytic.screen.TrackScreen;
 import com.testing.whatsapp.Adapters.ChatsAdapter;
 import com.testing.whatsapp.Model.Chat;
-import com.testing.whatsapp.Model.db.Db;
-import com.testing.whatsapp.Model.db.ReceivedMessage;
 import com.testing.whatsapp.R;
 import com.testing.whatsapp.creator.firebase.AdapterBannerCreator;
 import com.testing.whatsapp.creator.firebase.InterstitialCreator;
+import com.testing.whatsapp.db.Db;
+import com.testing.whatsapp.db.ReceivedMessage;
 
 import java.text.DateFormat;
 import java.util.ArrayList;

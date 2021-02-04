@@ -1,12 +1,12 @@
-package com.testing.whatsapp.Model.db.utils;
+package com.testing.whatsapp.db.utils;
 
 import android.content.Context;
 import android.service.notification.StatusBarNotification;
 import android.util.Log;
 
 import com.testing.whatsapp.BuildConfig;
-import com.testing.whatsapp.Model.db.Db;
-import com.testing.whatsapp.Model.db.ReceivedMessage;
+import com.testing.whatsapp.db.Db;
+import com.testing.whatsapp.db.ReceivedMessage;
 
 import java.util.HashMap;
 import java.util.Map;

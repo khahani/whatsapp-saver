@@ -1,4 +1,4 @@
-package com.testing.whatsapp.Model.db;
+package com.testing.whatsapp.db;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
