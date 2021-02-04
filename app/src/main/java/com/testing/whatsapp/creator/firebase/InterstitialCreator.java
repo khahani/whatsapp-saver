@@ -4,12 +4,12 @@ import android.app.Activity;
 
 import com.khahani.usecase_firebase.Creator;
 import com.khahani.usecase_firebase.admob.Interstitial;
-import com.testing.firebase.admob.InterstitialImpl;
+import com.khahani.usecase_firebase.admob.Nullnterstitial;
 
 public class InterstitialCreator extends Creator<Interstitial> {
     private final Activity activity;
     private final String realInterstitialId;
-    private Interstitial interstitial;
+    private final Interstitial interstitial;
 
     public InterstitialCreator(Activity activity, String realInterstitialId, Interstitial interstitial) {
         this.activity = activity;
@@ -19,8 +19,6 @@ public class InterstitialCreator extends Creator<Interstitial> {
 
     @Override
     public Interstitial factoryMethod() {
-//        return new Nullnterstitial();
-        interstitial = new InterstitialImpl(activity, () -> interstitial.show(), realInterstitialId);
-        return interstitial;
+        return new Nullnterstitial();
     }
 }
