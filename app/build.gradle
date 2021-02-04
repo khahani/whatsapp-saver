@@ -43,6 +43,7 @@ android {
 
 dependencies {
 
+    implementation project(path: ':extractor')
     implementation project(path: ':usecase_firebase')
     //implementation project(path: ':firebase')
 
