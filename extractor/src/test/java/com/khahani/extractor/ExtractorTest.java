@@ -273,14 +273,34 @@ public class ExtractorTest {
     }
 
     public static class FilterTest {
-        final String json = "[{\"lan\":\"en\",\"invalidSenders\":[\"WhatsApp\",\"null\"],\"regexSenderValidator\":[\"([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed voice calls\",\"([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed video calls\",\"\\\\(messages ([0-9]|[0-9][0-9]|[0-9][0-9][0-9])\\\\)\"],\"invalidMessages\":[\"null\",\"Checking for new messages\",\"Incoming voice call\",\"Incoming video call\",\"Missed voice call\",\"Missed video call\",\"\uD83D\uDCF7 Photo\",\"Calling…\",\"Ringing…\",\"Ongoing voice call\",\"Ongoing video call\",\"\uD83D\uDCF9 Incoming video call\"],\"invalidMessagesRegexRequired\":[\"2 new messages\",\"2 missed voice calls\",\"3 missed calls\"]}]";
+        final String jsonWithTwoLanguage = "[{\"lan\":\"en\",\"invalidSenders\":[\"WhatsApp\",\"null\"],\"regexSenderValidator\":[\"([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed voice calls\",\"([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed video calls\",\"\\\\(messages ([0-9]|[0-9][0-9]|[0-9][0-9][0-9])\\\\)\"],\"invalidMessages\":[\"null\",\"Checking for new messages\",\"Incoming voice call\",\"Incoming video call\",\"Missed voice call\",\"Missed video call\",\"\uD83D\uDCF7 Photo\",\"Calling…\",\"Ringing…\",\"Ongoing voice call\",\"Ongoing video call\",\"\uD83D\uDCF9 Incoming video call\"],\"invalidMessagesRegexRequired\":[\"2 new messages\",\"2 missed voice calls\",\"3 missed calls\"]},{\"lan\":\"fa\",\"invalidSenders\":[\"واتساپ\",\"null\"],\"regexSenderValidator\":[\"([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed voice calls\",\"([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed video calls\",\"\\\\(messages ([0-9]|[0-9][0-9]|[0-9][0-9][0-9])\\\\)\"],\"invalidMessages\":[\"null\",\"Checking for new messages\",\"Incoming voice call\",\"Incoming video call\",\"Missed voice call\",\"Missed video call\",\"\uD83D\uDCF7 Photo\",\"Calling…\",\"Ringing…\",\"Ongoing voice call\",\"Ongoing video call\",\"\uD83D\uDCF9 Incoming video call\"],\"invalidMessagesRegexRequired\":[\"2 new messages\",\"2 missed voice calls\",\"3 missed calls\"]}]";
+        String json = "[{\"lan\":\"en\",\"invalidSenders\":[\"WhatsApp\",\"null\"],\"regexSenderValidator\":[\"([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed voice calls\",\"([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed video calls\",\"\\\\(messages ([0-9]|[0-9][0-9]|[0-9][0-9][0-9])\\\\)\"],\"invalidMessages\":[\"null\",\"Checking for new messages\",\"Incoming voice call\",\"Incoming video call\",\"Missed voice call\",\"Missed video call\",\"\uD83D\uDCF7 Photo\",\"Calling…\",\"Ringing…\",\"Ongoing voice call\",\"Ongoing video call\",\"\uD83D\uDCF9 Incoming video call\"],\"invalidMessagesRegexRequired\":[\"2 new messages\",\"2 missed voice calls\",\"3 missed calls\"]}]";
         private final Filter filter = new Filter();
 
         @Test
-        public void extract_items_from_json_test() {
+        public void when_user_language_not_exists_return_en_version() {
+            extractFilters("fa");
+            assertUserLanguageFilter("en");
+        }
 
-            filter.setJson(json);
-            filter.run();
+        @Test
+        public void when_user_language_exists_return_user_version() {
+            json = jsonWithTwoLanguage;
+            extractFilters("fa");
+            assertUserLanguageFilter("fa");
+        }
+
+        private void assertUserLanguageFilter(String expected) {
+            Assert.assertEquals(expected, filter.getLanguage());
+        }
+
+        @Test
+        public void extract_items_from_json_test() {
+            assertFilterExtractedCorrectly();
+        }
+
+        private void assertFilterExtractedCorrectly() {
+            extractFilters(ExtractorTest.language);
 
             Assert.assertEquals(ExtractorTest.language, filter.getLanguage());
             Assert.assertArrayEquals(ExtractorTest.invalidSenders, filter.getInvalidSenders());
@@ -289,6 +309,12 @@ public class ExtractorTest {
             Assert.assertArrayEquals(ExtractorTest.invalidMessagesRegexRequired, filter.getInvalidMessagesRegexRequired());
         }
 
+
+        private void extractFilters(String userLanguage) {
+            filter.setUserLanguage(userLanguage);
+            filter.setJson(json);
+            filter.run();
+        }
     }
 
 }

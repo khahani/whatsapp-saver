@@ -18,24 +18,50 @@ public class Filter implements Runnable {
     private String[] regexSenderValidator;
     private String[] invalidMessages;
     private String[] invalidMessagesRegexRequired;
+    private String userLanguage;
 
     public Filter() {
     }
 
     void extractFilters() {
         try {
-            JSONArray root = new JSONArray(json);
-            for (int i = 0; i < root.length(); i++) {
-                JSONObject filter = root.getJSONObject(i);
-                language = filter.getString(LANGUAGE);
-                invalidSenders = getFilters(filter.getJSONArray(INVALID_SENDERS));
-                regexSenderValidator = getFilters(filter.getJSONArray(REGEX_SENDER_VALIDATOR));
-                invalidMessages = getFilters(filter.getJSONArray(INVALID_MESSAGES));
-                invalidMessagesRegexRequired = getFilters(filter.getJSONArray(INVALID_MESSAGES_REGEX_REQUIRED));
-            }
-        } catch (JSONException e) {
+            JSONObject filter = getFilterJsonObject();
+            setFilters(filter);
+
+        } catch (
+                JSONException e) {
             e.printStackTrace();
         }
+
+    }
+
+    private JSONObject getFilterJsonObject() throws JSONException {
+        JSONArray root = new JSONArray(json);
+
+        int userFilterIndex = 0;
+        int englishFilterIndex = 0;
+        for (int i = 0; i < root.length(); i++) {
+            JSONObject filter = root.getJSONObject(i);
+            language = filter.getString(LANGUAGE);
+            if (language.equals(userLanguage)) {
+                userFilterIndex = i;
+                break;
+            } else if (language.equals("en")) {
+                englishFilterIndex = i;
+            }
+        }
+
+        int filterIndex = userFilterIndex > 0 ? userFilterIndex : englishFilterIndex;
+
+        return root.getJSONObject(filterIndex);
+    }
+
+    private void setFilters(JSONObject filter) throws JSONException {
+        language = filter.getString(LANGUAGE);
+        invalidSenders = getFilters(filter.getJSONArray(INVALID_SENDERS));
+        regexSenderValidator = getFilters(filter.getJSONArray(REGEX_SENDER_VALIDATOR));
+        invalidMessages = getFilters(filter.getJSONArray(INVALID_MESSAGES));
+        invalidMessagesRegexRequired = getFilters(filter.getJSONArray(INVALID_MESSAGES_REGEX_REQUIRED));
     }
 
     String[] getFilters(JSONArray filterJsonArray) throws JSONException {
@@ -73,5 +99,9 @@ public class Filter implements Runnable {
     @Override
     public void run() {
         extractFilters();
+    }
+
+    public void setUserLanguage(String userLanguage) {
+        this.userLanguage = userLanguage;
     }
 }
