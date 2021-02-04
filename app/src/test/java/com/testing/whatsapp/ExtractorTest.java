@@ -1,5 +1,6 @@
 package com.testing.whatsapp;
 
+import com.testing.whatsapp.usecases.Extractor;
 import com.testing.whatsapp.usecases.MessageEvaluator;
 import com.testing.whatsapp.usecases.SenderEvaluator;
 import com.testing.whatsapp.usecases.SenderExtractor;
@@ -167,11 +168,7 @@ public class ExtractorTest {
 
         //khahani: extract algorithm code for production
         private ArrayList<Message> possibleMessages;
-        private String receivedSender;
-        private String receivedMessage;
-        private String group;
-        private String sender;
-        private String message;
+        private Extractor extractor;
 
         private void initData() {
             possibleMessages = new ArrayList<>();
@@ -217,69 +214,63 @@ public class ExtractorTest {
             // When there is some messages that didn't see (unread messages), all messages ITERATES when A new message arrived [duplicate possiblitity]
         }
 
-        @Test(expected = MessageIsNotValid.class)
-        public void wronge_recives_error_occurs() {
-            receivedSender = "WhatsApp";
-            receivedMessage = "Hi, I love you";
-            extract();
+        @Before
+        public void setup() {
+            extractor = new Extractor();
+        }
+
+        @Test(expected = Extractor.MessageIsNotValid.class)
+        public void wrong_receives_error_occurs() {
+            String receivedSender = "WhatsApp";
+            String receivedMessage = "Hi, I love you";
+
+            init(receivedSender, receivedMessage);
+            extractor.run();
         }
 
         @Test
         public void extract_information_from_received_information() {
-
-            receivedSender = "E";
-            receivedMessage = "Hi, I love you";
+            String receivedSender = "E";
+            String receivedMessage = "Hi, I love you";
             String expectedSender = "E";
             String expectedGroup = "c";
             String expectedMessage = "Hi, I love you";
 
-            extract();
+            init(receivedSender, receivedMessage);
 
-            Assert.assertEquals("sender", expectedSender, sender);
-            Assert.assertEquals("group", expectedGroup, group);
-            Assert.assertEquals("message", expectedMessage, message);
+            extractor.run();
+
+            Assert.assertEquals("sender", expectedSender, extractor.getSender());
+            Assert.assertEquals("group", expectedGroup, extractor.getGroup());
+            Assert.assertEquals("message", expectedMessage, extractor.getMessage());
 
         }
 
-        private void extract() {
-            SenderExtractor sx = new SenderExtractor(receivedSender);
-            sx.extract();
-            group = sx.getGroup();
-            sender = sx.getSender();
+        private void init(String receivedSender, String receivedMessage) {
+            SenderExtractor senderExtractor = new SenderExtractor(receivedSender);
+            extractor.setSenderExtractor(senderExtractor);
 
-            SenderEvaluator se = new SenderEvaluator();
-            se.setInvalidSenders(invalidSenders);
-            se.setRegexSenderValidator(regexSenderValidator);
-            se.setSender(sender);
+            SenderEvaluator senderEvaluator = new SenderEvaluator();
+            senderEvaluator.setInvalidSenders(invalidSenders);
+            senderEvaluator.setRegexSenderValidator(regexSenderValidator);
+            extractor.setSenderEvaluator(senderEvaluator);
 
-            if (se.isValid()) {
-
-                MessageEvaluator me = new MessageEvaluator();
-                me.setInvalidMessages(invalidMessages);
-                me.setRegexMessageValidators(invalidMessagesRegexRequired);
-                me.setMessage(receivedMessage);
-
-                if (me.isValid()) {
-                    message = me.getMessage();
-                } else {
-                    throw new MessageIsNotValid();
-                }
-            } else {
-                throw new MessageIsNotValid();
-            }
+            MessageEvaluator messageEvaluator = new MessageEvaluator();
+            messageEvaluator.setInvalidMessages(invalidMessages);
+            messageEvaluator.setRegexMessageValidators(invalidMessagesRegexRequired);
+            messageEvaluator.setMessage(receivedMessage);
+            extractor.setMessageEvaluator(messageEvaluator);
         }
 
         public static class Message {
             private final String title;
-            private final String body;
 
+            private final String body;
             public Message(String title, String body) {
                 this.title = title;
                 this.body = body;
             }
-        }
 
-        public static class MessageIsNotValid extends RuntimeException {
         }
     }
 
