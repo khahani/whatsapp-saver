@@ -1,7 +1,5 @@
 package com.testing.firebase;
 
-import android.content.Context;
-
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.khahani.usecase_firebase.OnCompletionListener;
@@ -10,7 +8,6 @@ import com.khahani.usecase_firebase.RemoteConfig;
 public class RemoteConfigImpl extends RemoteConfig {
 
     private FirebaseRemoteConfig mFirebaseRemoteConfig;
-    private Context context;
 
     private void enable() {
         mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
