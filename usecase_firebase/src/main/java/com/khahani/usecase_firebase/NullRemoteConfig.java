@@ -10,4 +10,9 @@ public class NullRemoteConfig extends RemoteConfig {
     public String getString(String key) {
         return null;
     }
+
+    @Override
+    public void fetchAndActivate(OnCompletionListener onCompletionListener) {
+
+    }
 }
