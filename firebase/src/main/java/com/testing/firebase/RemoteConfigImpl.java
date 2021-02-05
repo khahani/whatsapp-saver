@@ -1,5 +1,9 @@
 package com.testing.firebase;
 
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.khahani.usecase_firebase.OnCompletionListener;
@@ -31,6 +35,15 @@ public class RemoteConfigImpl extends RemoteConfig {
     @Override
     public void fetchAndActivate(OnCompletionListener onCompletionListener) {
         mFirebaseRemoteConfig.fetchAndActivate()
-                .addOnCompleteListener(onCompletionListener::onComplete);
+                .addOnCompleteListener(new OnCompleteListener<Boolean>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Boolean> task) {
+                        try {
+                            onCompletionListener.onComplete(task.getResult());
+                        } catch (Exception e) {
+                            onCompletionListener.onComplete(false);
+                        }
+                    }
+                });
     }
 }
