@@ -2,13 +2,21 @@
 <defaultsMap>
     <entry>
         <key>filters</key>
-        <value>[{
-            "lan":"en",
-            "invalidSenders":["WhatsApp", "null"],
-            "regexSenderValidator":["([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed voice calls",
+        <value>
+            [
+            {
+            "lan": "en",
+            "invalidSenders": [
+            "WhatsApp",
+            "null"
+            ],
+            "regexSenderValidator": [
+            "([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed voice calls",
             "([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed video calls",
-            "\\(messages ([0-9]|[0-9][0-9]|[0-9][0-9][0-9])\\)"],
-            "invalidMessages":["null",
+            "\\(messages ([0-9]|[0-9][0-9]|[0-9][0-9][0-9])\\)"
+            ],
+            "invalidMessages": [
+            "null",
             "Checking for new messages",
             "Incoming voice call",
             "Incoming video call",
@@ -19,11 +27,33 @@
             "Ringing…",
             "Ongoing voice call",
             "Ongoing video call",
-            "\uD83D\uDCF9 Incoming video call"],
-            "regexMessageValidators":["([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) new messages",
+            "\uD83D\uDCF9 Incoming video call"
+            ],
+            "regexMessageValidators": [
+            "([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) new messages",
             "([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed voice calls",
-            "([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed calls"]
-            }]
+            "([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed calls"
+            ]
+            },
+            {
+            "lan": "fa",
+            "invalidSenders": [
+            "واتساپ",
+            "null"
+            ],
+            "regexSenderValidator": [
+            ""
+            ],
+            "invalidMessages": [
+            ""
+            ],
+            "regexMessageValidators": [
+            "\u200F\u200F([0-9]|[0-9][0-9]|[0-9][0-9][0-9]) پيام در
+            ([0-9]|[0-9][0-9]|[0-9][0-9][0-9]) گفتگو",
+            ""
+            ]
+            }
+            ]
         </value>
     </entry>
 </defaultsMap>
