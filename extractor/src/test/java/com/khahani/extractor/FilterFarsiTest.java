@@ -13,7 +13,7 @@ public class FilterFarsiTest {
     @Test
     public void t() {
 
-        String regx = "\u200F\u200F([0-9]|[0-9][0-9]|[0-9][0-9][0-9]) پيام در ([0-9]|[0-9][0-9]|[0-9][0-9][0-9]) گفتگو";
+        String regx = "([0-9]|[0-9][0-9]|[0-9][0-9][0-9]) پيام در ([0-9]|[0-9][0-9]|[0-9][0-9][0-9]) گفتگو";
         String text = "\u200F\u200F۲۶ پيام در ۳ گفتگو";
         arabicNumberToEnglish.setText(text);
         arabicNumberToEnglish.run();
