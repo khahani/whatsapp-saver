@@ -13,12 +13,12 @@ import com.khahani.usecase_firebase.analytic.Analytics;
 import com.khahani.usecase_firebase.analytic.LogEvent;
 import com.khahani.usecase_firebase.analytic.screen.TrackScreen;
 import com.khahani.usecase_firebase.analytic.screen.TrackableScreen;
-import com.testing.whatsapp.MyApplication;
 import com.testing.whatsapp.R;
 import com.testing.whatsapp.creator.firebase.AnalyticsCreator;
 import com.testing.whatsapp.creator.firebase.CrashlyticCreator;
 import com.testing.whatsapp.creator.firebase.InAppMessageCreator;
 import com.testing.whatsapp.creator.firebase.RemoteConfigCreator;
+import com.testing.whatsapp.sharedpref.RemoteConfigDefault;
 
 public abstract class BaseActivity extends AppCompatActivity implements TrackableScreen {
 
@@ -45,7 +45,8 @@ public abstract class BaseActivity extends AppCompatActivity implements Trackabl
         try {
             remoteConfig.fetchAndActivate(succeeded -> {
                 String filters = remoteConfig.getString(getString(R.string.filter_key));
-                ((MyApplication) getApplicationContext()).setFilters(filters);
+                RemoteConfigDefault rc = new RemoteConfigDefault(BaseActivity.this);
+                rc.setFilters(filters);
             });
         } catch (Exception e) {
             Log.d("khahani", e.getMessage());

@@ -3,8 +3,8 @@ package com.testing.whatsapp.db.utils;
 import android.content.Context;
 import android.service.notification.StatusBarNotification;
 
-import com.testing.whatsapp.MyApplication;
 import com.testing.whatsapp.db.Db;
+import com.testing.whatsapp.sharedpref.RemoteConfigDefault;
 
 public abstract class NotificationToDbMediatorBase {
     protected final StatusBarNotification notification;
@@ -30,7 +30,7 @@ public abstract class NotificationToDbMediatorBase {
 //
 //    }
     public String getFilters() {
-        return ((MyApplication) context).getFilters();
+        return new RemoteConfigDefault(context).getFilters();
     }
 
     public abstract void insert();

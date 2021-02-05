@@ -10,7 +10,6 @@ import com.khahani.extractor.Filter;
 import com.khahani.extractor.MessageEvaluator;
 import com.khahani.extractor.SenderEvaluator;
 import com.khahani.extractor.SenderExtractor;
-import com.testing.whatsapp.MyApplication;
 import com.testing.whatsapp.db.ReceivedMessage;
 
 import java.util.Locale;
@@ -39,9 +38,6 @@ public class NotificationToDbMediatorWithExtractor extends NotificationToDbMedia
             Filter f = new Filter();
             f.setUserLanguage(language);
             String filters = getFilters();
-            if (filters == null) {
-                filters = MyApplication.DEFAULT_FILTERS;
-            }
             f.setJson(filters);
             f.run();
 
