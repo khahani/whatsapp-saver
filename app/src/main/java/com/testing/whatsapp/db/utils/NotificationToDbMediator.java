@@ -5,40 +5,24 @@ import android.service.notification.StatusBarNotification;
 import android.util.Log;
 
 import com.testing.whatsapp.BuildConfig;
-import com.testing.whatsapp.db.Db;
 import com.testing.whatsapp.db.ReceivedMessage;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class NotificationToDbMediator {
+public class NotificationToDbMediator extends NotificationToDbMediatorBase {
 
     private final String[] failedMessages = new String[]{
             "Checking for new messages",
             "%d new messages",
             "\uD83D\uDCF9 Incoming video call"
     };
-    private final StatusBarNotification notification;
-    private final Db db;
-    private final String GROUP_KEY = "group";
-    private final String SENDER_KEY = "sender";
 
     public NotificationToDbMediator(Context context, StatusBarNotification sbn) {
-        this.notification = sbn;
-        this.db = Db.getInstance(context);
+        super(context, sbn);
     }
 
-    //khahani: use it for the free time on next version
-//    private void triggerActions(StatusBarNotification sbn) {
-//
-//        Bundle b = sbn.getNotification().extras;
-//        Notification.Action[] actions = sbn.getNotification().actions;
-//        Uri sound = sbn.getNotification().sound;
-//        PendingIntent i = sbn.getNotification().contentIntent;
-//        RemoteViews big = sbn.getNotification().bigContentView;
-//
-//    }
-
+    @Override
     public void insert() {
         ReceivedMessage rm = new ReceivedMessage();
         rm.sender = notification.getNotification().extras.getString("android.title");

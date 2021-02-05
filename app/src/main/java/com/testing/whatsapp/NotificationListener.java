@@ -6,7 +6,8 @@ import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
 import android.util.Log;
 
-import com.testing.whatsapp.db.utils.NotificationToDbMediator;
+import com.testing.whatsapp.db.utils.NotificationToDbMediatorBase;
+import com.testing.whatsapp.db.utils.NotificationToDbMediatorWithExtractor;
 
 
 public class NotificationListener extends NotificationListenerService {
@@ -29,7 +30,8 @@ public class NotificationListener extends NotificationListenerService {
                 return;
             }
             Log.d("Khahani", "Notification is valid.\n");
-            NotificationToDbMediator ndb = new NotificationToDbMediator(getApplicationContext(), sbn);
+            //khahani: use factory
+            NotificationToDbMediatorBase ndb = new NotificationToDbMediatorWithExtractor(getApplicationContext(), sbn);
             ndb.insert();
         }
     }

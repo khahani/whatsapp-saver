@@ -10,7 +10,7 @@ public class Filter implements Runnable {
     static final String INVALID_SENDERS = "invalidSenders";
     static final String REGEX_SENDER_VALIDATOR = "regexSenderValidator";
     static final String INVALID_MESSAGES = "invalidMessages";
-    static final String INVALID_MESSAGES_REGEX_REQUIRED = "invalidMessagesRegexRequired";
+    static final String INVALID_MESSAGES_REGEX_REQUIRED = "regexMessageValidators";
 
     private String json;
     private String language;
@@ -92,7 +92,7 @@ public class Filter implements Runnable {
         return invalidMessages;
     }
 
-    public String[] getInvalidMessagesRegexRequired() {
+    public String[] getRegexMessageValidators() {
         return invalidMessagesRegexRequired;
     }
 

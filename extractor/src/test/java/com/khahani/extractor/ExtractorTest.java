@@ -306,7 +306,7 @@ public class ExtractorTest {
             Assert.assertArrayEquals(ExtractorTest.invalidSenders, filter.getInvalidSenders());
             Assert.assertArrayEquals(ExtractorTest.regexSenderValidator, filter.getRegexSenderValidator());
             Assert.assertArrayEquals(ExtractorTest.invalidMessages, filter.getInvalidMessages());
-            Assert.assertArrayEquals(ExtractorTest.invalidMessagesRegexRequired, filter.getInvalidMessagesRegexRequired());
+            Assert.assertArrayEquals(ExtractorTest.invalidMessagesRegexRequired, filter.getRegexMessageValidators());
         }
 
 
