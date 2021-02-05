@@ -3,6 +3,7 @@ package com.testing.whatsapp.db.utils;
 import android.content.Context;
 import android.service.notification.StatusBarNotification;
 
+import com.khahani.extractor.ArabicNumberToEnglish;
 import com.khahani.extractor.Extractor;
 import com.khahani.extractor.Filter;
 import com.khahani.extractor.MessageEvaluator;
@@ -25,6 +26,11 @@ public class NotificationToDbMediatorWithExtractor extends NotificationToDbMedia
         String receivedSender = notification.getNotification().extras.getString("android.title");
         String receivedMessage = notification.getNotification().extras.getString("android.text");
         long date = System.currentTimeMillis();
+
+        ArabicNumberToEnglish arEn = new ArabicNumberToEnglish();
+        arEn.setText(receivedMessage);
+        arEn.run();
+        receivedMessage = arEn.getText();
 
         String language = Locale.getDefault().getLanguage();
 
