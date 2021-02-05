@@ -39,6 +39,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Trackabl
         //khahani: check why in app device id not shown in toast or log
         inAppMessage = new InAppMessageCreator(this).factoryMethod();
         inAppMessage.run();
+
     }
 
     protected abstract TrackScreen initTrackScreen(LogEvent logger);
