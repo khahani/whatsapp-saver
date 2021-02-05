@@ -47,6 +47,7 @@ dependencies {
     implementation project(path: ':usecase_firebase')
     //implementation project(path: ':firebase')
 
+    implementation 'com.google.android.gms:play-services-tasks:17.2.0'
     implementation 'de.hdodenhof:circleimageview:3.0.0'
 
     implementation 'com.github.bumptech.glide:glide:4.11.0'

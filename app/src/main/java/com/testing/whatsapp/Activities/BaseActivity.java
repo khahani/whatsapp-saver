@@ -1,6 +1,7 @@
 package com.testing.whatsapp.Activities;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import com.khahani.usecase_firebase.analytic.Analytics;
 import com.khahani.usecase_firebase.analytic.LogEvent;
 import com.khahani.usecase_firebase.analytic.screen.TrackScreen;
 import com.khahani.usecase_firebase.analytic.screen.TrackableScreen;
+import com.testing.whatsapp.R;
 import com.testing.whatsapp.creator.firebase.AnalyticsCreator;
 import com.testing.whatsapp.creator.firebase.CrashlyticCreator;
 import com.testing.whatsapp.creator.firebase.InAppMessageCreator;
@@ -39,7 +41,14 @@ public abstract class BaseActivity extends AppCompatActivity implements Trackabl
         //khahani: check why in app device id not shown in toast or log
         inAppMessage = new InAppMessageCreator(this).factoryMethod();
         inAppMessage.run();
-
+        remoteConfig.fetchAndActivate(task -> {
+            if (task.getResult()) {
+                String filters = remoteConfig.getString(getString(R.string.filter_key));
+                Log.d("khahani", String.format("filters: %s", filters));
+            } else {
+                Log.d("khahani", "Remote config result = false");
+            }
+        });
     }
 
     protected abstract TrackScreen initTrackScreen(LogEvent logger);

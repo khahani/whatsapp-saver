@@ -43,7 +43,7 @@ public class ExtractorTest {
     static String[] regexMessageValidators = new String[]{
             "([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) new messages",
             "([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed voice calls",
-            "([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed calls",
+            "([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed calls"
     };
     static String[] regexSenderValidator = new String[]{
             "([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed voice calls",
@@ -254,7 +254,7 @@ public class ExtractorTest {
 
             MessageEvaluator messageEvaluator = new MessageEvaluator();
             messageEvaluator.setInvalidMessages(invalidMessages);
-            messageEvaluator.setRegexMessageValidators(invalidMessagesRegexRequired);
+            messageEvaluator.setRegexMessageValidators(regexMessageValidators);
             messageEvaluator.setMessage(receivedMessage);
             extractor.setMessageEvaluator(messageEvaluator);
         }
