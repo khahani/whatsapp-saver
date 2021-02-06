@@ -26,6 +26,7 @@ public class NotificationToDbMediatorWithExtractor extends NotificationToDbMedia
         try {
             String receivedSender = notification.getNotification().extras.getString("android.title");
             String receivedMessage = notification.getNotification().extras.getString("android.text");
+            long postTime = notification.getPostTime();
             long date = System.currentTimeMillis();
 
             ArabicNumberToEnglish arEn = new ArabicNumberToEnglish();
@@ -65,6 +66,7 @@ public class NotificationToDbMediatorWithExtractor extends NotificationToDbMedia
             rm.group = ex.getGroup();
             rm.text = ex.getMessage();
             rm.date = date;
+            rm.postTime = postTime;
 
             db.receivedMessageDao().insertMessage(rm);
 

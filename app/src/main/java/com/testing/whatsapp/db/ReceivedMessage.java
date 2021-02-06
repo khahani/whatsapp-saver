@@ -25,4 +25,7 @@ public class ReceivedMessage {
 
     @ColumnInfo(name = "date")
     public long date;
+
+    @ColumnInfo(name = "posttime")
+    public long postTime;
 }

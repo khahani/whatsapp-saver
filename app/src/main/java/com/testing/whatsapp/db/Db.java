@@ -9,7 +9,7 @@ import androidx.room.RoomDatabase;
 import androidx.room.migration.Migration;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-@Database(entities = {ReceivedMessage.class}, version = 2, exportSchema = false)
+@Database(entities = {ReceivedMessage.class}, version = 3, exportSchema = false)
 public abstract class Db extends RoomDatabase {
 
     private static Db instance;
@@ -20,6 +20,12 @@ public abstract class Db extends RoomDatabase {
             database.execSQL("ALTER TABLE ReceivedMessage ADD COLUMN 'group' TEXT DEFAULT 'c'");
         }
     };
+    static final Migration MIGRATION_2_3 = new Migration(2, 3) {
+        @Override
+        public void migrate(@NonNull SupportSQLiteDatabase database) {
+            database.execSQL("ALTER TABLE ReceivedMessage ADD COLUMN 'posttime' INTEGER ");
+        }
+    };
 
     public abstract ReceivedMessageDao receivedMessageDao();
 
@@ -28,6 +34,7 @@ public abstract class Db extends RoomDatabase {
             instance = Room.databaseBuilder(context, Db.class, "db")
                     //.fallbackToDestructiveMigration()
                     .addMigrations(MIGRATION_1_2)
+                    .addMigrations(MIGRATION_2_3)
                     .build();
         }
         return instance;

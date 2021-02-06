@@ -37,7 +37,9 @@
       "null"
     ],
     "regexSenderValidator": [
-      "a"
+      "([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed voice calls",
+      "([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed video calls",
+      "\\(messages ([0-9]|[0-9][0-9]|[0-9][0-9][0-9])\\)"
     ],
     "invalidMessages": [
       "جستجو برای پیام جدید",
