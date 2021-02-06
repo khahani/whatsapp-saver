@@ -2,9 +2,10 @@ package com.testing.whatsapp.db;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-@Entity
+@Entity(indices = {@Index(value = {"posttime"}, unique = true)})
 public class ReceivedMessage {
 
     @PrimaryKey(autoGenerate = true)
