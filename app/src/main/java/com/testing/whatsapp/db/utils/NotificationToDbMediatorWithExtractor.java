@@ -8,6 +8,7 @@ import com.khahani.extractor.ArabicNumberToEnglish;
 import com.khahani.extractor.Extractor;
 import com.khahani.extractor.Filter;
 import com.khahani.extractor.MessageEvaluator;
+import com.khahani.extractor.RemoveRtlChar;
 import com.khahani.extractor.SenderEvaluator;
 import com.khahani.extractor.SenderExtractor;
 import com.testing.whatsapp.db.ReceivedMessage;
@@ -33,6 +34,11 @@ public class NotificationToDbMediatorWithExtractor extends NotificationToDbMedia
             arEn.setText(receivedMessage);
             arEn.run();
             receivedMessage = arEn.getText();
+
+            RemoveRtlChar rrtl = new RemoveRtlChar();
+            rrtl.setText(receivedMessage);
+            rrtl.run();
+            receivedMessage = rrtl.getText();
 
             String language = Locale.getDefault().getLanguage();
 
