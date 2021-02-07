@@ -14,9 +14,9 @@ public interface ReceivedMessageDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     long insertMessage(ReceivedMessage message);
 
-//    @Query("Select r._id, r.sender, (select text from receivedmessage where sender = r.sender order by date desc limit 1) as text, (select date from receivedmessage where sender = r.sender order by date desc limit 1) as date, posttime from receivedmessage as r group by sender order by date desc ")
-@Query("Select * from receivedmessage")
-LiveData<List<ReceivedMessage>> getSenders();
+    //    @Query("Select r._id, r.sender, (select text from receivedmessage where sender = r.sender order by date desc limit 1) as text, (select date from receivedmessage where sender = r.sender order by date desc limit 1) as date, posttime from receivedmessage as r group by sender order by date desc ")
+    @Query("Select * from receivedmessage")
+    LiveData<List<ReceivedMessage>> getSenders();
 
     @Query("Select * from receivedmessage where sender = :pSender order by date asc")
     LiveData<List<ReceivedMessage>> getChats(String pSender);
