@@ -79,6 +79,7 @@ public class MessagesActivity extends BaseActivity {
                 chats.add(new Chat(rm.sender, rm.text, format.format(rm.date), rm.group));
             }
             adapter.setChats(chats);
+            //khahani: must change with a better performance
             adapter.notifyDataSetChanged();
             rvMessages.smoothScrollToPosition(adapter.getItemCount() - 1);
         });
