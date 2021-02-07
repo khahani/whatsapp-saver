@@ -9,10 +9,12 @@ import android.util.Log;
 import com.testing.whatsapp.db.utils.NotificationToDbMediatorBase;
 import com.testing.whatsapp.db.utils.NotificationToDbMediatorWithExtractor;
 
+import java.util.ArrayList;
+
 
 public class NotificationListener extends NotificationListenerService {
 
-    private StatusBarNotification lastStatusBarNotification = null;
+    private final ArrayList<StatusBarNotification> lastStatusBarNotifications = new ArrayList<>();
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -40,21 +42,25 @@ public class NotificationListener extends NotificationListenerService {
         boolean VALID = true;
         boolean INVALID = false;
 
-        if (lastStatusBarNotification == null) {
-            lastStatusBarNotification = sbn;
+        if (lastStatusBarNotifications.isEmpty()) {
+            lastStatusBarNotifications.add(sbn);
             return VALID;
         }
 
-        String newSender = sbn.getNotification().extras.getString("android.title");
-        String newText = sbn.getNotification().extras.getString("android.text");
-        String lastSender = lastStatusBarNotification.getNotification().extras.getString("android.title");
-        String lastText = lastStatusBarNotification.getNotification().extras.getString("android.text");
+        for (StatusBarNotification lastStatusBarNotification : lastStatusBarNotifications) {
+            String newSender = sbn.getNotification().extras.getString("android.title");
+            String newText = sbn.getNotification().extras.getString("android.text");
+            String lastSender = lastStatusBarNotification.getNotification().extras.getString("android.title");
+            String lastText = lastStatusBarNotification.getNotification().extras.getString("android.text");
 
-        if (sbn.getPostTime() - lastStatusBarNotification.getPostTime() < 1000)
+//            if (sbn.getPostTime() - lastStatusBarNotification.getPostTime() < 1000)
+//                if (newSender.equals(lastSender) && newText.equals(lastText))
+//                    return INVALID;
             if (newSender.equals(lastSender) && newText.equals(lastText))
                 return INVALID;
+        }
 
-        lastStatusBarNotification = sbn;
+        lastStatusBarNotifications.add(sbn);
         return VALID;
     }
 
@@ -71,8 +77,7 @@ public class NotificationListener extends NotificationListenerService {
             if (activeNotifications != null && activeNotifications.length > 0) {
                 for (StatusBarNotification activeNotification : activeNotifications) {
                     if (notificationCode == matchNotificationCode(activeNotification)) {
-//                        NotificationToDbMediator ndb = new NotificationToDbMediator(getApplicationContext(), sbn);
-//                        ndb.insert();
+                        lastStatusBarNotifications.clear();
                         break;
                     }
                 }
