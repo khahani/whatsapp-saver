@@ -22,6 +22,7 @@ import com.testing.whatsapp.creator.firebase.AdapterBannerCreator;
 import com.testing.whatsapp.creator.firebase.InterstitialCreator;
 import com.testing.whatsapp.db.Db;
 import com.testing.whatsapp.db.ReceivedMessage;
+import com.testing.whatsapp.db.adapter.ChatAdapter;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -89,6 +90,7 @@ public class ChatsFragment extends BaseFragment {
     private void populateChats() {
         this.db = Db.getInstance(getContext());
         observer = receivedMessages -> {
+            new ChatAdapter();
             chats.clear();
             DateFormat format;
             for (ReceivedMessage rm : receivedMessages) {
