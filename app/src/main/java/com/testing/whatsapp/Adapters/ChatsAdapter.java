@@ -99,7 +99,9 @@ public class ChatsAdapter extends RecyclerView.Adapter<ChatsAdapter.ChatsViewHol
 			chatLayoutContainer.setOnClickListener(v -> {
 				Intent intent = new Intent(context, MessagesActivity.class);
 				//khahani: decide based on group or contact
-				intent.putExtra("sender", chats.get(getAdapterPosition()).getName());
+				Chat chat = chats.get(getAdapterPosition());
+				intent.putExtra("group", chat.getGroup());
+				intent.putExtra("sender", chat.getName());
 				context.startActivity(intent);
 			});
 		}
