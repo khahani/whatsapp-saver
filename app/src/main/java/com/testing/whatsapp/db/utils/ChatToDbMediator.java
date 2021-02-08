@@ -43,9 +43,15 @@ public class ChatToDbMediator implements Runnable {
             }
         }
 
+        Chat chat = new Chat();
+        chat.sender = receivedMessage.sender;
+        chat.text = receivedMessage.text;
+        chat.group = receivedMessage.group;
+        chat.date = receivedMessage.date;
 
         if (duplicatedId >= 0) {
-            db.chatDao().update(chat, duplicatedId);
+            chat.cid = (int) duplicatedId;
+            db.chatDao().update(chat);
         } else {
             db.chatDao().insert(chat);
         }
