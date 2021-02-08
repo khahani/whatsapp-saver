@@ -3,64 +3,23 @@
     <entry>
         <key>filters</key>
         <value>
-            [
-            {
-            "lan": "en",
-            "invalidSenders": [
-            "WhatsApp",
-            "null"
-            ],
-            "regexSenderValidator": [
-            "([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed voice calls",
-            "([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed video calls",
-            "\\(messages ([0-9]|[0-9][0-9]|[0-9][0-9][0-9])\\)"
-            ],
-            "invalidMessages": [
-            "null",
-            "Checking for new messages",
-            "Incoming voice call",
-            "Incoming video call",
-            "Missed voice call",
-            "Missed video call",
-            "\uD83D\uDCF7 Photo",
-            "Calling…",
-            "Ringing…",
-            "Ongoing voice call",
-            "Ongoing video call",
-            "\uD83D\uDCF9 Incoming video call"
-            ],
-            "regexMessageValidators": [
-            "([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) new messages",
-            "([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed voice calls",
-            "([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed calls"
-            ]
-            },
-            {
-            "lan": "fa",
-            "invalidSenders": [
-            "واتساپ",
-            "null"
-            ],
-            "regexSenderValidator": [
-            "([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed voice calls",
-            "([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed video calls",
-            "\\(messages ([0-9]|[0-9][0-9]|[0-9][0-9][0-9])\\)"
-            ],
-            "invalidMessages": [
-            "جستجو برای پیام جدید",
-            "تماس صوتی ورودی",
-            "تماس صوتی پاسخ داده نشده",
-            "تماس تصویری ورودی",
-            "تماس تصویری پاسخ داده نشده"
-            ],
-            "regexMessageValidators": [
-            "([0-9]|[0-9][0-9]|[0-9][0-9][0-9]) پيام در ([0-9]|[0-9][0-9]|[0-9][0-9][0-9]) گفتگو",
-            "([0-9]|[0-9][0-9]|[0-9][0-9][0-9]) تماس صوتی پاسخ داده نشده",
-            "([0-9]|[0-9][0-9]|[0-9][0-9][0-9]) تماس از دست رفته",
-            "([0-9]|[0-9][0-9]|[0-9][0-9][0-9]) تماس تصویری پاسخ داده نشده"
-            ]
-            }
-            ]
+            [{"lan":"en","invalidSenders":["WhatsApp","null"],"regexSenderValidator":["([2-9]|[1-9][0-9]|[1-9][0-9][0-9])
+            missed voice calls","([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed video calls","\\(messages
+            ([0-9]|[0-9][0-9]|[0-9][0-9][0-9])\\)"],"invalidMessages":["null","Checking for new
+            messages","Incoming voice call","Incoming video call","Missed voice call","Missed video
+            call","📷 Photo","Calling…","Ringing…","Ongoing voice call","Ongoing video call","📹
+            Incoming video call"],"regexMessageValidators":["([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) new
+            messages","([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed voice
+            calls","([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed
+            calls"]},{"lan":"fa","invalidSenders":["واتساپ","null"],"regexSenderValidator":["([2-9]|[1-9][0-9]|[1-9][0-9][0-9])
+            missed voice calls","([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed video calls","\\(messages
+            ([0-9]|[0-9][0-9]|[0-9][0-9][0-9])\\)"],"invalidMessages":["جستجو برای پیام جدید","تماس
+            صوتی ورودی","تماس صوتی پاسخ داده نشده","تماس تصویری ورودی","تماس تصویری پاسخ داده
+            نشده"],"regexMessageValidators":["([0-9]|[0-9][0-9]|[0-9][0-9][0-9]) پيام در
+            ([0-9]|[0-9][0-9]|[0-9][0-9][0-9]) گفتگو","([0-9]|[0-9][0-9]|[0-9][0-9][0-9]) تماس صوتی
+            پاسخ داده نشده","([0-9]|[0-9][0-9]|[0-9][0-9][0-9]) تماس از دست
+            رفته","([0-9]|[0-9][0-9]|[0-9][0-9][0-9]) تماس تصویری پاسخ داده
+            نشده","([0-9]|[0-9][0-9]|[0-9][0-9][0-9]) پیام جدید"]}]
         </value>
     </entry>
 </defaultsMap>
