@@ -56,8 +56,14 @@ public class ChatsAdapter extends RecyclerView.Adapter<ChatsAdapter.ChatsViewHol
 				.apply(new RequestOptions().placeholder(R.drawable.profile))
 				.into(chatsViewHolder.profilePic);
 
-		chatsViewHolder.tvName.setText(chat.getName());
-		chatsViewHolder.tvMsg.setText(chat.getLastMessage());
+		if (chat.getGroup().equals("c")) {
+			chatsViewHolder.tvName.setText(chat.getName());
+			chatsViewHolder.tvMsg.setText(chat.getLastMessage());
+		} else {
+			chatsViewHolder.tvName.setText(chat.getGroup());
+			chatsViewHolder.tvMsg.setText(String.format("%s: %s", chat.getName(), chat.getLastMessage()));
+		}
+
 		chatsViewHolder.tvTime.setText(chat.getLastMessageTime());
 
 	}
@@ -92,6 +98,7 @@ public class ChatsAdapter extends RecyclerView.Adapter<ChatsAdapter.ChatsViewHol
 
 			chatLayoutContainer.setOnClickListener(v -> {
 				Intent intent = new Intent(context, MessagesActivity.class);
+				//khahani: decide based on group or contact
 				intent.putExtra("sender", chats.get(getAdapterPosition()).getName());
 				context.startActivity(intent);
 			});
