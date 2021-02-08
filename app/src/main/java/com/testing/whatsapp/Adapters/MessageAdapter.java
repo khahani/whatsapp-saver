@@ -43,7 +43,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ChatsVie
 
         if (chat.getGroup() != null)
             if (!chat.getGroup().equals("c")) {
-                chatsViewHolder.group.setText(chat.getGroup());
+                chatsViewHolder.group.setText(chat.getName());
                 chatsViewHolder.group.setVisibility(View.VISIBLE);
             }
 
