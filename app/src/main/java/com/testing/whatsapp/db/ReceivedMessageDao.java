@@ -18,7 +18,7 @@ public interface ReceivedMessageDao {
     @Query("Select * from receivedmessage")
     LiveData<List<ReceivedMessage>> getSenders();
 
-    @Query("Select * from receivedmessage where sender = :pSender order by date asc")
+    @Query("Select * from receivedmessage where sender = :pSender and `group` = 'c' order by date asc")
     LiveData<List<ReceivedMessage>> getChats(String pSender);
 
     @Query("Select count(*) from (Select * from receivedmessage where sender = :pSender order by date desc limit 20) as r  where r.sender = :pSender and r.text = :pText and r.date < :pDate - 2000")
