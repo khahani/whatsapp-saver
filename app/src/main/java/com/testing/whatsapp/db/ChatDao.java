@@ -1,5 +1,6 @@
 package com.testing.whatsapp.db;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
@@ -15,7 +16,10 @@ public interface ChatDao {
     void insert(Chat chat);
 
     @Query("Select * from chat order by date desc")
-    List<Chat> getAll();
+    LiveData<List<Chat>> getAll();
+
+    @Query("Select * from chat")
+    List<Chat> getAllSync();
 
     @Update
     void update(Chat chat);

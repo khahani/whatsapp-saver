@@ -24,7 +24,7 @@ public class ChatToDbMediator implements Runnable {
     }
 
     private void execute() {
-        List<Chat> chats = db.chatDao().getAll();
+        List<Chat> chats = db.chatDao().getAllSync();
 
         long duplicatedId = -1;
         if (receivedMessage.isContact()) {

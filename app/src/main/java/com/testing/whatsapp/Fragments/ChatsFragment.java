@@ -21,7 +21,6 @@ import com.testing.whatsapp.R;
 import com.testing.whatsapp.creator.firebase.AdapterBannerCreator;
 import com.testing.whatsapp.creator.firebase.InterstitialCreator;
 import com.testing.whatsapp.db.Db;
-import com.testing.whatsapp.db.ReceivedMessage;
 import com.testing.whatsapp.db.adapter.ChatAdapter;
 
 import java.text.DateFormat;
@@ -34,7 +33,7 @@ public class ChatsFragment extends BaseFragment {
 
     private RecyclerView rvChats;
     private ChatsAdapter adapter;
-    private Observer<List<ReceivedMessage>> observer;
+    private Observer<List<com.testing.whatsapp.db.Chat>> observer;
 
     private View layout;
     private Db db;
@@ -77,39 +76,24 @@ public class ChatsFragment extends BaseFragment {
     @Override
     public void onStart() {
         super.onStart();
-        //db.receivedMessageDao().getSenders().observe(getViewLifecycleOwner(), observer);
+        db.chatDao().getAll().observe(getViewLifecycleOwner(), observer);
     }
 
     private void initialize(View view) {
-
         chats = new ArrayList<>();
         rvChats = view.findViewById(R.id.rvChats);
-
     }
 
     private void populateChats() {
         this.db = Db.getInstance(getContext());
-        //khahani: remove it
-        //old();
-        chats.clear();
-        DateFormat format;
-        List<com.testing.whatsapp.db.Chat> chatsDb = db.chatDao().getAll();
-        for (com.testing.whatsapp.db.Chat chat : chatsDb) {
-            format = DateFormat.getTimeInstance(DateFormat.SHORT);
-            chats.add(new Chat(chat.sender, chat.text, format.format(chat.date), chat.group));
-        }
-        adapter.setChats(chats);
-        adapter.notifyDataSetChanged();
-    }
 
-    private void old() {
-        observer = receivedMessages -> {
+        observer = chatsDb -> {
             new ChatAdapter();
             chats.clear();
             DateFormat format;
-            for (ReceivedMessage rm : receivedMessages) {
+            for (com.testing.whatsapp.db.Chat chat : chatsDb) {
                 format = DateFormat.getTimeInstance(DateFormat.SHORT);
-                chats.add(new Chat(rm.sender, rm.text, format.format(rm.date), rm.group));
+                chats.add(new Chat(chat.sender, chat.text, format.format(chat.date), chat.group));
             }
             adapter.setChats(chats);
             adapter.notifyDataSetChanged();
@@ -127,7 +111,7 @@ public class ChatsFragment extends BaseFragment {
     @Override
     public void onStop() {
         super.onStop();
-        //db.receivedMessageDao().getSenders().removeObserver(observer);
+        db.chatDao().getAll().removeObserver(observer);
     }
 
     @Override
