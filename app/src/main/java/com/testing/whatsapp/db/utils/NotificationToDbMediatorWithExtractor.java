@@ -11,6 +11,9 @@ import com.khahani.extractor.MessageEvaluator;
 import com.khahani.extractor.RemoveRtlChar;
 import com.khahani.extractor.SenderEvaluator;
 import com.khahani.extractor.SenderExtractor;
+import com.khahani.usecase_firebase.performance.Performance;
+import com.khahani.usecase_firebase.performance.Trace;
+import com.testing.firebase.performance.PerformanceImpl;
 import com.testing.whatsapp.db.ReceivedMessage;
 
 import java.util.Locale;
@@ -23,6 +26,14 @@ public class NotificationToDbMediatorWithExtractor extends NotificationToDbMedia
 
     @Override
     public void insert() {
+
+        Performance p = new PerformanceImpl();
+        String methodName = new Object() {
+        }.getClass().getEnclosingMethod().getName();
+        Trace t = p.newTrace(this.getClass().getName() + "." + methodName + "()");
+        t.start();
+
+
         try {
             String receivedSender = notification.getNotification().extras.getString("android.title");
             String receivedMessage = notification.getNotification().extras.getString("android.text");
@@ -81,5 +92,7 @@ public class NotificationToDbMediatorWithExtractor extends NotificationToDbMedia
         } catch (Exception e) {
             Log.d("khahani", e.getMessage());
         }
+
+        t.stop();
     }
 }
