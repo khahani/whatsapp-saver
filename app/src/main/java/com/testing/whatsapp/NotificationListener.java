@@ -41,6 +41,7 @@ public class NotificationListener extends NotificationListenerService {
             if (ndb.inserted()) {
                 ChatToDbMediator ctd = new ChatToDbMediator(Db.getInstance(getApplicationContext()));
                 ctd.setChat(ndb.getReceivedMessage());
+                ctd.run();
             }
         }
     }
