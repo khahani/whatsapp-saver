@@ -31,6 +31,6 @@ public class ReceivedMessage {
     public long postTime;
 
     public boolean isContact() {
-        return group.equals('c');
+        return group.equals("c");
     }
 }
