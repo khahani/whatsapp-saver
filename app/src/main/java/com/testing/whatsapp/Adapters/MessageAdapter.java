@@ -41,16 +41,6 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ChatsVie
 
         Chat chat = chats.get(i);
 
-        if (chat.getName() == null) {
-            //It is just a footer
-            chatsViewHolder.cardView.setVisibility(View.INVISIBLE);
-        }
-
-//		Glide.with(context)
-//			.load(chat.getImage())
-//			.apply(new RequestOptions().placeholder(R.drawable.profile))
-//			.into(chatsViewHolder.profilePic);
-
         if (chat.getGroup() != null)
             if (!chat.getGroup().equals("c")) {
                 chatsViewHolder.group.setText(chat.getGroup());
