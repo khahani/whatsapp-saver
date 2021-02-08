@@ -8,8 +8,8 @@ import android.util.Log;
 
 import com.testing.whatsapp.db.Db;
 import com.testing.whatsapp.db.utils.ChatToDbMediator;
+import com.testing.whatsapp.db.utils.NotificationToDbMediator;
 import com.testing.whatsapp.db.utils.NotificationToDbMediatorBase;
-import com.testing.whatsapp.db.utils.NotificationToDbMediatorWithExtractor;
 
 import java.util.ArrayList;
 
@@ -35,7 +35,7 @@ public class NotificationListener extends NotificationListenerService {
             }
             Log.d("Khahani", "Notification is valid.\n");
             //khahani: use factory
-            NotificationToDbMediatorBase ndb = new NotificationToDbMediatorWithExtractor(getApplicationContext(), sbn);
+            NotificationToDbMediatorBase ndb = new NotificationToDbMediator(getApplicationContext(), sbn);
             ndb.insert();
 
             if (ndb.inserted()) {

@@ -18,9 +18,9 @@ import com.testing.whatsapp.db.ReceivedMessage;
 
 import java.util.Locale;
 
-public class NotificationToDbMediatorWithExtractor extends NotificationToDbMediatorBase {
+public class NotificationToDbMediator extends NotificationToDbMediatorBase {
 
-    public NotificationToDbMediatorWithExtractor(Context context, StatusBarNotification sbn) {
+    public NotificationToDbMediator(Context context, StatusBarNotification sbn) {
         super(context, sbn);
     }
 
