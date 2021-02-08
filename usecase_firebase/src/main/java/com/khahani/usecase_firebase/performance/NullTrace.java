@@ -1,6 +1,6 @@
 package com.khahani.usecase_firebase.performance;
 
-public class NullTrack extends Track {
+public class NullTrace extends Trace {
     @Override
     public void start() {
 
@@ -8,6 +8,11 @@ public class NullTrack extends Track {
 
     @Override
     public void stop() {
+
+    }
+
+    @Override
+    public void run() {
 
     }
 }

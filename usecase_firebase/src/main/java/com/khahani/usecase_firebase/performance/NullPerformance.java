@@ -7,7 +7,7 @@ public class NullPerformance extends Performance {
     }
 
     @Override
-    public Track newTrack(String key) {
-        return new NullTrack();
+    public Trace newTrace(String key) {
+        return new NullTrace();
     }
 }

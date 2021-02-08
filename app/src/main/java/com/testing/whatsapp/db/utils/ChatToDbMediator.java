@@ -1,5 +1,8 @@
 package com.testing.whatsapp.db.utils;
 
+import com.khahani.usecase_firebase.performance.Performance;
+import com.khahani.usecase_firebase.performance.Trace;
+import com.testing.firebase.performance.PerformanceImpl;
 import com.testing.whatsapp.db.Chat;
 import com.testing.whatsapp.db.Db;
 import com.testing.whatsapp.db.ReceivedMessage;
@@ -20,7 +23,13 @@ public class ChatToDbMediator implements Runnable {
 
     @Override
     public void run() {
+        Performance p = new PerformanceImpl();
+        String methodName = new Object() {
+        }.getClass().getEnclosingMethod().getName();
+        Trace t = p.newTrace(this.getClass().getName() + "." + methodName + "()");
+        t.start();
         execute();
+        t.stop();
     }
 
     private void execute() {
