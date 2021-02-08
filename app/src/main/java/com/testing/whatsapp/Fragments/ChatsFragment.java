@@ -89,6 +89,20 @@ public class ChatsFragment extends BaseFragment {
 
     private void populateChats() {
         this.db = Db.getInstance(getContext());
+        //khahani: remove it
+        //old();
+        chats.clear();
+        DateFormat format;
+        List<com.testing.whatsapp.db.Chat> chatsDb = db.chatDao().getAll();
+        for (com.testing.whatsapp.db.Chat chat : chatsDb) {
+            format = DateFormat.getTimeInstance(DateFormat.SHORT);
+            chats.add(new Chat(chat.sender, chat.text, format.format(chat.date), chat.group));
+        }
+        adapter.setChats(chats);
+        adapter.notifyDataSetChanged();
+    }
+
+    private void old() {
         observer = receivedMessages -> {
             new ChatAdapter();
             chats.clear();
