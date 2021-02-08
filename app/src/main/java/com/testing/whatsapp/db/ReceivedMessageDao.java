@@ -14,16 +14,11 @@ public interface ReceivedMessageDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     long insertMessage(ReceivedMessage message);
 
-    //    @Query("Select r._id, r.sender, (select text from receivedmessage where sender = r.sender order by date desc limit 1) as text, (select date from receivedmessage where sender = r.sender order by date desc limit 1) as date, posttime from receivedmessage as r group by sender order by date desc ")
     @Query("Select * from receivedmessage")
     LiveData<List<ReceivedMessage>> getSenders();
 
     @Query("Select * from receivedmessage where sender = :pSender and `group` = 'c' order by date asc")
     LiveData<List<ReceivedMessage>> getChats(String pSender);
-
-    @Query("Select count(*) from (Select * from receivedmessage where sender = :pSender order by date desc limit 20) as r  where r.sender = :pSender and r.text = :pText and r.date < :pDate - 2000")
-    int messageIsDuplicate(String pSender, String pText, long pDate);
-
 
     @Query("Select * from receivedmessage where `group` = :pGroup order by date asc")
     LiveData<List<ReceivedMessage>> getGroupChats(String pGroup);
