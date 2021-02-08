@@ -29,4 +29,8 @@ public class ReceivedMessage {
 
     @ColumnInfo(name = "posttime")
     public long postTime;
+
+    public boolean isContact() {
+        return group.equals('c');
+    }
 }
