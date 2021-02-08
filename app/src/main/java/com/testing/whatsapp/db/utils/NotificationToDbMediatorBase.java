@@ -4,6 +4,7 @@ import android.content.Context;
 import android.service.notification.StatusBarNotification;
 
 import com.testing.whatsapp.db.Db;
+import com.testing.whatsapp.db.ReceivedMessage;
 import com.testing.whatsapp.sharedpref.RemoteConfigDefault;
 
 public abstract class NotificationToDbMediatorBase {
@@ -12,6 +13,8 @@ public abstract class NotificationToDbMediatorBase {
     protected final String GROUP_KEY = "group";
     protected final String SENDER_KEY = "sender";
     protected final Context context;
+    protected long insertedId;
+    protected ReceivedMessage receivedMessage;
 
     public NotificationToDbMediatorBase(Context context, StatusBarNotification sbn) {
         this.notification = sbn;
@@ -31,6 +34,14 @@ public abstract class NotificationToDbMediatorBase {
 //    }
     public String getFilters() {
         return new RemoteConfigDefault(context).getFilters();
+    }
+
+    public boolean inserted() {
+        return insertedId >= 0;
+    }
+
+    public ReceivedMessage getReceivedMessage() {
+        return this.receivedMessage;
     }
 
     public abstract void insert();

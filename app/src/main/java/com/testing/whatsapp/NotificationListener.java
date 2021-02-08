@@ -6,6 +6,8 @@ import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
 import android.util.Log;
 
+import com.testing.whatsapp.db.Db;
+import com.testing.whatsapp.db.utils.ChatToDbMediator;
 import com.testing.whatsapp.db.utils.NotificationToDbMediatorBase;
 import com.testing.whatsapp.db.utils.NotificationToDbMediatorWithExtractor;
 
@@ -35,6 +37,11 @@ public class NotificationListener extends NotificationListenerService {
             //khahani: use factory
             NotificationToDbMediatorBase ndb = new NotificationToDbMediatorWithExtractor(getApplicationContext(), sbn);
             ndb.insert();
+
+            if (ndb.inserted()) {
+                ChatToDbMediator ctd = new ChatToDbMediator(Db.getInstance(getApplicationContext()));
+                ctd.setChat(ndb.getReceivedMessage());
+            }
         }
     }
 

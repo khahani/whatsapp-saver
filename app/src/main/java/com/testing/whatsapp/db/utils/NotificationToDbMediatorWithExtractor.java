@@ -17,14 +17,8 @@ import java.util.Locale;
 
 public class NotificationToDbMediatorWithExtractor extends NotificationToDbMediatorBase {
 
-    private long insertedId;
-
     public NotificationToDbMediatorWithExtractor(Context context, StatusBarNotification sbn) {
         super(context, sbn);
-    }
-
-    public boolean inserted() {
-        return insertedId >= 0;
     }
 
     @Override
@@ -72,14 +66,14 @@ public class NotificationToDbMediatorWithExtractor extends NotificationToDbMedia
 
             ex.run();
 
-            ReceivedMessage rm = new ReceivedMessage();
-            rm.sender = ex.getSender();
-            rm.group = ex.getGroup();
-            rm.text = ex.getMessage();
-            rm.date = date;
-            rm.postTime = postTime;
+            this.receivedMessage = new ReceivedMessage();
+            this.receivedMessage.sender = ex.getSender();
+            this.receivedMessage.group = ex.getGroup();
+            this.receivedMessage.text = ex.getMessage();
+            this.receivedMessage.date = date;
+            this.receivedMessage.postTime = postTime;
 
-            insertedId = db.receivedMessageDao().insertMessage(rm);
+            insertedId = db.receivedMessageDao().insertMessage(this.receivedMessage);
 
 
         } catch (Extractor.MessageIsNotValid e) {
