@@ -1,15 +1,11 @@
 package com.testing.whatsapp.db.adapter;
 
-import androidx.annotation.NonNull;
-
 import com.testing.whatsapp.Model.Chat;
 import com.testing.whatsapp.db.ReceivedMessage;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.text.DateFormat;
 
 public class ChatAdapterTest {
 
@@ -29,7 +25,7 @@ public class ChatAdapterTest {
         receivedMessage.date = 1612711761281L;
         String dateStr = "6:59 PM";
 
-        Chat chat = getChat(receivedMessage);
+        Chat chat = chatAdapter.getChat(receivedMessage);
 
         Assert.assertEquals(receivedMessage.sender, chat.getName());
         Assert.assertEquals(receivedMessage.group, chat.getGroup());
@@ -37,14 +33,5 @@ public class ChatAdapterTest {
         Assert.assertEquals(receivedMessage.text, chat.getLastMessage());
     }
 
-    @NonNull
-    private Chat getChat(ReceivedMessage receivedMessage) {
-        Chat chat = new Chat();
-        chat.setName(receivedMessage.sender);
-        chat.setLastMessage(receivedMessage.text);
-        chat.setGroup(receivedMessage.group);
-        DateFormat df = DateFormat.getTimeInstance(DateFormat.SHORT);
-        chat.setLastMessageTime(df.format(receivedMessage.date));
-        return chat;
-    }
+
 }
