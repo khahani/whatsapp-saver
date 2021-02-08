@@ -93,7 +93,6 @@ public class MessagesActivity extends BaseActivity {
     }
 
     private void populateChats() {
-        //Population logic goes here
         this.db = Db.getInstance(this);
         if (group.equals("c")) {
             db.receivedMessageDao().getChats(sender).observe(this, observerPrepareChatsForAdapter);
