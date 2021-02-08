@@ -53,8 +53,8 @@ public class ChatsFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
 
         initialize(view);
-        populateChats();
         setAdapter();
+        populateChats();
 
         //khahani: determine which ads show based on firebase config
         initBannerAds();
@@ -77,7 +77,7 @@ public class ChatsFragment extends BaseFragment {
     @Override
     public void onStart() {
         super.onStart();
-        db.receivedMessageDao().getSenders().observe(getViewLifecycleOwner(), observer);
+        //db.receivedMessageDao().getSenders().observe(getViewLifecycleOwner(), observer);
     }
 
     private void initialize(View view) {
@@ -127,7 +127,7 @@ public class ChatsFragment extends BaseFragment {
     @Override
     public void onStop() {
         super.onStop();
-        db.receivedMessageDao().getSenders().removeObserver(observer);
+        //db.receivedMessageDao().getSenders().removeObserver(observer);
     }
 
     @Override
