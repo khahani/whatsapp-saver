@@ -25,4 +25,6 @@ public interface ReceivedMessageDao {
     int messageIsDuplicate(String pSender, String pText, long pDate);
 
 
+    @Query("Select * from receivedmessage where `group` = :pGroup order by date asc")
+    LiveData<List<ReceivedMessage>> getGroupChats(String pGroup);
 }

@@ -5,6 +5,7 @@ import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,15 +19,32 @@ import com.testing.whatsapp.db.ReceivedMessage;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class MessagesActivity extends BaseActivity {
 
     private String sender;
+    private final Observer<List<ReceivedMessage>> observerPrepareChatsForAdapter = new Observer<List<ReceivedMessage>>() {
+        @Override
+        public void onChanged(List<ReceivedMessage> receivedMessages) {
+            chats.clear();
+            DateFormat format;
+            for (ReceivedMessage rm : receivedMessages) {
+                format = DateFormat.getTimeInstance(DateFormat.SHORT);
+                chats.add(new Chat(rm.sender, rm.text, format.format(rm.date), rm.group));
+            }
+            adapter.setChats(chats);
+            //khahani: must change with a better performance
+            adapter.notifyDataSetChanged();
+            rvMessages.smoothScrollToPosition(adapter.getItemCount() - 1);
+        }
+    };
     private ArrayList<Chat> chats;
     private MessageAdapter adapter;
     private RecyclerView rvMessages;
     private Db db;
+    private String group;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,13 +56,19 @@ public class MessagesActivity extends BaseActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowHomeEnabled(true);
 
         sender = getIntent().getStringExtra("sender");
+        group = getIntent().getStringExtra("group");
 
         if (sender == null || sender.isEmpty()) {
             finish();
             return;
         }
 
-        setTitle(sender);
+        if (group.equals("c")) {
+            setTitle(sender);
+        } else {
+            setTitle(group);
+        }
+
 
         setupViews();
 
@@ -71,18 +95,11 @@ public class MessagesActivity extends BaseActivity {
     private void populateChats() {
         //Population logic goes here
         this.db = Db.getInstance(this);
-        db.receivedMessageDao().getChats(sender).observe(this, receivedMessages -> {
-            chats.clear();
-            DateFormat format;
-            for (ReceivedMessage rm : receivedMessages) {
-                format = DateFormat.getTimeInstance(DateFormat.SHORT);
-                chats.add(new Chat(rm.sender, rm.text, format.format(rm.date), rm.group));
-            }
-            adapter.setChats(chats);
-            //khahani: must change with a better performance
-            adapter.notifyDataSetChanged();
-            rvMessages.smoothScrollToPosition(adapter.getItemCount() - 1);
-        });
+        if (group.equals("c")) {
+            db.receivedMessageDao().getChats(sender).observe(this, observerPrepareChatsForAdapter);
+        } else {
+            db.receivedMessageDao().getGroupChats(group).observe(this, observerPrepareChatsForAdapter);
+        }
     }
 
     @Override
