@@ -6,7 +6,7 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-@Database(entities = {ReceivedMessage.class, Chat.class}, version = 4, exportSchema = false)
+@Database(entities = {ReceivedMessage.class, Chat.class}, version = 1, exportSchema = false)
 public abstract class Db extends RoomDatabase {
 
     private static Db instance;
