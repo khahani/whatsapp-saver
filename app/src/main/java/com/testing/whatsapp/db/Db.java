@@ -31,6 +31,7 @@ public abstract class Db extends RoomDatabase {
     public static synchronized Db getInstance(Context context) {
         if (instance == null) {
             instance = Room.databaseBuilder(context, Db.class, "db")
+                    .allowMainThreadQueries()
                     //.fallbackToDestructiveMigration()
 //                    .addMigrations(MIGRATION_1_2)
 //                    .addMigrations(MIGRATION_2_3)
