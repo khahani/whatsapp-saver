@@ -1,3 +1,4 @@
+include ':appodeal'
 include ':extractor'
 include ':usecase_firebase'
 include ':firebase'
