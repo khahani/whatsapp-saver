@@ -44,7 +44,7 @@ android {
 dependencies {
 
     implementation project(path: ':extractor')
-    implementation project(path: ':usecase_firebase')
+    implementation project(path: ':usecase_ads')
     implementation project(path: ':firebase')
 
     implementation 'com.google.android.gms:play-services-tasks:17.2.1'

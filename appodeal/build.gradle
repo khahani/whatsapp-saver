@@ -30,7 +30,7 @@ android {
 
 dependencies {
 
-    implementation project(path: ':usecase_firebase')
+    implementation project(path: ':usecase_ads')
 
     implementation 'com.appodeal.ads:sdk:2.8.1'
 

@@ -1,6 +1,6 @@
 include ':appodeal'
 include ':extractor'
-include ':usecase_firebase'
+include ':usecase_ads'
 include ':firebase'
 include ':app'
 rootProject.name = "Whatsap"
