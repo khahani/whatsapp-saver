@@ -61,6 +61,7 @@ public class ChatsFragment extends BaseFragment {
     }
 
     private void initBannerAds() {
+        //khahani: put real bannerId
         String realBannerId = getString(R.string.banner_real_uid);
         AdapterBanner adaptiveBanner = new AdapterBannerCreator(getActivity(),
                 layout, R.id.bannerContainer, realBannerId).factoryMethod();
@@ -68,6 +69,7 @@ public class ChatsFragment extends BaseFragment {
     }
 
     private void initInterstitialAds() {
+        //khahani: put real bannerId
         String realInterstitialId = getString(R.string.interstitial_real_uid);
         interstitial = new InterstitialCreator(getActivity(), realInterstitialId, interstitial).factoryMethod();
         interstitial.loadAd();
