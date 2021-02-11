@@ -37,7 +37,7 @@ public abstract class NotificationToDbMediatorBase {
     }
 
     public boolean inserted() {
-        return insertedId >= 0;
+        return insertedId > 0;
     }
 
     public ReceivedMessage getReceivedMessage() {
