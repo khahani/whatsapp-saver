@@ -10,13 +10,13 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
-import com.khahani.usecase_firebase.admob.AdapterBanner;
+import com.khahani.usecase_firebase.admob.Banner;
 import com.testing.firebase.BuildConfig;
 import com.testing.firebase.R;
 
 import java.util.Objects;
 
-public class AdapterBannerImpl extends AdapterBanner {
+public class AdapterBannerImpl extends Banner {
     private final Activity activity;
     private final View layout;
     private AdView adView;

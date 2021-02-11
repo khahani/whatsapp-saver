@@ -11,7 +11,7 @@ import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.khahani.usecase_firebase.admob.AdapterBanner;
+import com.khahani.usecase_firebase.admob.Banner;
 import com.khahani.usecase_firebase.admob.Interstitial;
 import com.khahani.usecase_firebase.analytic.LogEvent;
 import com.khahani.usecase_firebase.analytic.screen.TrackScreen;
@@ -63,7 +63,7 @@ public class ChatsFragment extends BaseFragment {
     private void initBannerAds() {
         //khahani: put real bannerId
         String realBannerId = getString(R.string.banner_real_uid);
-        AdapterBanner adaptiveBanner = new AdapterBannerCreator(getActivity(),
+        Banner adaptiveBanner = new AdapterBannerCreator(getActivity(),
                 layout, R.id.bannerContainer, realBannerId).factoryMethod();
         adaptiveBanner.run();
     }

@@ -6,10 +6,10 @@ import android.view.View;
 import androidx.annotation.StringRes;
 
 import com.khahani.usecase_firebase.Creator;
-import com.khahani.usecase_firebase.admob.AdapterBanner;
+import com.khahani.usecase_firebase.admob.Banner;
 import com.testing.firebase.admob.AdapterBannerImpl;
 
-public class AdapterBannerCreator extends Creator<AdapterBanner> {
+public class AdapterBannerCreator extends Creator<Banner> {
 
     private final Activity context;
     private final View layout;
@@ -25,7 +25,7 @@ public class AdapterBannerCreator extends Creator<AdapterBanner> {
     }
 
     @Override
-    public AdapterBanner factoryMethod() {
+    public Banner factoryMethod() {
 //        return new NullAdapterBanner();
         return new AdapterBannerImpl(context, layout, bannerContainerId, realBannerId);
     }
