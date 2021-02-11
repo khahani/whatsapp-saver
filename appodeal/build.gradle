@@ -30,6 +30,8 @@ android {
 
 dependencies {
 
+    implementation project(path: ':usecase_firebase')
+
     implementation 'com.appodeal.ads:sdk:2.8.1'
 
     implementation 'androidx.appcompat:appcompat:1.2.0'

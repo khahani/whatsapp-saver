@@ -1,4 +1,10 @@
 package com.khahani.appodeal;
 
-public class BannerImpl {
+import com.khahani.usecase_firebase.admob.AdapterBanner;
+
+public class BannerImpl extends AdapterBanner {
+    @Override
+    public void run() {
+
+    }
 }
