@@ -21,7 +21,7 @@ public class AppodealBanner extends Banner {
         Consent consent = ConsentManager.getInstance(activity).getConsent();
         int adTypes = Appodeal.INTERSTITIAL | Appodeal.BANNER;
         Appodeal.initialize(activity, activity.getString(R.string.appodeal_key), adTypes, consent);
-
+        Appodeal.setTesting(BuildConfig.DEBUG);
         Appodeal.show(activity, Appodeal.BANNER_BOTTOM);
     }
 }

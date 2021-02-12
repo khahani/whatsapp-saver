@@ -34,16 +34,21 @@ dependencies {
 
     implementation 'com.explorestack:consent:1.0.4'
 
-    //noinspection GradleDynamicVersion
-    implementation 'com.appodeal.ads:sdk:2.8.1.+'
+    implementation 'com.appodeal.ads.sdk:core:2.8.1'
+    implementation 'com.appodeal.ads.sdk.networks:appodeal:2.8.1.2'
+    implementation 'com.appodeal.ads.sdk.networks:mraid:2.8.1.2'
+    implementation 'com.appodeal.ads.sdk.networks:nast:2.8.1.2'
+    implementation 'com.appodeal.ads.sdk.networks:vast:2.8.1.2'
 
-//    implementation ('com.appodeal.ads:sdk:2.8.1') {
-//        exclude group: 'com.appodeal.ads.sdk.networks', module: 'adcolony'
-//        exclude group: 'com.appodeal.ads.sdk.networks', module: 'appodeal'
-//        exclude group: 'com.appodeal.ads.sdk.networks', module: 'nast'
-//        exclude group: 'com.appodeal.ads.sdk.networks', module: 'vast'
-//        exclude group: 'com.appodeal.ads.sdk.networks', module: 'vungle'
-//    }
+    implementation 'com.appodeal.ads.sdk.networks:admob:2.8.1.8'
+    implementation 'com.appodeal.ads.sdk.networks:facebook:2.8.1.8'
+    implementation 'com.appodeal.ads.sdk.networks:amazon_ads:2.8.1.2'
+    implementation 'com.appodeal.ads.sdk.networks:a4g:2.8.1.7'
+    implementation 'com.appodeal.ads.sdk.networks:yandex:2.8.1.6'
+    implementation 'com.appodeal.ads.sdk.networks:ogury:2.8.1.6'
+    implementation 'com.appodeal.ads.sdk.networks:smaato:2.8.1.4'
+    implementation 'com.appodeal.ads.sdk.networks:startapp:2.8.1.7'
+
 
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.3.0'

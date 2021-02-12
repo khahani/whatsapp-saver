@@ -27,7 +27,7 @@ public class AdapterBannerCreator extends Creator<Banner> {
     @Override
     public Banner factoryMethod() {
 //        return new NullAdapterBanner();
-//        return new AdapterBannerImpl(activity, layout, bannerContainerId, realBannerId);
+        //return new AdapterBannerImpl(activity, layout, bannerContainerId, realBannerId);
         return new AppodealBanner(activity);
     }
 }
