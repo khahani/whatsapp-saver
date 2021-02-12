@@ -9,7 +9,11 @@ import com.khahani.usecase_firebase.admob.Banner;
 
 public class AppodealBanner extends Banner {
 
-    private Activity activity;
+    private final Activity activity;
+
+    public AppodealBanner(Activity activity) {
+        this.activity = activity;
+    }
 
     @Override
     public void run() {
@@ -19,9 +23,5 @@ public class AppodealBanner extends Banner {
         Appodeal.initialize(activity, activity.getString(R.string.appodeal_key), adTypes, consent);
 
         Appodeal.show(activity, Appodeal.BANNER_BOTTOM);
-    }
-
-    public void setActivity(Activity activity) {
-        this.activity = activity;
     }
 }
