@@ -18,18 +18,18 @@ import com.testing.firebase.R;
 public class InterstitialImpl extends Interstitial {
 
     private final Activity activity;
-    private final InterstitialInteraction listener;
+    private final InterstitialInteraction listener = this::show;
+
     private InterstitialAd mInterstitialAd;
     private String adUid;
 
-    public InterstitialImpl(Activity activity, InterstitialInteraction listener, String adUid) {
+    public InterstitialImpl(Activity activity, String adUid) {
         this.activity = activity;
-        this.listener = listener;
         this.adUid = adUid;
     }
 
     @Override
-    public void loadAd() {
+    protected void loadAd() {
         AdRequest adRequest = new AdRequest.Builder().build();
 
         if (BuildConfig.DEBUG) {
@@ -69,7 +69,7 @@ public class InterstitialImpl extends Interstitial {
     }
 
     @Override
-    public void show() {
+    protected void show() {
         if (mInterstitialAd != null) {
             mInterstitialAd.show(activity);
         } else {
@@ -77,4 +77,8 @@ public class InterstitialImpl extends Interstitial {
         }
     }
 
+    @Override
+    public void run() {
+        loadAd();
+    }
 }

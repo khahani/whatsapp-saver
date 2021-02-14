@@ -14,12 +14,17 @@ public class AppodealInterstitial extends Interstitial {
     }
 
     @Override
-    public void loadAd() {
+    protected void loadAd() {
 
     }
 
     @Override
-    public void show() {
+    protected void show() {
         Appodeal.show(activity, Appodeal.INTERSTITIAL);
+    }
+
+    @Override
+    public void run() {
+        show();
     }
 }

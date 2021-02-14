@@ -10,4 +10,9 @@ public class Nullnterstitial extends Interstitial {
     public void show() {
 
     }
+
+    @Override
+    public void run() {
+
+    }
 }
