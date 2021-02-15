@@ -11,12 +11,8 @@ import com.testing.whatsapp.db.utils.ChatToDbMediator;
 import com.testing.whatsapp.db.utils.NotificationToDbMediator;
 import com.testing.whatsapp.db.utils.NotificationToDbMediatorBase;
 
-import java.util.ArrayList;
-
 
 public class NotificationListener extends NotificationListenerService {
-
-    private final ArrayList<StatusBarNotification> lastStatusBarNotifications = new ArrayList<>();
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -29,10 +25,6 @@ public class NotificationListener extends NotificationListenerService {
         int notificationCode = matchNotificationCode(sbn);
 
         if (notificationCode != InterceptedNotificationCode.OTHER_NOTIFICATIONS_CODE) {
-            if (!isValidNotification(sbn)) {
-                Log.d("Khahani", "Notification is not valid.\n");
-                return;
-            }
             Log.d("Khahani", "Notification is valid.\n");
             //khahani: use factory
             NotificationToDbMediatorBase ndb = new NotificationToDbMediator(getApplicationContext(), sbn);
@@ -46,51 +38,9 @@ public class NotificationListener extends NotificationListenerService {
         }
     }
 
-    private boolean isValidNotification(StatusBarNotification sbn) {
-        boolean VALID = true;
-        boolean INVALID = false;
-
-        if (lastStatusBarNotifications.isEmpty()) {
-            lastStatusBarNotifications.add(sbn);
-            return VALID;
-        }
-
-        for (StatusBarNotification lastStatusBarNotification : lastStatusBarNotifications) {
-            String newSender = sbn.getNotification().extras.getString("android.title");
-            String newText = sbn.getNotification().extras.getString("android.text");
-            String lastSender = lastStatusBarNotification.getNotification().extras.getString("android.title");
-            String lastText = lastStatusBarNotification.getNotification().extras.getString("android.text");
-
-//            if (sbn.getPostTime() - lastStatusBarNotification.getPostTime() < 1000)
-//                if (newSender.equals(lastSender) && newText.equals(lastText))
-//                    return INVALID;
-            if (newSender.equals(lastSender) && newText.equals(lastText))
-                return INVALID;
-        }
-
-        lastStatusBarNotifications.add(sbn);
-        return VALID;
-    }
-
     @Override
     public void onNotificationRemoved(StatusBarNotification sbn) {
-        int notificationCode = matchNotificationCode(sbn);
 
-        Log.d("Khahani", "onNotificationRemoved()");
-
-        if (notificationCode != InterceptedNotificationCode.OTHER_NOTIFICATIONS_CODE) {
-
-            StatusBarNotification[] activeNotifications = this.getActiveNotifications();
-
-            if (activeNotifications != null && activeNotifications.length > 0) {
-                for (StatusBarNotification activeNotification : activeNotifications) {
-                    if (notificationCode == matchNotificationCode(activeNotification)) {
-                        lastStatusBarNotifications.clear();
-                        break;
-                    }
-                }
-            }
-        }
     }
 
     private int matchNotificationCode(StatusBarNotification sbn) {

@@ -14,8 +14,10 @@ import com.khahani.extractor.SenderExtractor;
 import com.khahani.usecase_firebase.performance.Performance;
 import com.khahani.usecase_firebase.performance.Trace;
 import com.testing.firebase.performance.PerformanceImpl;
+import com.testing.whatsapp.db.Db;
 import com.testing.whatsapp.db.ReceivedMessage;
 
+import java.util.List;
 import java.util.Locale;
 
 public class NotificationToDbMediator extends NotificationToDbMediatorBase {
@@ -32,7 +34,6 @@ public class NotificationToDbMediator extends NotificationToDbMediatorBase {
         }.getClass().getEnclosingMethod().getName();
         Trace t = p.newTrace(this.getClass().getName() + "." + methodName + "()");
         t.start();
-
 
         try {
             String receivedSender = notification.getNotification().extras.getString("android.title");
@@ -84,6 +85,9 @@ public class NotificationToDbMediator extends NotificationToDbMediatorBase {
             this.receivedMessage.date = date;
             this.receivedMessage.postTime = postTime;
 
+            if (exists())
+                return;
+
             insertedId = db.receivedMessageDao().insertMessage(this.receivedMessage);
 
 
@@ -94,5 +98,17 @@ public class NotificationToDbMediator extends NotificationToDbMediatorBase {
         }
 
         t.stop();
+    }
+
+    private boolean exists() {
+        List<ReceivedMessage> chats = Db.getInstance(context).receivedMessageDao().getChatsSync(receivedMessage.sender);
+
+        for (ReceivedMessage rm : chats) {
+            if (rm.postTime == receivedMessage.postTime && rm.text.equals(receivedMessage.text)) {
+                Log.d("Khahani", "It was in the stack");
+                return true;
+            }
+        }
+        return false;
     }
 }

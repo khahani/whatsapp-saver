@@ -22,4 +22,7 @@ public interface ReceivedMessageDao {
 
     @Query("Select * from receivedmessage where `group` = :pGroup order by date asc")
     LiveData<List<ReceivedMessage>> getGroupChats(String pGroup);
+
+    @Query("Select * from receivedmessage where sender = :pSender and `group` = 'c' order by date asc")
+    List<ReceivedMessage> getChatsSync(String pSender);
 }
