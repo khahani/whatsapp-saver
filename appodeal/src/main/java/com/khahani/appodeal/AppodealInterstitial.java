@@ -8,9 +8,11 @@ import com.khahani.usecase_firebase.admob.Interstitial;
 public class AppodealInterstitial extends Interstitial {
 
     private final Activity activity;
+    private final AppodealInterstitial initializer;
 
     public AppodealInterstitial(Activity activity) {
         this.activity = activity;
+        this.initializer = new AppodealInterstitial(activity);
     }
 
     @Override
@@ -25,6 +27,7 @@ public class AppodealInterstitial extends Interstitial {
 
     @Override
     public void run() {
+        initializer.run();
         show();
     }
 }
