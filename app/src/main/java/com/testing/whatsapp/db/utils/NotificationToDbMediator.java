@@ -19,6 +19,7 @@ import com.testing.whatsapp.db.ReceivedMessage;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 public class NotificationToDbMediator extends NotificationToDbMediatorBase {
 
@@ -27,11 +28,11 @@ public class NotificationToDbMediator extends NotificationToDbMediatorBase {
     }
 
     @Override
-    public void insert() {
+    public synchronized void insert() {
 
         Performance p = new PerformanceImpl();
-        String methodName = new Object() {
-        }.getClass().getEnclosingMethod().getName();
+        String methodName = Objects.requireNonNull(new Object() {
+        }.getClass().getEnclosingMethod()).getName();
         Trace t = p.newTrace(this.getClass().getName() + "." + methodName + "()");
         t.start();
 
