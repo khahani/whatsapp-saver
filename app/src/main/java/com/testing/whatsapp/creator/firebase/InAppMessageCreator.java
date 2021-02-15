@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import com.khahani.usecase_firebase.Creator;
 import com.khahani.usecase_firebase.InAppMessage;
+import com.testing.firebase.BuildConfig;
 import com.testing.firebase.InAppMessageImpl;
 
 public class InAppMessageCreator extends Creator<InAppMessage> {
@@ -21,9 +22,11 @@ public class InAppMessageCreator extends Creator<InAppMessage> {
 //        return new NullInAppMessage();
         inAppMessage = new InAppMessageImpl(() -> {
             String deviceId = inAppMessage.getDeviceId();
-            Log.d("Khahani", deviceId);
-            Toast.makeText(context, "Device Id: " + deviceId, Toast.LENGTH_LONG)
-                    .show();
+            if (BuildConfig.DEBUG) {
+                Log.d("Khahani", deviceId);
+                Toast.makeText(context, "Device Id: " + deviceId, Toast.LENGTH_LONG)
+                        .show();
+            }
         });
         return inAppMessage;
     }
