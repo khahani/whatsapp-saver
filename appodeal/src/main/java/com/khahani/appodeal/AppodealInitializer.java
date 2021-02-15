@@ -16,11 +16,15 @@ public class AppodealInitializer implements Runnable {
 
     @Override
     public void run() {
-        Consent consent = ConsentManager.getInstance(activity).getConsent();
-        if (consent != null) {
-            int adTypes = Appodeal.INTERSTITIAL | Appodeal.BANNER;
-            Appodeal.initialize(activity, activity.getString(R.string.appodeal_key), adTypes, consent);
-            Appodeal.setTesting(BuildConfig.DEBUG);
+        try {
+            Consent consent = ConsentManager.getInstance(activity).getConsent();
+            if (consent != null) {
+                int adTypes = Appodeal.INTERSTITIAL | Appodeal.BANNER;
+                Appodeal.initialize(activity, activity.getString(R.string.appodeal_key), adTypes, consent);
+                Appodeal.setTesting(BuildConfig.DEBUG);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

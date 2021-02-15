@@ -19,7 +19,6 @@ import com.testing.whatsapp.Adapters.ChatsAdapter;
 import com.testing.whatsapp.Model.Chat;
 import com.testing.whatsapp.R;
 import com.testing.whatsapp.creator.firebase.AdapterBannerCreator;
-import com.testing.whatsapp.creator.firebase.InterstitialCreator;
 import com.testing.whatsapp.db.Db;
 import com.testing.whatsapp.db.adapter.ChatAdapter;
 
@@ -71,8 +70,8 @@ public class ChatsFragment extends BaseFragment {
     private void initInterstitialAds() {
         //khahani: put real bannerId
         String realInterstitialId = getString(R.string.interstitial_real_uid);
-        interstitial = new InterstitialCreator(getActivity(), realInterstitialId, interstitial).factoryMethod();
-        interstitial.run();
+//        interstitial = new InterstitialCreator(getActivity(), realInterstitialId, interstitial).factoryMethod();
+//        interstitial.run();
     }
 
     @Override
