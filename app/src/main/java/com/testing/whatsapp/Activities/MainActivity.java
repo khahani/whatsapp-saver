@@ -53,7 +53,6 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         initialize();
         setUpViewPager();
-        setUpNotifService();
     }
 
     @Override
@@ -64,7 +63,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
+        setUpNotifService();
     }
 
     @Override
