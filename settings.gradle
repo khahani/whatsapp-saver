@@ -1,3 +1,4 @@
+include ':customui'
 include ':appodeal'
 include ':extractor'
 include ':usecase_ads'
