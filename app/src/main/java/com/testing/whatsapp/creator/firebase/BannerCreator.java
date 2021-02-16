@@ -9,7 +9,7 @@ import com.khahani.appodeal.AppodealBanner;
 import com.khahani.usecase_firebase.Creator;
 import com.khahani.usecase_firebase.admob.Banner;
 
-public class AdapterBannerCreator extends Creator<Banner> {
+public class BannerCreator extends Creator<Banner> {
 
     private final Activity activity;
     private final View layout;
@@ -17,7 +17,7 @@ public class AdapterBannerCreator extends Creator<Banner> {
     private final int bannerContainerId;
     private final String realBannerId;
 
-    public AdapterBannerCreator(Activity activity, View layout, int bannerContainerId, String realBannerId) {
+    public BannerCreator(Activity activity, View layout, int bannerContainerId, String realBannerId) {
         this.activity = activity;
         this.layout = layout;
         this.bannerContainerId = bannerContainerId;

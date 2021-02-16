@@ -18,7 +18,7 @@ import com.khahani.usecase_firebase.analytic.screen.TrackScreen;
 import com.testing.whatsapp.Adapters.ChatsAdapter;
 import com.testing.whatsapp.Model.Chat;
 import com.testing.whatsapp.R;
-import com.testing.whatsapp.creator.firebase.AdapterBannerCreator;
+import com.testing.whatsapp.creator.firebase.BannerCreator;
 import com.testing.whatsapp.db.Db;
 import com.testing.whatsapp.db.adapter.ChatAdapter;
 
@@ -62,9 +62,9 @@ public class ChatsFragment extends BaseFragment {
     private void initBannerAds() {
         //khahani: put real bannerId
         String realBannerId = getString(R.string.banner_real_uid);
-        Banner adaptiveBanner = new AdapterBannerCreator(getActivity(),
+        Banner banner = new BannerCreator(getActivity(),
                 layout, R.id.bannerContainer, realBannerId).factoryMethod();
-        adaptiveBanner.run();
+        banner.run();
     }
 
     private void initInterstitialAds() {
