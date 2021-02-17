@@ -6,6 +6,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 
 import com.appodeal.ads.Appodeal;
+import com.appodeal.ads.utils.Log;
 import com.explorestack.consent.Consent;
 import com.explorestack.consent.ConsentForm;
 import com.explorestack.consent.ConsentFormListener;
@@ -138,7 +139,11 @@ public class AppodealInitializer implements Runnable {
     }
 
     private void initSdk() {
-        Appodeal.initialize(activity, appodealAppKey, Appodeal.BANNER_BOTTOM | Appodeal.INTERSTITIAL, this.hasConsent);
+        Appodeal.initialize(activity, appodealAppKey, Appodeal.BANNER | Appodeal.INTERSTITIAL, this.hasConsent);
+        if (BuildConfig.DEBUG) {
+            Appodeal.setTesting(true);
+            Appodeal.setLogLevel(Log.LogLevel.debug);
+        }
     }
 
     public void setCompletionListener(OnCompletionListener completionListener) {
