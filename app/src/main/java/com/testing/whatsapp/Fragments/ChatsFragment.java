@@ -19,6 +19,7 @@ import com.testing.whatsapp.Adapters.ChatsAdapter;
 import com.testing.whatsapp.Model.Chat;
 import com.testing.whatsapp.R;
 import com.testing.whatsapp.creator.firebase.BannerCreator;
+import com.testing.whatsapp.creator.firebase.InterstitialCreator;
 import com.testing.whatsapp.db.Db;
 import com.testing.whatsapp.db.adapter.ChatAdapter;
 
@@ -37,6 +38,7 @@ public class ChatsFragment extends BaseFragment {
     private View layout;
     private Db db;
     private Interstitial interstitial;
+    private Banner banner;
 
 
     @Nullable
@@ -54,15 +56,13 @@ public class ChatsFragment extends BaseFragment {
         setAdapter();
         populateChats();
 
-        //khahani: determine which ads show based on firebase config
-        initBannerAds();
-        initInterstitialAds();
+
     }
 
     private void initBannerAds() {
         //khahani: put real bannerId
         String realBannerId = getString(R.string.banner_real_uid);
-        Banner banner = new BannerCreator(getActivity(),
+        banner = new BannerCreator(getActivity(),
                 layout, R.id.bannerContainer, realBannerId).factoryMethod();
         banner.run();
     }
@@ -70,14 +70,18 @@ public class ChatsFragment extends BaseFragment {
     private void initInterstitialAds() {
         //khahani: put real bannerId
         String realInterstitialId = getString(R.string.interstitial_real_uid);
-//        interstitial = new InterstitialCreator(getActivity(), realInterstitialId, interstitial).factoryMethod();
-//        interstitial.run();
+        interstitial = new InterstitialCreator(getActivity(), realInterstitialId, interstitial).factoryMethod();
+        interstitial.run();
     }
 
     @Override
     public void onStart() {
         super.onStart();
         db.chatDao().getAll().observe(getViewLifecycleOwner(), observer);
+
+        //khahani: determine which ads show based on firebase config
+        initBannerAds();
+        //initInterstitialAds();
     }
 
     private void initialize(View view) {
