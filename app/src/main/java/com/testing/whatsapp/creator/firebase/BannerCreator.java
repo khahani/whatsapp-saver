@@ -3,7 +3,7 @@ package com.testing.whatsapp.creator.firebase;
 import android.app.Activity;
 import android.view.View;
 
-import androidx.annotation.StringRes;
+import androidx.annotation.IdRes;
 
 import com.khahani.appodeal.AppodealBanner;
 import com.khahani.usecase_firebase.Creator;
@@ -13,7 +13,7 @@ public class BannerCreator extends Creator<Banner> {
 
     private final Activity activity;
     private final View layout;
-    @StringRes
+    @IdRes
     private final int bannerContainerId;
     private final String realBannerId;
 
@@ -28,6 +28,6 @@ public class BannerCreator extends Creator<Banner> {
     public Banner factoryMethod() {
 //        return new NullAdapterBanner();
         //return new AdapterBannerImpl(activity, layout, bannerContainerId, realBannerId);
-        return new AppodealBanner(activity);
+        return new AppodealBanner(activity, bannerContainerId);
     }
 }

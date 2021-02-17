@@ -138,7 +138,7 @@ public class AppodealInitializer implements Runnable {
     }
 
     private void initSdk() {
-        Appodeal.initialize(activity, appodealAppKey, Appodeal.BANNER | Appodeal.INTERSTITIAL, this.hasConsent);
+        Appodeal.initialize(activity, appodealAppKey, Appodeal.BANNER_BOTTOM | Appodeal.INTERSTITIAL, this.hasConsent);
     }
 
     public void setCompletionListener(OnCompletionListener completionListener) {
