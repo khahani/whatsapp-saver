@@ -56,6 +56,9 @@ public class ChatsFragment extends BaseFragment {
         setAdapter();
         populateChats();
 
+        //khahani: determine which ads show based on firebase config
+        initBannerAds();
+        //initInterstitialAds();
 
     }
 
@@ -78,10 +81,6 @@ public class ChatsFragment extends BaseFragment {
     public void onStart() {
         super.onStart();
         db.chatDao().getAll().observe(getViewLifecycleOwner(), observer);
-
-        //khahani: determine which ads show based on firebase config
-        initBannerAds();
-        //initInterstitialAds();
     }
 
     private void initialize(View view) {

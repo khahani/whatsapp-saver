@@ -34,6 +34,9 @@ public class AppodealBanner extends Banner implements OnCompletionListener {
     @Override
     public void onCompleted(Boolean completed) {
         if (completed) {
+            Appodeal.set728x90Banners(true);
+            Appodeal.setBannerAnimation(true);
+            Appodeal.setSmartBanners(true);
             Appodeal.setBannerViewId(bannerId);
             Appodeal.setBannerCallbacks(new AppodealBannerCallback(activity));
             Appodeal.show(activity, Appodeal.BANNER);

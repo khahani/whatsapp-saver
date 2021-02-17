@@ -33,6 +33,7 @@ public class AppodealBannerCallback implements BannerCallbacks {
 
     @Override
     public void onBannerClicked() {
+        //release: Dont forget to log use clicks for analytic
         Utils.showToast(activity, "onBannerClicked");
     }
 
