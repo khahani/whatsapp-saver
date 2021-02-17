@@ -141,7 +141,7 @@ public class AppodealInitializer implements Runnable {
     private void initSdk() {
         Appodeal.initialize(activity, appodealAppKey, Appodeal.BANNER | Appodeal.INTERSTITIAL, this.hasConsent);
         if (BuildConfig.DEBUG) {
-            Appodeal.setTesting(false);
+            Appodeal.setTesting(true);
             Appodeal.setLogLevel(Log.LogLevel.verbose);
         } else {
             Appodeal.setTesting(false);
