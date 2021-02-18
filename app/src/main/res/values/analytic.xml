@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="revoke_access_to_notification_service" translatable="false">revoke access to notification service</string>
+    <string name="revoke_access_to_notif" translatable="false">revoke_access_to_notif</string>
 </resources>

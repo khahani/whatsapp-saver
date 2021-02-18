@@ -61,7 +61,7 @@ public class NotificationServiceAlertDialog implements Runnable {
 
             @Override
             protected String getId() {
-                return activity.getString(R.string.revoke_access_to_notification_service);
+                return activity.getString(R.string.revoke_access_to_notif);
             }
 
             @Override
@@ -77,7 +77,7 @@ public class NotificationServiceAlertDialog implements Runnable {
 
             @Override
             protected String getId() {
-                return activity.getString(R.string.revoke_access_to_notification_service);
+                return activity.getString(R.string.revoke_access_to_notif);
             }
 
             @Override
