@@ -45,7 +45,7 @@ public class NotificationServiceAlertDialog implements Runnable {
 
             @Override
             protected String getId() {
-                return "grant_access_to_notification_service";
+                return activity.getString(R.string.grant_access_to_notif);
             }
 
             @Override
