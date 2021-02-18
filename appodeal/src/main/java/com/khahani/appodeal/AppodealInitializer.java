@@ -90,6 +90,23 @@ public class AppodealInitializer implements Runnable {
                 });
     }
 
+    private static boolean isFormShowing = false;
+
+    // Start our main activity with resolved Consent value
+    private void consentIsReady() {
+        //khahani: determine the correct one
+        Appodeal.setUserAge(25);
+        Appodeal.setUserGender(UserSettings.Gender.MALE);
+        Appodeal.initialize(activity, appodealAppKey, Appodeal.NONE, this.hasConsent);
+
+        if (completionListener != null)
+            completionListener.onCompleted(this.hasConsent);
+    }
+
+    public void setCompletionListener(OnCompletionListener completionListener) {
+        this.completionListener = completionListener;
+    }
+
     // Displaying ConsentManger Consent request form
     private void showConsentForm() {
         if (consentForm == null) {
@@ -98,7 +115,7 @@ public class AppodealInitializer implements Runnable {
                         @Override
                         public void onConsentFormLoaded() {
                             // Show ConsentManager Consent request form
-                            consentForm.showAsActivity();
+                            showForm();
                         }
 
                         @Override
@@ -117,37 +134,23 @@ public class AppodealInitializer implements Runnable {
 
                         @Override
                         public void onConsentFormOpened() {
-                            //ignore
+                            isFormShowing = true;
                         }
 
                         @Override
                         public void onConsentFormClosed(Consent consent) {
                             hasConsent = consent.getStatus() == Consent.Status.PERSONALIZED;
                             consentIsReady();
+                            isFormShowing = false;
                         }
                     }).build();
         }
         // If Consent request form is already loaded, then we can display it, otherwise, we should load it first
-        if (consentForm.isLoaded()) {
-            consentForm.showAsActivity();
+        if (consentForm.isLoaded() && !consentForm.isShowing()) {
+            showForm();
         } else {
             consentForm.load();
         }
-    }
-
-    // Start our main activity with resolved Consent value
-    private void consentIsReady() {
-        //khahani: determine the correct one
-        Appodeal.setUserAge(25);
-        Appodeal.setUserGender(UserSettings.Gender.MALE);
-        Appodeal.initialize(activity, appodealAppKey, Appodeal.NONE, this.hasConsent);
-
-        if (completionListener != null)
-            completionListener.onCompleted(this.hasConsent);
-    }
-
-    public void setCompletionListener(OnCompletionListener completionListener) {
-        this.completionListener = completionListener;
     }
 
     public void showUpdateConsentForm() {
@@ -157,7 +160,7 @@ public class AppodealInitializer implements Runnable {
                         @Override
                         public void onConsentFormLoaded() {
                             // Show ConsentManager Consent request form
-                            consentForm.showAsActivity();
+                            showForm();
                         }
 
                         @Override
@@ -173,7 +176,7 @@ public class AppodealInitializer implements Runnable {
 
                         @Override
                         public void onConsentFormOpened() {
-                            //ignore
+                            isFormShowing = true;
                         }
 
                         @Override
@@ -183,14 +186,23 @@ public class AppodealInitializer implements Runnable {
                                             consent.getStatus() != Consent.Status.NON_PERSONALIZED;
                             // Update Appodeal SDK Consent value with resolved Consent value
                             Appodeal.updateConsent(hasConsent);
+                            isFormShowing = false;
                         }
                     }).build();
         }
         // If Consent request form is already loaded, then we can display it, otherwise, we should load it first
         if (consentForm.isLoaded()) {
-            consentForm.showAsActivity();
+            showForm();
         } else {
             consentForm.load();
+        }
+    }
+
+    private void showForm() {
+        if (consentForm == null) return;
+
+        if (!isFormShowing) {
+            consentForm.showAsDialog();
         }
     }
 }
