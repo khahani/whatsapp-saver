@@ -8,6 +8,7 @@ import androidx.annotation.IdRes;
 import com.khahani.appodeal.AppodealBanner;
 import com.khahani.usecase_firebase.Creator;
 import com.khahani.usecase_firebase.admob.Banner;
+import com.testing.whatsapp.Activities.BaseActivity;
 
 public class BannerCreator extends Creator<Banner> {
 
@@ -28,6 +29,6 @@ public class BannerCreator extends Creator<Banner> {
     public Banner factoryMethod() {
 //        return new NullAdapterBanner();
         //return new AdapterBannerImpl(activity, layout, bannerContainerId, realBannerId);
-        return new AppodealBanner(activity, bannerContainerId);
+        return new AppodealBanner(activity, bannerContainerId, ((BaseActivity) activity).getAnalytic());
     }
 }

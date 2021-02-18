@@ -7,6 +7,7 @@ import androidx.annotation.IdRes;
 import com.appodeal.ads.Appodeal;
 import com.khahani.usecase_firebase.OnCompletionListener;
 import com.khahani.usecase_firebase.admob.Banner;
+import com.khahani.usecase_firebase.analytic.Analytics;
 
 public class AppodealBanner extends Banner implements OnCompletionListener {
 
@@ -14,11 +15,13 @@ public class AppodealBanner extends Banner implements OnCompletionListener {
     private final AppodealInitializer initializer;
     @IdRes
     private final int bannerId;
+    private final Analytics analytic;
 
-    public AppodealBanner(Activity activity, @IdRes int bannerId) {
+    public AppodealBanner(Activity activity, @IdRes int bannerId, Analytics analytic) {
         this.activity = activity;
         this.initializer = new AppodealInitializer(activity);
         this.bannerId = bannerId;
+        this.analytic = analytic;
         initializer.setCompletionListener(this);
     }
 
@@ -38,7 +41,7 @@ public class AppodealBanner extends Banner implements OnCompletionListener {
             Appodeal.setBannerAnimation(true);
             Appodeal.setSmartBanners(true);
             Appodeal.setBannerViewId(bannerId);
-            Appodeal.setBannerCallbacks(new AppodealBannerCallback(activity));
+            Appodeal.setBannerCallbacks(new AppodealBannerCallback(activity, analytic));
             Appodeal.show(activity, Appodeal.BANNER);
         } else {
             initializer.showUpdateConsentForm();
