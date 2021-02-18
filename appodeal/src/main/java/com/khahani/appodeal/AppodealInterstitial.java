@@ -5,15 +5,18 @@ import android.app.Activity;
 import com.appodeal.ads.Appodeal;
 import com.khahani.usecase_firebase.OnCompletionListener;
 import com.khahani.usecase_firebase.admob.Interstitial;
+import com.khahani.usecase_firebase.analytic.Analytics;
 
 public class AppodealInterstitial extends Interstitial implements OnCompletionListener {
 
     private final Activity activity;
     private final AppodealInitializer initializer;
+    private final Analytics analytic;
 
-    public AppodealInterstitial(Activity activity) {
+    public AppodealInterstitial(Activity activity, Analytics analytic) {
         this.activity = activity;
         this.initializer = new AppodealInitializer(activity);
+        this.analytic = analytic;
         initializer.setCompletionListener(this);
     }
 
@@ -24,7 +27,7 @@ public class AppodealInterstitial extends Interstitial implements OnCompletionLi
 
     @Override
     protected void show() {
-        Appodeal.setInterstitialCallbacks(new AppodealInterstitialCallback(activity));
+        Appodeal.setInterstitialCallbacks(new AppodealInterstitialCallback(activity, analytic));
         Appodeal.show(activity, Appodeal.INTERSTITIAL);
     }
 
