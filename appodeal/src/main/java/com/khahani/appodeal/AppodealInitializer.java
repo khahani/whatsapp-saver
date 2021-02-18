@@ -6,6 +6,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 
 import com.appodeal.ads.Appodeal;
+import com.appodeal.ads.UserSettings;
 import com.appodeal.ads.utils.Log;
 import com.explorestack.consent.Consent;
 import com.explorestack.consent.ConsentForm;
@@ -22,6 +23,10 @@ public class AppodealInitializer implements Runnable {
     private boolean hasConsent;
     private OnCompletionListener completionListener;
     private String appodealAppKey;
+
+    public String getAppodealAppKey() {
+        return appodealAppKey;
+    }
 
     public boolean hasConsent() {
         return hasConsent;
@@ -139,7 +144,8 @@ public class AppodealInitializer implements Runnable {
     }
 
     private void initSdk() {
-        Appodeal.initialize(activity, appodealAppKey, Appodeal.BANNER | Appodeal.INTERSTITIAL, this.hasConsent);
+        //setUserInfo();
+        Appodeal.initialize(activity, appodealAppKey, Appodeal.NONE, this.hasConsent);
         if (BuildConfig.DEBUG) {
             Appodeal.setTesting(true);
             Appodeal.setLogLevel(Log.LogLevel.verbose);
@@ -147,6 +153,12 @@ public class AppodealInitializer implements Runnable {
             Appodeal.setTesting(false);
             Appodeal.setLogLevel(Log.LogLevel.none);
         }
+    }
+
+    private void setUserInfo() {
+        //khahani: determine the correct one
+        Appodeal.setUserAge(25);
+        Appodeal.setUserGender(UserSettings.Gender.MALE);
     }
 
     public void setCompletionListener(OnCompletionListener completionListener) {

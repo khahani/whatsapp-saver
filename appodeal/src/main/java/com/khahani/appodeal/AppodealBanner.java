@@ -30,22 +30,19 @@ public class AppodealBanner extends Banner implements OnCompletionListener {
         initializer.run();
     }
 
-    private void getBannerView() {
-        Appodeal.getBannerView(activity);
-    }
-
     @Override
     public void onCompleted(Boolean completed) {
-        if (completed) {
-            Appodeal.set728x90Banners(true);
-            Appodeal.setBannerAnimation(true);
-            Appodeal.setSmartBanners(true);
-            Appodeal.setBannerViewId(bannerId);
-            Appodeal.setBannerCallbacks(new AppodealBannerCallback(activity, analytic));
-            Appodeal.show(activity, Appodeal.BANNER);
-        } else {
-            initializer.showUpdateConsentForm();
-        }
+        Appodeal.initialize(activity, initializer.getAppodealAppKey(), Appodeal.BANNER, completed);
+        //if (completed) {
+////            Appodeal.set728x90Banners(true);
+        Appodeal.setBannerAnimation(true);
+        Appodeal.setSmartBanners(true);
+        Appodeal.setBannerViewId(bannerId);
+        Appodeal.setBannerCallbacks(new AppodealBannerCallback(activity, analytic));
+        Appodeal.show(activity, Appodeal.BANNER);
+//        } else {
+//            //initializer.showUpdateConsentForm();
+//        }
     }
 
 

@@ -38,7 +38,9 @@ public class AppodealInterstitial extends Interstitial implements OnCompletionLi
 
     @Override
     public void onCompleted(Boolean completed) {
-        if (completed)
+        if (completed) {
+            Appodeal.initialize(activity, initializer.getAppodealAppKey(), Appodeal.INTERSTITIAL, completed);
             show();
+        }
     }
 }
