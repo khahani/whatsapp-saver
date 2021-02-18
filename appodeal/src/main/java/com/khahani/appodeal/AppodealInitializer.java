@@ -59,7 +59,6 @@ public class AppodealInitializer implements Runnable {
 
     // Requesting Consent from European Users using Stack ConsentManager (https://wiki.appodeal.com/en/android/consent-manager).
     private void resolveUserConsent() {
-        // Note: YOU MUST SPECIFY YOUR APPODEAL SDK KET HERE
         appodealAppKey = activity.getString(R.string.appodeal_key);
         ConsentManager consentManager = ConsentManager.getInstance(activity);
         // Requesting Consent info update
