@@ -19,6 +19,12 @@ import com.testing.whatsapp.dialog.NotificationServiceAlertDialog;
 
 public class MainActivity extends BaseActivity {
 
+    private NotificationServiceAlertDialog notificationServiceAlertDialog;
+
+    public boolean isNotificationEnabled() {
+        return notificationServiceAlertDialog.getStatus() == NotificationServiceAlertDialog.Status.Enabled;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +41,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        NotificationServiceAlertDialog notificationServiceAlertDialog = new NotificationServiceAlertDialog(this);
+        notificationServiceAlertDialog = new NotificationServiceAlertDialog(this);
         notificationServiceAlertDialog.run();
     }
 

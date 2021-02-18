@@ -15,6 +15,7 @@ import com.khahani.usecase_firebase.admob.Banner;
 import com.khahani.usecase_firebase.admob.Interstitial;
 import com.khahani.usecase_firebase.analytic.LogEvent;
 import com.khahani.usecase_firebase.analytic.screen.TrackScreen;
+import com.testing.whatsapp.Activities.MainActivity;
 import com.testing.whatsapp.Adapters.ChatsAdapter;
 import com.testing.whatsapp.Model.Chat;
 import com.testing.whatsapp.R;
@@ -55,11 +56,17 @@ public class ChatsFragment extends BaseFragment {
         initialize(view);
         setAdapter();
         populateChats();
+        runAds();
 
+    }
+
+    private void runAds() {
         //khahani: determine which ads show based on firebase config
-        initBannerAds();
-        initInterstitialAds();
-
+        MainActivity activity = (MainActivity) getActivity();
+        if (activity != null && activity.isNotificationEnabled()) {
+            initBannerAds();
+            //initInterstitialAds();
+        }
     }
 
     private void initBannerAds() {

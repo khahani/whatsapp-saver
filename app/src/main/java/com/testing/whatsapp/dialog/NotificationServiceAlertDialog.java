@@ -106,6 +106,18 @@ public class NotificationServiceAlertDialog implements Runnable {
         return false;
     }
 
+    public Status getStatus() {
+        if (isNotificationServiceEnabled())
+            return Status.Enabled;
+        else
+            return Status.Disabled;
+    }
+
+    public enum Status {
+        Enabled,
+        Disabled
+    }
+
     @Override
     public void run() {
         setUpNotificationService();
