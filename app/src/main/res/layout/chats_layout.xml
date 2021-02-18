@@ -38,7 +38,8 @@
     <com.khahani.appodeal.view.AppodealBannerView
         android:id="@+id/appodealBannerView"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
+        android:maxHeight="100dp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
