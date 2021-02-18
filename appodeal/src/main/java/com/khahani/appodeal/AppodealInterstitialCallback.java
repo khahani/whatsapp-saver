@@ -4,15 +4,11 @@ import android.app.Activity;
 
 import com.appodeal.ads.InterstitialCallbacks;
 import com.khahani.usecase_firebase.analytic.Analytics;
-import com.khahani.usecase_firebase.analytic.LogEvent;
 import com.khahani.usecase_firebase.analytic.click.TrackClick;
 
 public class AppodealInterstitialCallback implements InterstitialCallbacks {
     private final Activity activity;
     private final Analytics analytic;
-
-    private LogEvent logEvent;
-    private TrackClick trackClick;
 
     public AppodealInterstitialCallback(Activity activity, Analytics analytic) {
         this.activity = activity;
