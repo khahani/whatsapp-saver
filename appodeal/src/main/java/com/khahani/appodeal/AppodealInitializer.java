@@ -17,6 +17,7 @@ import com.explorestack.consent.exception.ConsentManagerException;
 import com.khahani.usecase_firebase.OnCompletionListener;
 
 public class AppodealInitializer implements Runnable {
+    private final boolean DEFAULT_CONSENT = true;
     @Nullable
     private ConsentForm consentForm;
     private final Activity activity;
@@ -39,9 +40,20 @@ public class AppodealInitializer implements Runnable {
     @Override
     public void run() {
         try {
+            enableLogs();
             resolveUserConsent();
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    private void enableLogs() {
+        if (BuildConfig.DEBUG) {
+            Appodeal.setTesting(true);
+            Appodeal.setLogLevel(Log.LogLevel.verbose);
+        } else {
+            Appodeal.setTesting(false);
+            Appodeal.setLogLevel(Log.LogLevel.none);
         }
     }
 
@@ -63,19 +75,17 @@ public class AppodealInitializer implements Runnable {
                             showConsentForm();
                         } else {
                             if (consent.getStatus() == Consent.Status.UNKNOWN) {
-                                // Start our main activity with default Consent value
-                                consentIsReady();
+                                hasConsent = DEFAULT_CONSENT;
                             } else {
-                                boolean hasConsent = consent.getStatus() == Consent.Status.PERSONALIZED;
-                                // Start our main activity with resolved Consent value
-                                consentIsReady();
+                                hasConsent = consent.getStatus() == Consent.Status.PERSONALIZED;
                             }
+                            consentIsReady();
                         }
                     }
 
                     @Override
                     public void onFailedToUpdateConsentInfo(ConsentManagerException e) {
-                        // Start our main activity with default Consent value
+                        hasConsent = DEFAULT_CONSENT;
                         consentIsReady();
                     }
                 });
@@ -102,6 +112,7 @@ public class AppodealInitializer implements Runnable {
                                 ).show();
                             }
                             // Start our main activity with default Consent value
+                            hasConsent = DEFAULT_CONSENT;
                             consentIsReady();
                         }
 
@@ -112,8 +123,7 @@ public class AppodealInitializer implements Runnable {
 
                         @Override
                         public void onConsentFormClosed(Consent consent) {
-                            boolean hasConsent = consent.getStatus() == Consent.Status.PERSONALIZED;
-                            // Start our main activity with resolved Consent value
+                            hasConsent = consent.getStatus() == Consent.Status.PERSONALIZED;
                             consentIsReady();
                         }
                     }).build();
@@ -126,42 +136,62 @@ public class AppodealInitializer implements Runnable {
         }
     }
 
-    public void showUpdateConsentForm() {
-        showConsentForm();
-    }
-
-
     // Start our main activity with resolved Consent value
     private void consentIsReady() {
-        Consent.Status consentStatus = ConsentManager.getInstance(activity).getConsentStatus();
-        this.hasConsent = consentStatus == Consent.Status.PERSONALIZED
-                || consentStatus == Consent.Status.PARTLY_PERSONALIZED;
-
-        initSdk();
+        //khahani: determine the correct one
+        Appodeal.setUserAge(25);
+        Appodeal.setUserGender(UserSettings.Gender.MALE);
+        Appodeal.initialize(activity, appodealAppKey, Appodeal.NONE, this.hasConsent);
 
         if (completionListener != null)
             completionListener.onCompleted(this.hasConsent);
     }
 
-    private void initSdk() {
-        //setUserInfo();
-        Appodeal.initialize(activity, appodealAppKey, Appodeal.NONE, this.hasConsent);
-        if (BuildConfig.DEBUG) {
-            Appodeal.setTesting(true);
-            Appodeal.setLogLevel(Log.LogLevel.verbose);
-        } else {
-            Appodeal.setTesting(false);
-            Appodeal.setLogLevel(Log.LogLevel.none);
-        }
-    }
-
-    private void setUserInfo() {
-        //khahani: determine the correct one
-        Appodeal.setUserAge(25);
-        Appodeal.setUserGender(UserSettings.Gender.MALE);
-    }
-
     public void setCompletionListener(OnCompletionListener completionListener) {
         this.completionListener = completionListener;
+    }
+
+    public void showUpdateConsentForm() {
+        if (consentForm == null) {
+            consentForm = new ConsentForm.Builder(activity)
+                    .withListener(new ConsentFormListener() {
+                        @Override
+                        public void onConsentFormLoaded() {
+                            // Show ConsentManager Consent request form
+                            consentForm.showAsActivity();
+                        }
+
+                        @Override
+                        public void onConsentFormError(ConsentManagerException error) {
+                            if (BuildConfig.DEBUG) {
+                                Toast.makeText(
+                                        activity,
+                                        "Consent form error: " + error.getReason(),
+                                        Toast.LENGTH_SHORT
+                                ).show();
+                            }
+                        }
+
+                        @Override
+                        public void onConsentFormOpened() {
+                            //ignore
+                        }
+
+                        @Override
+                        public void onConsentFormClosed(Consent consent) {
+                            hasConsent =
+                                    consent.getStatus() == Consent.Status.PERSONALIZED &&
+                                            consent.getStatus() != Consent.Status.NON_PERSONALIZED;
+                            // Update Appodeal SDK Consent value with resolved Consent value
+                            Appodeal.updateConsent(hasConsent);
+                        }
+                    }).build();
+        }
+        // If Consent request form is already loaded, then we can display it, otherwise, we should load it first
+        if (consentForm.isLoaded()) {
+            consentForm.showAsActivity();
+        } else {
+            consentForm.load();
+        }
     }
 }

@@ -64,7 +64,7 @@ public class ChatsFragment extends BaseFragment {
         //khahani: determine which ads show based on firebase config
         MainActivity activity = (MainActivity) getActivity();
         if (activity != null && activity.isNotificationEnabled()) {
-            //initBannerAds();
+            initBannerAds();
             initInterstitialAds();
         }
     }

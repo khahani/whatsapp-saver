@@ -2,13 +2,16 @@ package com.khahani.appodeal;
 
 import android.app.Activity;
 
+import com.appodeal.ads.Appodeal;
 import com.appodeal.ads.InterstitialCallbacks;
 import com.khahani.usecase_firebase.analytic.Analytics;
 import com.khahani.usecase_firebase.analytic.click.TrackClick;
 
 public class AppodealInterstitialCallback implements InterstitialCallbacks {
+    private final boolean DEFAULT_IS_SHOWN = false;
     private final Activity activity;
     private final Analytics analytic;
+    private boolean isShown = DEFAULT_IS_SHOWN;
 
     public AppodealInterstitialCallback(Activity activity, Analytics analytic) {
         this.activity = activity;
@@ -18,6 +21,8 @@ public class AppodealInterstitialCallback implements InterstitialCallbacks {
     @Override
     public void onInterstitialLoaded(boolean isPrecache) {
         Utils.showToast(activity, String.format("onInterstitialLoaded, isPrecache: %s", isPrecache));
+        if (!isShown)
+            isShown = Appodeal.show(activity, Appodeal.INTERSTITIAL);
     }
 
     @Override
