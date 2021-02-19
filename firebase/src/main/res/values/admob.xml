@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="banner_test_uid" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="banner_uid" translatable="false">ca-app-pub-4377283453553684/5558440055</string>
     <string name="interstitial_test_uid" translatable="false">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="interstitial_uid" translatable="false">ca-app-pub-4377283453553684/5530519896</string>
 </resources>
