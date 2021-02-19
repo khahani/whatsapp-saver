@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.testing.whatsapp">
+    package="com.whatsap">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
-        android:name="com.testing.whatsapp.MyApplication"
+        android:name="com.whatsap.MyApplication"
         android:allowBackup="true"
         android:fullBackupContent="@xml/backup_descriptor"
         tools:replace="android:fullBackupContent"
@@ -18,10 +18,10 @@
         android:supportsRtl="true"
         android:theme="@style/App.Light">
         <activity
-            android:name="com.testing.whatsapp.Activities.MessagesActivity"
+            android:name="com.whatsap.Activities.MessagesActivity"
             android:label="@string/title_activity_chats"
             android:theme="@style/App.Light.NoActionBar" />
-        <activity android:name="com.testing.whatsapp.Activities.MainActivity">
+        <activity android:name="com.whatsap.Activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -29,7 +29,7 @@
         </activity>
 
         <service
-            android:name="com.testing.whatsapp.TheNotificationListener"
+            android:name="com.whatsap.TheNotificationListener"
             android:label="@string/service_name"
             android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
             <intent-filter>
