@@ -9,4 +9,11 @@
         android:visible="true"
         app:showAsAction="always" />
 
+    <item
+        android:id="@+id/privacy"
+        android:icon="@drawable/ic_privacy"
+        android:title="@string/privacy_policy"
+        android:visible="true"
+        app:showAsAction="never" />
+
 </menu>
