@@ -11,7 +11,7 @@ import com.testing.whatsapp.db.utils.NotificationToDbMediator;
 import com.testing.whatsapp.db.utils.NotificationToDbMediatorBase;
 
 
-public class NotificationListener extends NotificationListenerService {
+public class TheNotificationListener extends NotificationListenerService {
 
     @Override
     public IBinder onBind(Intent intent) {
