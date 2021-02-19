@@ -21,11 +21,9 @@ public class NotificationListener extends NotificationListenerService {
 
     @Override
     public void onNotificationPosted(StatusBarNotification sbn) {
-        Log.d("Khahani", "onNotificationPosted:\n");
         int notificationCode = matchNotificationCode(sbn);
 
         if (notificationCode != InterceptedNotificationCode.OTHER_NOTIFICATIONS_CODE) {
-            Log.d("Khahani", "Notification is valid.\n");
             //khahani: use factory
             NotificationToDbMediatorBase ndb = new NotificationToDbMediator(getApplicationContext(), sbn);
             ndb.insert();
