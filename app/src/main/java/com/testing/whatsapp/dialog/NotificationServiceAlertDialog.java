@@ -25,11 +25,8 @@ public class NotificationServiceAlertDialog implements Runnable {
     }
 
     private void setUpNotificationService() {
-        if (!isNotificationServiceEnabled()) {
-            NotificationServiceAlertDialog notificationServiceAlertDialog = new NotificationServiceAlertDialog(activity);
-            AlertDialog enableNotificationListenerAlertDialog = notificationServiceAlertDialog.build();
-            enableNotificationListenerAlertDialog.show();
-        }
+        if (!isNotificationServiceEnabled())
+            build().show();
     }
 
     private AlertDialog build() {
@@ -52,6 +49,7 @@ public class NotificationServiceAlertDialog implements Runnable {
                 activity.startActivity(new Intent(ACTION_NOTIFICATION_LISTENER_SETTINGS));
             }
         });
+        alertDialogBuilder.setCancelable(false);
         return (alertDialogBuilder.create());
     }
 
