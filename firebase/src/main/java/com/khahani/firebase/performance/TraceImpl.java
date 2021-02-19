@@ -1,4 +1,4 @@
-package com.testing.firebase.performance;
+package com.khahani.firebase.performance;
 
 import com.google.firebase.perf.FirebasePerformance;
 import com.khahani.usecase_firebase.performance.Trace;

@@ -1,4 +1,4 @@
-package com.testing.firebase;
+package com.khahani.firebase;
 
 import com.google.firebase.installations.FirebaseInstallations;
 import com.khahani.usecase_firebase.InAppMessage;

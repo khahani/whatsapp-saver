@@ -1,4 +1,4 @@
-package com.testing.firebase.admob;
+package com.khahani.firebase.admob;
 
 import android.app.Activity;
 import android.util.Log;
@@ -11,9 +11,9 @@ import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
+import com.khahani.firebase.BuildConfig;
+import com.khahani.firebase.R;
 import com.khahani.usecase_firebase.admob.Interstitial;
-import com.testing.firebase.BuildConfig;
-import com.testing.firebase.R;
 
 public class InterstitialImpl extends Interstitial {
 

@@ -1,4 +1,4 @@
-package com.testing.firebase;
+package com.khahani.firebase;
 
 import com.khahani.usecase_firebase.Crashlytics;
 

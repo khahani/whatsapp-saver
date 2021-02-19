@@ -1,4 +1,4 @@
-package com.testing.firebase;
+package com.khahani.firebase;
 
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;

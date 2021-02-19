@@ -1,4 +1,4 @@
-package com.testing.firebase.admob;
+package com.khahani.firebase.admob;
 
 import android.app.Activity;
 import android.util.DisplayMetrics;
@@ -10,9 +10,9 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
+import com.khahani.firebase.BuildConfig;
+import com.khahani.firebase.R;
 import com.khahani.usecase_firebase.admob.Banner;
-import com.testing.firebase.BuildConfig;
-import com.testing.firebase.R;
 
 import java.util.Objects;
 
