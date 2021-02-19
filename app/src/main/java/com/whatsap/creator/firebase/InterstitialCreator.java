@@ -21,7 +21,7 @@ public class InterstitialCreator extends Creator<Interstitial> {
     @Override
     public Interstitial factoryMethod() {
 //        return new Nullnterstitial();
-        // interstitial = new InterstitialImpl(activity, () -> interstitial.show(), realInterstitialId);
+//        return new InterstitialImpl(activity, realInterstitialId);
         interstitial = new AppodealInterstitial(activity, ((BaseActivity) activity).getAnalytic());
         return interstitial;
     }
