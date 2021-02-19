@@ -33,6 +33,35 @@
           ]
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:107598981026:android:57eca870967622757c34fb",
+        "android_client_info": {
+          "package_name": "com.whatsappear"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "107598981026-16q5qfvb49roe07qdac02vmp170hfohb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDS2-ob68Cy0q9rJtAXpXRZ_ito46iJ6xM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "107598981026-16q5qfvb49roe07qdac02vmp170hfohb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
     }
   ],
   "configuration_version": "1"
