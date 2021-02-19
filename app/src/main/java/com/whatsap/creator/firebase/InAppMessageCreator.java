@@ -23,7 +23,7 @@ public class InAppMessageCreator extends Creator<InAppMessage> {
         inAppMessage = new InAppMessageImpl(() -> {
             String deviceId = inAppMessage.getDeviceId();
             if (BuildConfig.DEBUG) {
-                Log.d("Khahani", deviceId);
+                Log.d("Khahani", "Device Id: " + deviceId);
                 Toast.makeText(context, "Device Id: " + deviceId, Toast.LENGTH_LONG)
                         .show();
             }
