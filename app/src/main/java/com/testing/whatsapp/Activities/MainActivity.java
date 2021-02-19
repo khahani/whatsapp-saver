@@ -1,5 +1,7 @@
 package com.testing.whatsapp.Activities;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -75,6 +77,11 @@ public class MainActivity extends BaseActivity {
         if (item.getItemId() == R.id.share) {
             ShareTheApp shareTheApp = new ShareTheApp(this);
             shareTheApp.run();
+        } else if (item.getItemId() == R.id.privacy) {
+            String url = "https://appodeal.com/privacy-policy/";
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse(url));
+            startActivity(i);
         }
         return super.onOptionsItemSelected(item);
     }
