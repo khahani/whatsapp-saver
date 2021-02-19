@@ -2,9 +2,9 @@ package com.whatsap.creator.firebase;
 
 import android.content.Context;
 
+import com.khahani.firebase.AnalyticsImpl;
 import com.khahani.usecase_firebase.Creator;
 import com.khahani.usecase_firebase.analytic.Analytics;
-import com.testing.firebase.AnalyticsImpl;
 
 public class AnalyticsCreator extends Creator<Analytics> {
     private final Context context;

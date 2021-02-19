@@ -4,10 +4,10 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.khahani.firebase.InAppMessageImpl;
 import com.khahani.usecase_firebase.Creator;
 import com.khahani.usecase_firebase.InAppMessage;
-import com.testing.firebase.BuildConfig;
-import com.testing.firebase.InAppMessageImpl;
+import com.whatsap.BuildConfig;
 
 public class InAppMessageCreator extends Creator<InAppMessage> {
     private final Context context;
