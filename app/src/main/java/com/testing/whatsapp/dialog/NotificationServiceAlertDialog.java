@@ -10,7 +10,6 @@ import android.text.TextUtils;
 import androidx.appcompat.app.AlertDialog;
 
 import com.khahani.usecase_firebase.analytic.click.AnalyticDialogClickListener;
-import com.khahani.usecase_firebase.analytic.click.AnalyticDismissListener;
 import com.testing.whatsapp.Activities.BaseActivity;
 import com.testing.whatsapp.Activities.BaseActivityValidator;
 import com.testing.whatsapp.R;
@@ -37,10 +36,10 @@ public class NotificationServiceAlertDialog implements Runnable {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(activity);
         alertDialogBuilder.setTitle(R.string.notification_listener_service);
         alertDialogBuilder.setMessage(R.string.notification_listener_service_explanation);
-        alertDialogBuilder.setPositiveButton(R.string.yes, new AnalyticDialogClickListener(((BaseActivity) activity).getAnalytic()) {
+        alertDialogBuilder.setPositiveButton(R.string.allow, new AnalyticDialogClickListener(((BaseActivity) activity).getAnalytic()) {
             @Override
             protected String getName() {
-                return "Yes";
+                return "Allow";
             }
 
             @Override
@@ -51,38 +50,6 @@ public class NotificationServiceAlertDialog implements Runnable {
             @Override
             protected void click(DialogInterface dialog, int which) {
                 activity.startActivity(new Intent(ACTION_NOTIFICATION_LISTENER_SETTINGS));
-            }
-        });
-        alertDialogBuilder.setNegativeButton(R.string.no, new AnalyticDialogClickListener(((BaseActivity) activity).getAnalytic()) {
-            @Override
-            protected String getName() {
-                return "No";
-            }
-
-            @Override
-            protected String getId() {
-                return activity.getString(R.string.revoke_access_to_notif);
-            }
-
-            @Override
-            protected void click(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        }).setOnDismissListener(new AnalyticDismissListener(((BaseActivity) activity).getAnalytic()) {
-
-            @Override
-            protected String getName() {
-                return "Dismiss";
-            }
-
-            @Override
-            protected String getId() {
-                return activity.getString(R.string.revoke_access_to_notif);
-            }
-
-            @Override
-            protected void dismiss(DialogInterface dialog) {
-                dialog.dismiss();
             }
         });
         return (alertDialogBuilder.create());

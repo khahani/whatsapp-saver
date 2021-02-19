@@ -24,6 +24,7 @@
     <string name="share">Share</string>
     <string name="share_message">\nLet me recommend you this application\n\n</string>
     <string name="choose_one">choose one</string>
+    <string name="allow">Allow</string>
 
 
 </resources>
