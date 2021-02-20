@@ -14,8 +14,4 @@ public class PerformanceImpl extends Performance {
         return t;
     }
 
-    @Override
-    public void run() {
-
-    }
 }
