@@ -7,6 +7,7 @@ import android.util.Log;
 import com.khahani.extractor.ArabicNumberToEnglish;
 import com.khahani.extractor.Extractor;
 import com.khahani.extractor.Filter;
+import com.khahani.extractor.HumanMessageValidation;
 import com.khahani.extractor.MessageEvaluator;
 import com.khahani.extractor.RemoveRtlChar;
 import com.khahani.extractor.SenderEvaluator;
@@ -95,15 +96,19 @@ public class NotificationToDbMediator extends NotificationToDbMediatorBase imple
     private boolean exists() {
         List<ReceivedMessage> chats = Db.getInstance(context).receivedMessageDao().getChatsSync(receivedMessage.sender);
 
+        HumanMessageValidation hv = new HumanMessageValidation();
+        hv.setSecondTime(receivedMessage.postTime);
+
         for (ReceivedMessage rm : chats) {
-            if (rm.postTime == receivedMessage.postTime && rm.text.equals(receivedMessage.text)) {
+            hv.setFirstTime(rm.postTime);
+            hv.run();
+            if (hv.isHuman() && rm.text.equals(receivedMessage.text)) {
                 Log.d("Khahani", "It was in the stack");
                 return true;
             }
         }
         return false;
     }
-
     @Override
     public void run() {
         insert();
