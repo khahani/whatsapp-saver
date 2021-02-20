@@ -19,7 +19,7 @@ import com.whatsappear.db.ReceivedMessage;
 import java.util.List;
 import java.util.Locale;
 
-public class NotificationToDbMediator extends NotificationToDbMediatorBase implements Runnable, Performancable {
+public class NotificationToDbMediator extends NotificationToDbMediatorBase implements Performancable {
 
     public NotificationToDbMediator(Context context, StatusBarNotification sbn) {
         super(context, sbn);

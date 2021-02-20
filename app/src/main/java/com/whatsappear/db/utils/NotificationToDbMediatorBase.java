@@ -8,7 +8,7 @@ import com.whatsappear.db.Db;
 import com.whatsappear.db.ReceivedMessage;
 import com.whatsappear.sharedpref.RemoteConfigDefault;
 
-public abstract class NotificationToDbMediatorBase implements Runnable, Performancable {
+public abstract class NotificationToDbMediatorBase implements Performancable {
     protected final StatusBarNotification notification;
     protected final Db db;
     protected final Context context;

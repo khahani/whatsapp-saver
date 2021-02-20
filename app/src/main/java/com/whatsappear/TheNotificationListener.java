@@ -5,6 +5,7 @@ import android.os.IBinder;
 import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
 
+import com.khahani.usecase_firebase.performance.Performancable;
 import com.khahani.usecase_firebase.performance.Performance;
 import com.whatsappear.creator.firebase.PerformanceCreator;
 import com.whatsappear.db.Db;
@@ -33,19 +34,20 @@ public class TheNotificationListener extends NotificationListenerService {
         if (notificationCode != InterceptedNotificationCode.OTHER_NOTIFICATIONS_CODE) {
 
             NotificationToDbMediatorBase ndb = new NotificationToDbMediator(getApplicationContext(), sbn);
-            performance.newTrace(ndb.getTrackerKey());
-            performance.setMustTraceObject(ndb);
-            performance.run();
+            runWithPerformance(ndb);
 
             if (ndb.inserted()) {
                 ChatToDbMediator ctd = new ChatToDbMediator(Db.getInstance(getApplicationContext()));
                 ctd.setChat(ndb.getReceivedMessage());
-
-                performance.newTrace(ctd.getTrackerKey());
-                performance.setMustTraceObject(ctd);
-                performance.run();
+                runWithPerformance(ctd);
             }
         }
+    }
+
+    private void runWithPerformance(Performancable ctd) {
+        performance.newTrace(ctd.getTrackerKey());
+        performance.setMustTraceObject(ctd);
+        performance.run();
     }
 
     @Override

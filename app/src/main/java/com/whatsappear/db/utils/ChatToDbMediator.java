@@ -8,7 +8,7 @@ import com.whatsappear.db.ReceivedMessage;
 
 import java.util.List;
 
-public class ChatToDbMediator implements Runnable, Performancable {
+public class ChatToDbMediator implements Performancable {
     protected final Db db;
     private ReceivedMessage receivedMessage;
 
