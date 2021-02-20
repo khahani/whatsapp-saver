@@ -31,7 +31,7 @@ public class TheNotificationListener extends NotificationListenerService {
         int notificationCode = matchNotificationCode(sbn);
 
         if (notificationCode != InterceptedNotificationCode.OTHER_NOTIFICATIONS_CODE) {
-            //khahani: use factory
+
             NotificationToDbMediatorBase ndb = new NotificationToDbMediator(getApplicationContext(), sbn);
             performance.newTrace(ndb.getTrackerKey());
             performance.setMustTraceObject(ndb);
