@@ -44,5 +44,5 @@ public abstract class NotificationToDbMediatorBase {
         return this.receivedMessage;
     }
 
-    public abstract void insert();
+    protected abstract void insert();
 }

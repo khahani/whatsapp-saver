@@ -21,14 +21,14 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
-public class NotificationToDbMediator extends NotificationToDbMediatorBase {
+public class NotificationToDbMediator extends NotificationToDbMediatorBase implements Runnable {
 
     public NotificationToDbMediator(Context context, StatusBarNotification sbn) {
         super(context, sbn);
     }
 
     @Override
-    public void insert() {
+    protected void insert() {
 
         Performance p = new PerformanceCreator().factoryMethod();
         String methodName = Objects.requireNonNull(new Object() {
@@ -111,5 +111,10 @@ public class NotificationToDbMediator extends NotificationToDbMediatorBase {
             }
         }
         return false;
+    }
+
+    @Override
+    public void run() {
+        insert();
     }
 }
