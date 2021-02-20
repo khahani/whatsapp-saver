@@ -28,7 +28,7 @@ public class NotificationToDbMediator extends NotificationToDbMediatorBase {
     }
 
     @Override
-    public synchronized void insert() {
+    public void insert() {
 
         Performance p = new PerformanceImpl();
         String methodName = Objects.requireNonNull(new Object() {
