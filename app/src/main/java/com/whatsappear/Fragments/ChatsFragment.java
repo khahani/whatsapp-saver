@@ -84,7 +84,7 @@ public class ChatsFragment extends BaseFragment {
     private void initInterstitialAds() {
         //khahani: put real bannerId
         String realInterstitialId = getString(R.string.interstitial_real_uid);
-        interstitial = new InterstitialCreator(getActivity(), realInterstitialId, interstitial).factoryMethod();
+        interstitial = new InterstitialCreator(getActivity(), realInterstitialId).factoryMethod();
         interstitial.run();
     }
 
