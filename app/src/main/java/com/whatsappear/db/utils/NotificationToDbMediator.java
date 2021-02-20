@@ -11,17 +11,15 @@ import com.khahani.extractor.MessageEvaluator;
 import com.khahani.extractor.RemoveRtlChar;
 import com.khahani.extractor.SenderEvaluator;
 import com.khahani.extractor.SenderExtractor;
-import com.khahani.usecase_firebase.performance.Performance;
-import com.khahani.usecase_firebase.performance.Trace;
-import com.whatsappear.creator.firebase.PerformanceCreator;
+import com.khahani.usecase_firebase.performance.Performancable;
+import com.khahani.usecase_firebase.performance.TrackerKeyMaker;
 import com.whatsappear.db.Db;
 import com.whatsappear.db.ReceivedMessage;
 
 import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
 
-public class NotificationToDbMediator extends NotificationToDbMediatorBase implements Runnable {
+public class NotificationToDbMediator extends NotificationToDbMediatorBase implements Runnable, Performancable {
 
     public NotificationToDbMediator(Context context, StatusBarNotification sbn) {
         super(context, sbn);
@@ -29,12 +27,6 @@ public class NotificationToDbMediator extends NotificationToDbMediatorBase imple
 
     @Override
     protected void insert() {
-
-        Performance p = new PerformanceCreator().factoryMethod();
-        String methodName = Objects.requireNonNull(new Object() {
-        }.getClass().getEnclosingMethod()).getName();
-        Trace t = p.newTrace(this.getClass().getName() + "." + methodName + "()");
-        t.start();
 
         try {
             String receivedSender = notification.getNotification().extras.getString("android.title");
@@ -98,7 +90,6 @@ public class NotificationToDbMediator extends NotificationToDbMediatorBase imple
             Log.d("khahani", e.getMessage());
         }
 
-        t.stop();
     }
 
     private boolean exists() {
@@ -116,5 +107,12 @@ public class NotificationToDbMediator extends NotificationToDbMediatorBase imple
     @Override
     public void run() {
         insert();
+    }
+
+    @Override
+    public String getTrackerKey() {
+        TrackerKeyMaker t = TrackerKeyMaker.getInstance(this, "insert");
+        t.run();
+        return t.getKey();
     }
 }

@@ -1,15 +1,14 @@
 package com.whatsappear.db.utils;
 
-import com.khahani.usecase_firebase.performance.Performance;
-import com.khahani.usecase_firebase.performance.Trace;
-import com.whatsappear.creator.firebase.PerformanceCreator;
+import com.khahani.usecase_firebase.performance.Performancable;
+import com.khahani.usecase_firebase.performance.TrackerKeyMaker;
 import com.whatsappear.db.Chat;
 import com.whatsappear.db.Db;
 import com.whatsappear.db.ReceivedMessage;
 
 import java.util.List;
 
-public class ChatToDbMediator implements Runnable {
+public class ChatToDbMediator implements Runnable, Performancable {
     protected final Db db;
     private ReceivedMessage receivedMessage;
 
@@ -23,13 +22,7 @@ public class ChatToDbMediator implements Runnable {
 
     @Override
     public void run() {
-        Performance p = new PerformanceCreator().factoryMethod();
-        String methodName = new Object() {
-        }.getClass().getEnclosingMethod().getName();
-        Trace t = p.newTrace(this.getClass().getName() + "." + methodName + "()");
-        t.start();
         execute();
-        t.stop();
     }
 
     private void execute() {
@@ -65,5 +58,12 @@ public class ChatToDbMediator implements Runnable {
         } else {
             db.chatDao().insert(chat);
         }
+    }
+
+    @Override
+    public String getTrackerKey() {
+        TrackerKeyMaker t = TrackerKeyMaker.getInstance(this, "run");
+        t.run();
+        return t.getKey();
     }
 }

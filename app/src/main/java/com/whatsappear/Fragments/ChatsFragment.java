@@ -77,7 +77,7 @@ public class ChatsFragment extends BaseFragment {
         //khahani: put real bannerId
         String realBannerUid = getString(R.string.banner_real_uid);
         banner = new BannerCreator(getActivity(),
-                layout, R.id.appodealBannerView, realBannerUid).factoryMethod();
+                layout, R.id.bannerContainer, realBannerUid).factoryMethod();
         banner.run();
     }
 
