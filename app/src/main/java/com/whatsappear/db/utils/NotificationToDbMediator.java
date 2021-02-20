@@ -11,9 +11,9 @@ import com.khahani.extractor.MessageEvaluator;
 import com.khahani.extractor.RemoveRtlChar;
 import com.khahani.extractor.SenderEvaluator;
 import com.khahani.extractor.SenderExtractor;
-import com.khahani.firebase.performance.PerformanceImpl;
 import com.khahani.usecase_firebase.performance.Performance;
 import com.khahani.usecase_firebase.performance.Trace;
+import com.whatsappear.creator.firebase.PerformanceCreator;
 import com.whatsappear.db.Db;
 import com.whatsappear.db.ReceivedMessage;
 
@@ -30,7 +30,7 @@ public class NotificationToDbMediator extends NotificationToDbMediatorBase {
     @Override
     public void insert() {
 
-        Performance p = new PerformanceImpl();
+        Performance p = new PerformanceCreator().factoryMethod();
         String methodName = Objects.requireNonNull(new Object() {
         }.getClass().getEnclosingMethod()).getName();
         Trace t = p.newTrace(this.getClass().getName() + "." + methodName + "()");

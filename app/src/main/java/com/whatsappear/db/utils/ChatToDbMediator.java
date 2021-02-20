@@ -1,8 +1,8 @@
 package com.whatsappear.db.utils;
 
-import com.khahani.firebase.performance.PerformanceImpl;
 import com.khahani.usecase_firebase.performance.Performance;
 import com.khahani.usecase_firebase.performance.Trace;
+import com.whatsappear.creator.firebase.PerformanceCreator;
 import com.whatsappear.db.Chat;
 import com.whatsappear.db.Db;
 import com.whatsappear.db.ReceivedMessage;
@@ -23,7 +23,7 @@ public class ChatToDbMediator implements Runnable {
 
     @Override
     public void run() {
-        Performance p = new PerformanceImpl();
+        Performance p = new PerformanceCreator().factoryMethod();
         String methodName = new Object() {
         }.getClass().getEnclosingMethod().getName();
         Trace t = p.newTrace(this.getClass().getName() + "." + methodName + "()");
