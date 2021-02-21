@@ -2,9 +2,9 @@ package com.whatsappear.creator.firebase;
 
 import android.content.Context;
 
+import com.khahani.firebase.AnalyticsImpl;
 import com.khahani.usecase_firebase.Creator;
 import com.khahani.usecase_firebase.analytic.Analytics;
-import com.khahani.usecase_firebase.analytic.NullAnalytics;
 
 public class AnalyticsCreator extends Creator<Analytics> {
     private final Context context;
@@ -15,7 +15,7 @@ public class AnalyticsCreator extends Creator<Analytics> {
 
     @Override
     public Analytics factoryMethod() {
-        return new NullAnalytics(context);
-//        return new AnalyticsImpl(context);
+        //return new NullAnalytics(context);
+        return new AnalyticsImpl(context);
     }
 }
