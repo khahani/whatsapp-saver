@@ -14,7 +14,7 @@ android {
         applicationId "com.whatsappear"
         minSdkVersion 16
         targetSdkVersion 30
-        versionCode 2
+        versionCode 3
         versionName "1.02"
         multiDexEnabled true
 
