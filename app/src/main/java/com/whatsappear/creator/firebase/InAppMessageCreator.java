@@ -16,7 +16,7 @@ public class InAppMessageCreator extends Creator<InAppMessage> {
 
     @Override
     public InAppMessage factoryMethod() {
-        return new NullInAppMessage();
+         return new NullInAppMessage();
 //        inAppMessage = new InAppMessageImpl(() -> {
 //            String deviceId = inAppMessage.getDeviceId();
 //            if (BuildConfig.DEBUG) {
