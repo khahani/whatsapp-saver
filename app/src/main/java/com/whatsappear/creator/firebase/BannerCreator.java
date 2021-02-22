@@ -5,10 +5,9 @@ import android.view.View;
 
 import androidx.annotation.IdRes;
 
-import com.khahani.appodeal.AppodealBanner;
 import com.khahani.usecase_firebase.Creator;
 import com.khahani.usecase_firebase.admob.Banner;
-import com.whatsappear.Activities.BaseActivity;
+import com.khahani.usecase_firebase.admob.NullAdapterBanner;
 
 public class BannerCreator extends Creator<Banner> {
 
@@ -27,8 +26,8 @@ public class BannerCreator extends Creator<Banner> {
 
     @Override
     public Banner factoryMethod() {
-        //return new NullAdapterBanner();
+        return new NullAdapterBanner();
         //return new AdapterBannerImpl(activity, layout, bannerContainerId, realBannerId);
-        return new AppodealBanner(activity, bannerContainerId, ((BaseActivity) activity).getAnalytic());
+        //return new AppodealBanner(activity, bannerContainerId, ((BaseActivity) activity).getAnalytic());
     }
 }

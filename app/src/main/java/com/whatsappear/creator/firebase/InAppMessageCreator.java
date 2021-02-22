@@ -1,13 +1,10 @@
 package com.whatsappear.creator.firebase;
 
 import android.content.Context;
-import android.util.Log;
-import android.widget.Toast;
 
-import com.khahani.firebase.InAppMessageImpl;
 import com.khahani.usecase_firebase.Creator;
 import com.khahani.usecase_firebase.InAppMessage;
-import com.whatsappear.BuildConfig;
+import com.khahani.usecase_firebase.NullInAppMessage;
 
 public class InAppMessageCreator extends Creator<InAppMessage> {
     private final Context context;
@@ -19,15 +16,15 @@ public class InAppMessageCreator extends Creator<InAppMessage> {
 
     @Override
     public InAppMessage factoryMethod() {
-        // return new NullInAppMessage();
-        inAppMessage = new InAppMessageImpl(() -> {
-            String deviceId = inAppMessage.getDeviceId();
-            if (BuildConfig.DEBUG) {
-                Log.d("Khahani", "Device Id: " + deviceId);
-                Toast.makeText(context, "Device Id: " + deviceId, Toast.LENGTH_LONG)
-                        .show();
-            }
-        });
-        return inAppMessage;
+        return new NullInAppMessage();
+//        inAppMessage = new InAppMessageImpl(() -> {
+//            String deviceId = inAppMessage.getDeviceId();
+//            if (BuildConfig.DEBUG) {
+//                Log.d("Khahani", "Device Id: " + deviceId);
+//                Toast.makeText(context, "Device Id: " + deviceId, Toast.LENGTH_LONG)
+//                        .show();
+//            }
+//        });
+//        return inAppMessage;
     }
 }
