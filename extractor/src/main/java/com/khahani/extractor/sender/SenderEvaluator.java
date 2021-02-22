@@ -1,4 +1,4 @@
-package com.khahani.extractor;
+package com.khahani.extractor.sender;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

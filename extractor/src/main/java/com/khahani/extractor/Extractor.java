@@ -1,5 +1,8 @@
 package com.khahani.extractor;
 
+import com.khahani.extractor.sender.SenderEvaluator;
+import com.khahani.extractor.sender.SenderExtractor;
+
 public class Extractor implements Runnable {
     protected String group;
     protected String sender;

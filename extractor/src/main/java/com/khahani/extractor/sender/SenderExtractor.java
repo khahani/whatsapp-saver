@@ -1,4 +1,4 @@
-package com.khahani.extractor;
+package com.khahani.extractor.sender;
 
 public class SenderExtractor {
     public static final String CONTACTS_GROUP = "c";
