@@ -1,6 +1,7 @@
 package com.khahani.extractor;
 
 import com.khahani.extractor.sender.SenderEvaluator;
+import com.khahani.extractor.sender.SenderExtractor;
 import com.khahani.extractor.sender.SenderExtractorWithAtSign;
 
 import org.junit.Assert;
@@ -96,7 +97,7 @@ public class ExtractorTest {
         @Test
         public void when_a_title_is_group_then_sender_and_group_extract_correctly() {
             for (int i = 0; i < titles.length; i++) {
-                SenderExtractorWithAtSign s = new SenderExtractorWithAtSign(titles[i]);
+                SenderExtractor s = new SenderExtractorWithAtSign(titles[i]);
                 s.extract();
                 Assert.assertEquals(senders[i], s.getSender());
                 Assert.assertEquals(groups[i], s.getGroup());
@@ -247,7 +248,7 @@ public class ExtractorTest {
         }
 
         private void init(String receivedSender, String receivedMessage) {
-            SenderExtractorWithAtSign senderExtractor = new SenderExtractorWithAtSign(receivedSender);
+            SenderExtractor senderExtractor = new SenderExtractorWithAtSign(receivedSender);
             extractor.setSenderExtractor(senderExtractor);
 
             SenderEvaluator senderEvaluator = new SenderEvaluator();

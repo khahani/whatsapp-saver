@@ -11,6 +11,7 @@ import com.khahani.extractor.HumanMessageValidation;
 import com.khahani.extractor.MessageEvaluator;
 import com.khahani.extractor.RemoveRtlChar;
 import com.khahani.extractor.sender.SenderEvaluator;
+import com.khahani.extractor.sender.SenderExtractor;
 import com.khahani.extractor.sender.SenderExtractorWithAtSign;
 import com.khahani.usecase_firebase.performance.Performancable;
 import com.khahani.usecase_firebase.performance.TrackerKeyMaker;
@@ -53,7 +54,7 @@ public class NotificationToDbMediator extends NotificationToDbMediatorBase imple
             f.setJson(filters);
             f.run();
 
-            SenderExtractorWithAtSign sx = new SenderExtractorWithAtSign(receivedSender);
+            SenderExtractor sx = new SenderExtractorWithAtSign(receivedSender);
 
             SenderEvaluator se = new SenderEvaluator();
             se.setInvalidSenders(f.getInvalidSenders());
