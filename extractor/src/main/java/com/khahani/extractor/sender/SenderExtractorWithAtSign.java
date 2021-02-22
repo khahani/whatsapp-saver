@@ -1,13 +1,13 @@
 package com.khahani.extractor.sender;
 
-public class SenderExtractor {
+public class SenderExtractorWithAtSign {
     public static final String CONTACTS_GROUP = "c";
 
     protected String title;
     protected String sender;
     protected String group;
 
-    public SenderExtractor(String title) {
+    public SenderExtractorWithAtSign(String title) {
         this.title = title;
     }
 

@@ -1,7 +1,7 @@
 package com.khahani.extractor;
 
 import com.khahani.extractor.sender.SenderEvaluator;
-import com.khahani.extractor.sender.SenderExtractor;
+import com.khahani.extractor.sender.SenderExtractorWithAtSign;
 
 public class Extractor implements Runnable {
     protected String group;
@@ -9,7 +9,7 @@ public class Extractor implements Runnable {
     protected String message;
     private SenderEvaluator senderEvaluator;
     private MessageEvaluator messageEvaluator;
-    private SenderExtractor senderExtractor;
+    private SenderExtractorWithAtSign senderExtractor;
 
     private void extract() {
 
@@ -56,7 +56,7 @@ public class Extractor implements Runnable {
         this.messageEvaluator = messageEvaluator;
     }
 
-    public void setSenderExtractor(SenderExtractor senderExtractor) {
+    public void setSenderExtractor(SenderExtractorWithAtSign senderExtractor) {
         this.senderExtractor = senderExtractor;
     }
 
