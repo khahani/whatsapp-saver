@@ -15,6 +15,7 @@ import com.khahani.usecase_firebase.analytic.LogEvent;
 import com.khahani.usecase_firebase.analytic.screen.TrackScreen;
 import com.whatsappear.Adapters.PagerAdapter;
 import com.whatsappear.R;
+import com.whatsappear.RateAndReview;
 import com.whatsappear.ShareTheApp;
 import com.whatsappear.dialog.NotificationServiceAlertDialog;
 
@@ -82,6 +83,8 @@ public class MainActivity extends BaseActivity {
             Intent i = new Intent(Intent.ACTION_VIEW);
             i.setData(Uri.parse(url));
             startActivity(i);
+        } else if (item.getItemId() == R.id.rate) {
+            new RateAndReview(this).run();
         }
         return super.onOptionsItemSelected(item);
     }

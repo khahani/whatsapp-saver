@@ -7,7 +7,7 @@
         android:icon="@drawable/ic_share"
         android:title="@string/share"
         android:visible="true"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/privacy"
@@ -15,5 +15,13 @@
         android:title="@string/privacy_policy"
         android:visible="true"
         app:showAsAction="never" />
+
+    <item
+        android:id="@+id/rate"
+        android:icon="@drawable/ic_rate_and_review"
+        android:title="@string/rate_and_review"
+        android:visible="true"
+        app:showAsAction="never" />
+
 
 </menu>
