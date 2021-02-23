@@ -40,7 +40,7 @@
         <!-- //khahani: remove with real value of admob -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-4377283453553684~6342691077" />
+            android:value="ca-app-pub-4377283453553684~6613335572" />
 
         <meta-data
             android:name="firebase_performance_logcat_enabled"

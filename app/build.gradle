@@ -23,10 +23,12 @@ android {
 
     buildTypes {
         release {
+            buildConfigField "boolean", "ENABLE_RELEASE_MODULES", "true"
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
+            buildConfigField "boolean", "ENABLE_RELEASE_MODULES", "false"
             debuggable true
             minifyEnabled false
             ext.alwaysUpdateBuildId = false
@@ -45,8 +47,10 @@ dependencies {
 
     implementation project(path: ':extractor')
     implementation project(path: ':usecase_ads')
-//    implementation project(path: ':firebase')
-//    implementation project(path: ':appodeal')
+
+    implementation project(path: ':firebase')
+    implementation project(path: ':appodeal')
+
 
     implementation 'com.google.android.gms:play-services-tasks:17.2.1'
     implementation 'de.hdodenhof:circleimageview:3.0.0'
