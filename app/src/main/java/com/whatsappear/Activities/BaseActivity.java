@@ -40,7 +40,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Trackabl
         //crashlytics.run();
         trackScreen.run();
         //khahani: check why in app device id not shown in toast or log
-        inAppMessage = new InAppMessageCreator(this).factoryMethod();
+        inAppMessage = new InAppMessageCreator().factoryMethod();
         inAppMessage.run();
         try {
             remoteConfig.fetchAndActivate(succeeded -> {
