@@ -1,4 +1,4 @@
-package com.whatsappear;
+package com.whatsappear.share;
 
 import android.content.ActivityNotFoundException;
 import android.content.Context;

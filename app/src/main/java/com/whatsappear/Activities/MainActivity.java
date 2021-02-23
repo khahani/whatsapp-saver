@@ -15,9 +15,9 @@ import com.khahani.usecase_firebase.analytic.LogEvent;
 import com.khahani.usecase_firebase.analytic.screen.TrackScreen;
 import com.whatsappear.Adapters.PagerAdapter;
 import com.whatsappear.R;
-import com.whatsappear.RateAndReview;
-import com.whatsappear.ShareTheApp;
 import com.whatsappear.dialog.NotificationServiceAlertDialog;
+import com.whatsappear.share.RateAndReview;
+import com.whatsappear.share.ShareTheApp;
 
 
 public class MainActivity extends BaseActivity {

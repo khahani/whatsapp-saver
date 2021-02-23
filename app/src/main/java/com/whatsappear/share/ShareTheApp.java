@@ -1,4 +1,4 @@
-package com.whatsappear;
+package com.whatsappear.share;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,6 +6,8 @@ import android.content.Intent;
 import com.khahani.usecase_firebase.analytic.click.TrackClick;
 import com.whatsappear.Activities.BaseActivity;
 import com.whatsappear.Activities.BaseActivityValidator;
+import com.whatsappear.BuildConfig;
+import com.whatsappear.R;
 
 public class ShareTheApp implements Runnable {
     private final Activity activity;
