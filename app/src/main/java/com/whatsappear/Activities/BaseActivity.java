@@ -15,7 +15,7 @@ import com.khahani.usecase_firebase.analytic.screen.TrackScreen;
 import com.khahani.usecase_firebase.analytic.screen.TrackableScreen;
 import com.whatsappear.R;
 import com.whatsappear.creator.firebase.AnalyticsCreator;
-import com.whatsappear.creator.firebase.CrashlyticCreator;
+import com.whatsappear.creator.firebase.CrashlyticsCreator;
 import com.whatsappear.creator.firebase.InAppMessageCreator;
 import com.whatsappear.creator.firebase.RemoteConfigCreator;
 import com.whatsappear.sharedpref.RemoteConfigDefault;
@@ -31,7 +31,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Trackabl
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        crashlytics = new CrashlyticCreator().factoryMethod();
+        crashlytics = new CrashlyticsCreator().factoryMethod();
         analytic = new AnalyticsCreator(this).factoryMethod();
         remoteConfig = new RemoteConfigCreator().factoryMethod();
         trackScreen = initTrackScreen(analytic);

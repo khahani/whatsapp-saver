@@ -4,7 +4,7 @@ import com.khahani.usecase_firebase.Crashlytics;
 import com.khahani.usecase_firebase.Creator;
 import com.khahani.usecase_firebase.NullCrashlytics;
 
-public class CrashlyticCreator extends Creator<Crashlytics> {
+public class CrashlyticsCreator extends Creator<Crashlytics> {
 
     @Override
     public Crashlytics factoryMethod() {
