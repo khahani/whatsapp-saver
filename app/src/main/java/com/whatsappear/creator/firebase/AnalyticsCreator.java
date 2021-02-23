@@ -22,6 +22,10 @@ public class AnalyticsCreator extends Creator<Analytics> {
             return new NullAnalytics(context);
         }
 
+        return getAnalytics();
+    }
+
+    private Analytics getAnalytics() {
         try {
             Constructor<?> c = Class.forName("com.khahani.firebase.AnalyticsImpl").getConstructor(Context.class);
             return (Analytics) c.newInstance(context);
