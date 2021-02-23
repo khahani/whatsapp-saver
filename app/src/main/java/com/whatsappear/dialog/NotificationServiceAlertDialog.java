@@ -18,6 +18,7 @@ public class NotificationServiceAlertDialog implements Runnable {
     private static final String ENABLED_NOTIFICATION_LISTENERS = "enabled_notification_listeners";
     private static final String ACTION_NOTIFICATION_LISTENER_SETTINGS = "android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS";
     private final Activity activity;
+    private AlertDialog dialog;
 
     public NotificationServiceAlertDialog(Activity activity) {
         new BaseActivityValidator(activity).run();
@@ -25,8 +26,14 @@ public class NotificationServiceAlertDialog implements Runnable {
     }
 
     private void setUpNotificationService() {
+        if (dialog == null)
+            dialog = build();
+
+        if (dialog.isShowing())
+            return;
+
         if (!isNotificationServiceEnabled())
-            build().show();
+            dialog.show();
     }
 
     private AlertDialog build() {

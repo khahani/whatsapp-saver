@@ -31,6 +31,7 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        notificationServiceAlertDialog = new NotificationServiceAlertDialog(this);
         setupToolbar();
         setupViewPager();
     }
@@ -43,7 +44,6 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        notificationServiceAlertDialog = new NotificationServiceAlertDialog(this);
         notificationServiceAlertDialog.run();
     }
 
