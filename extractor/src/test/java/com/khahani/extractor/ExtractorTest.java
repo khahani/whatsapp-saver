@@ -106,6 +106,41 @@ public class ExtractorTest {
 
     }
 
+    public static class SenderExtractorWithColonTest {
+
+        //region fake data
+        private final String[] titles = new String[]{
+                "\u200F\u202AThebook\u202C\u200F:\u200F Mohammad",
+                "حسین داداشی @ Distance",
+                "E"
+        };
+
+        private final String[] groups = new String[]{
+                "Thebook",
+                "Distance",
+                "c"
+        };
+
+        private final String[] senders = new String[]{
+                "E",
+                "حسین داداشی",
+                "E"
+        };
+
+        //endregion
+
+        @Test
+        public void when_a_title_is_group_then_sender_and_group_extract_correctly() {
+            for (int i = 0; i < titles.length; i++) {
+                SenderExtractor s = new SenderExtractorWithAtSign(titles[i]);
+                s.extract();
+                Assert.assertEquals(senders[i], s.getSender());
+                Assert.assertEquals(groups[i], s.getGroup());
+            }
+        }
+
+    }
+
     public static class MessageTest {
 
         private ArrayList<String> wrongMessagesFakeData;
