@@ -17,6 +17,7 @@ import com.khahani.usecase_firebase.analytic.LogEvent;
 import com.khahani.usecase_firebase.analytic.screen.TrackScreen;
 import com.whatsappear.Activities.MainActivity;
 import com.whatsappear.Adapters.ChatsAdapter;
+import com.whatsappear.BuildConfig;
 import com.whatsappear.Model.Chat;
 import com.whatsappear.R;
 import com.whatsappear.creator.firebase.BannerCreator;
@@ -97,6 +98,27 @@ public class ChatsFragment extends BaseFragment {
     private void initialize(View view) {
         chats = new ArrayList<>();
         rvChats = view.findViewById(R.id.rvChats);
+
+        //khahani: make a better decision for this one
+        if (BuildConfig.DEBUG) {
+//            ConstraintLayout c = view.findViewById(R.id.chat_root_constraint);
+//            FrameLayout f = view.findViewById(R.id.bannerContainer);
+//
+//            try {
+//                Constructor<?> cons = Class.forName("com.khahani.appodeal.view.AppodealBannerView")
+//                        .getConstructor(Context.class, AttributeSet.class);
+//                FrameLayout bannerView = (FrameLayout) cons.newInstance(getContext(), att);
+//                bannerView.setId(R.id.bannerContainer);
+//                ConstraintSet cs = new ConstraintSet();
+//                cs.clone(c);
+//                cs.connect(c.getId(), ConstraintSet.);
+//
+//                c.removeView(f);
+//                c.addView(bannerView);
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+        }
     }
 
     private void populateChats() {
