@@ -1,7 +1,5 @@
 package com.whatsappear.Activities;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -16,6 +14,7 @@ import com.khahani.usecase_firebase.analytic.screen.TrackScreen;
 import com.whatsappear.Adapters.PagerAdapter;
 import com.whatsappear.R;
 import com.whatsappear.dialog.NotificationServiceAlertDialog;
+import com.whatsappear.share.AppodealPrivacyPolicy;
 import com.whatsappear.share.RateAndReview;
 import com.whatsappear.share.ShareTheApp;
 
@@ -79,12 +78,11 @@ public class MainActivity extends BaseActivity {
             ShareTheApp shareTheApp = new ShareTheApp(this);
             shareTheApp.run();
         } else if (item.getItemId() == R.id.privacy) {
-            String url = "https://appodeal.com/privacy-policy/";
-            Intent i = new Intent(Intent.ACTION_VIEW);
-            i.setData(Uri.parse(url));
-            startActivity(i);
+            AppodealPrivacyPolicy privacyPolicy = new AppodealPrivacyPolicy(this);
+            privacyPolicy.run();
         } else if (item.getItemId() == R.id.rate) {
-            new RateAndReview(this).run();
+            RateAndReview rateAndReview = new RateAndReview(this);
+            rateAndReview.run();
         }
         return super.onOptionsItemSelected(item);
     }
