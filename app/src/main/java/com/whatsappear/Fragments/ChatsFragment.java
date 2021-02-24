@@ -18,12 +18,10 @@ import com.khahani.usecase_firebase.analytic.LogEvent;
 import com.khahani.usecase_firebase.analytic.screen.TrackScreen;
 import com.whatsappear.Activities.MainActivity;
 import com.whatsappear.Adapters.ChatsAdapter;
-import com.whatsappear.BuildConfig;
 import com.whatsappear.Model.Chat;
 import com.whatsappear.R;
 import com.whatsappear.creator.firebase.BannerCreator;
 import com.whatsappear.db.Db;
-import com.whatsappear.db.adapter.ChatAdapter;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -86,11 +84,12 @@ public class ChatsFragment extends BaseFragment {
     }
 
 
-
     @Override
     public void onStart() {
         super.onStart();
         runAds();
+        if (db == null)
+            db = Db.getInstance(getContext());
         db.chatDao().getAll().observe(getViewLifecycleOwner(), observer);
     }
 
@@ -99,7 +98,7 @@ public class ChatsFragment extends BaseFragment {
         rvChats = view.findViewById(R.id.rvChats);
 
         //khahani: make a better decision for this one
-        if (BuildConfig.DEBUG) {
+//        if (BuildConfig.DEBUG) {
 //            ConstraintLayout c = view.findViewById(R.id.chat_root_constraint);
 //            FrameLayout f = view.findViewById(R.id.bannerContainer);
 //
@@ -117,12 +116,10 @@ public class ChatsFragment extends BaseFragment {
 //            } catch (Exception e) {
 //                e.printStackTrace();
 //            }
-        }
+//        }
     }
 
     private void populateChats() {
-        this.db = Db.getInstance(getContext());
-
         observer = chatsDb -> {
             if (chatsDb.size() <= 0) {
                 showEmptyView();
@@ -130,7 +127,6 @@ public class ChatsFragment extends BaseFragment {
             }
 
             hideEmptyView();
-            new ChatAdapter();
             chats.clear();
             DateFormat format;
             for (com.whatsappear.db.Chat chat : chatsDb) {
@@ -179,4 +175,5 @@ public class ChatsFragment extends BaseFragment {
     protected TrackScreen initTrackScreen(LogEvent logger) {
         return new TrackScreen(logger, this);
     }
+
 }
