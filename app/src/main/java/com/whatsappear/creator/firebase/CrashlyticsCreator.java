@@ -2,6 +2,7 @@ package com.whatsappear.creator.firebase;
 
 import com.khahani.usecase_firebase.Crashlytics;
 import com.khahani.usecase_firebase.NullCrashlytics;
+import com.whatsappear.BuildConfig;
 
 public class CrashlyticsCreator extends ReleaseModuleActivator<Crashlytics> {
 
@@ -16,6 +17,19 @@ public class CrashlyticsCreator extends ReleaseModuleActivator<Crashlytics> {
     }
 
     private Crashlytics getModule() {
-        return new NullCrashlytics();
+        if (BuildConfig.ENABLE_CRASHLYTICS)
+            return getRealCrashlytics();
+        else
+            return new NullCrashlytics();
+    }
+
+    private Crashlytics getRealCrashlytics() {
+        try {
+            return (Crashlytics) Class.forName("com.khahani.firebase.CrashlyticsImpl")
+                    .newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new NullCrashlytics();
+        }
     }
 }
