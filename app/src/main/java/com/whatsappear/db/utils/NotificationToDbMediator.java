@@ -1,6 +1,7 @@
 package com.whatsappear.db.utils;
 
 import android.content.Context;
+import android.os.Build;
 import android.service.notification.StatusBarNotification;
 import android.util.Log;
 
@@ -13,6 +14,7 @@ import com.khahani.extractor.RemoveRtlChar;
 import com.khahani.extractor.sender.SenderEvaluator;
 import com.khahani.extractor.sender.SenderExtractor;
 import com.khahani.extractor.sender.SenderExtractorWithAtSign;
+import com.khahani.extractor.sender.SenderExtractorWithColon;
 import com.khahani.usecase_firebase.performance.Performancable;
 import com.khahani.usecase_firebase.performance.TrackerKeyMaker;
 import com.whatsappear.db.Db;
@@ -54,7 +56,11 @@ public class NotificationToDbMediator extends NotificationToDbMediatorBase imple
             f.setJson(filters);
             f.run();
 
-            SenderExtractor sx = new SenderExtractorWithAtSign(receivedSender);
+            SenderExtractor sx;
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P)
+                sx = new SenderExtractorWithAtSign(receivedSender);
+            else
+                sx = new SenderExtractorWithColon(receivedSender);
 
             SenderEvaluator se = new SenderEvaluator();
             se.setInvalidSenders(f.getInvalidSenders());
@@ -69,7 +75,6 @@ public class NotificationToDbMediator extends NotificationToDbMediatorBase imple
             ex.setMessageEvaluator(me);
             ex.setSenderEvaluator(se);
             ex.setSenderExtractor(sx);
-
 
             ex.run();
 
