@@ -7,16 +7,20 @@ public class SenderExtractorWithColon extends SenderExtractor {
 
     @Override
     protected String extractGroup() {
-        return null;
+        return getTitleWithoutMessageCounter().split(":")[0].trim();
     }
 
     @Override
     protected String extractSender() {
-        return null;
+        return getTitleWithoutMessageCounter().split(":")[1].trim();
+    }
+
+    private String getTitleWithoutMessageCounter() {
+        return title.replaceAll("[(](.*?)[)]", "");
     }
 
     @Override
     protected boolean isGroup() {
-        return false;
+        return title.contains(":") && title.split(":").length == 2;
     }
 }

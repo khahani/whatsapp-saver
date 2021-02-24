@@ -3,6 +3,7 @@ package com.khahani.extractor;
 import com.khahani.extractor.sender.SenderEvaluator;
 import com.khahani.extractor.sender.SenderExtractor;
 import com.khahani.extractor.sender.SenderExtractorWithAtSign;
+import com.khahani.extractor.sender.SenderExtractorWithColon;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -111,19 +112,22 @@ public class ExtractorTest {
         //region fake data
         private final String[] titles = new String[]{
                 "\u200F\u202AThebook\u202C\u200F:\u200F Mohammad",
-                "حسین داداشی @ Distance",
+                "Thebook\u202C\u200F:\u200F محمدجان",
+                "Thebook (5 message): Mohammad",
                 "E"
         };
 
         private final String[] groups = new String[]{
                 "Thebook",
-                "Distance",
+                "Thebook",
+                "Thebook",
                 "c"
         };
 
         private final String[] senders = new String[]{
-                "E",
-                "حسین داداشی",
+                "Mohammad",
+                "محمدجان",
+                "Mohammad",
                 "E"
         };
 
@@ -132,7 +136,11 @@ public class ExtractorTest {
         @Test
         public void when_a_title_is_group_then_sender_and_group_extract_correctly() {
             for (int i = 0; i < titles.length; i++) {
-                SenderExtractor s = new SenderExtractorWithAtSign(titles[i]);
+                RemoveRtlChar r = new RemoveRtlChar();
+                r.setText(titles[i]);
+                r.run();
+                titles[i] = r.getText();
+                SenderExtractor s = new SenderExtractorWithColon(titles[i]);
                 s.extract();
                 Assert.assertEquals(senders[i], s.getSender());
                 Assert.assertEquals(groups[i], s.getGroup());
