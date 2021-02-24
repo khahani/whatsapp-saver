@@ -108,7 +108,7 @@ public class NotificationToDbMediator extends NotificationToDbMediatorBase imple
         for (ReceivedMessage rm : messages) {
             hv.setFirstTime(rm.postTime);
             hv.run();
-            if (hv.isHuman() && rm.text.equals(receivedMessage.text)) {
+            if (hv.isHuman() && rm.text.equals(receivedMessage.text) && rm.group.equals(receivedMessage.group)) {
                 Log.d("Khahani", "It was in the stack");
                 return true;
             }
