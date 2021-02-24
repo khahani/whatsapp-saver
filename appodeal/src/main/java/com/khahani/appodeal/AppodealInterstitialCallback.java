@@ -1,6 +1,7 @@
 package com.khahani.appodeal;
 
 import android.app.Activity;
+import android.content.Context;
 
 import com.appodeal.ads.Appodeal;
 import com.appodeal.ads.InterstitialCallbacks;
@@ -33,7 +34,16 @@ public class AppodealInterstitialCallback implements InterstitialCallbacks {
     @Override
     public void onInterstitialShown() {
         trackShown();
+        updateLastSeen();
         Utils.showToast(activity, "onInterstitialShown");
+    }
+
+    //khahani: move it to storage module {task time 3/3}
+    private void updateLastSeen() {
+        activity.getSharedPreferences("time_key", Context.MODE_PRIVATE)
+                .edit()
+                .putLong("last_seen", System.currentTimeMillis())
+                .apply();
     }
 
     private void trackShown() {
