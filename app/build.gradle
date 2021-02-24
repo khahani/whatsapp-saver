@@ -70,6 +70,10 @@ dependencies {
     // optional - Test helpers
     testImplementation "androidx.room:room-testing:2.2.6"
 
+    implementation "com.airbnb.android:lottie:3.6.0"
+
     implementation "androidx.multidex:multidex:2.0.1"
     implementation 'org.jsoup:jsoup:1.13.1'
+
+
 }

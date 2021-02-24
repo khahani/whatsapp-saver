@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.khahani.usecase_firebase.admob.Banner;
 import com.khahani.usecase_firebase.admob.Interstitial;
 import com.khahani.usecase_firebase.analytic.LogEvent;
@@ -40,6 +41,7 @@ public class ChatsFragment extends BaseFragment {
     private Db db;
     private Interstitial interstitial;
     private Banner banner;
+    private LottieAnimationView animationView;
 
 
     @Nullable
@@ -56,7 +58,11 @@ public class ChatsFragment extends BaseFragment {
         initialize(view);
         setAdapter();
         populateChats();
+        setupEmptyListAnimation();
+    }
 
+    private void setupEmptyListAnimation() {
+        animationView = getView().findViewById(R.id.animationView);
     }
 
     private void runAds() {
@@ -118,6 +124,12 @@ public class ChatsFragment extends BaseFragment {
         this.db = Db.getInstance(getContext());
 
         observer = chatsDb -> {
+            if (chatsDb.size() <= 0) {
+                showEmptyView();
+                return;
+            }
+
+            hideEmptyView();
             new ChatAdapter();
             chats.clear();
             DateFormat format;
@@ -129,6 +141,15 @@ public class ChatsFragment extends BaseFragment {
             adapter.notifyDataSetChanged();
         };
     }
+
+    private void showEmptyView() {
+        animationView.setVisibility(View.VISIBLE);
+    }
+
+    private void hideEmptyView() {
+        animationView.setVisibility(View.GONE);
+    }
+
 
     private void setAdapter() {
 
