@@ -107,9 +107,9 @@ public class MessagesActivity extends BaseActivity {
     private void populateChats() {
         this.db = Db.getInstance(this);
         if (group.equals("c")) {
-            db.receivedMessageDao().getChats(sender).observe(this, observerPrepareChatsForAdapter);
+            db.receivedMessageDao().getMessages(sender).observe(this, observerPrepareChatsForAdapter);
         } else {
-            db.receivedMessageDao().getGroupChats(group).observe(this, observerPrepareChatsForAdapter);
+            db.receivedMessageDao().getMessagesByGroup(group).observe(this, observerPrepareChatsForAdapter);
         }
     }
 

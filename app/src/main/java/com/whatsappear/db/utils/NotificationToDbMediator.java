@@ -100,12 +100,12 @@ public class NotificationToDbMediator extends NotificationToDbMediatorBase imple
     }
 
     private boolean exists() {
-        List<ReceivedMessage> chats = Db.getInstance(context).receivedMessageDao().getChatsSync(receivedMessage.sender);
+        List<ReceivedMessage> messages = Db.getInstance(context).receivedMessageDao().getMessagesSync(receivedMessage.sender);
 
         HumanMessageValidation hv = new HumanMessageValidation();
         hv.setSecondTime(receivedMessage.postTime);
 
-        for (ReceivedMessage rm : chats) {
+        for (ReceivedMessage rm : messages) {
             hv.setFirstTime(rm.postTime);
             hv.run();
             if (hv.isHuman() && rm.text.equals(receivedMessage.text)) {
