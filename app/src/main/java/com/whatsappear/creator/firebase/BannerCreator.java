@@ -5,10 +5,10 @@ import android.view.View;
 
 import androidx.annotation.IdRes;
 
-import com.khahani.usecase_firebase.Creator;
 import com.khahani.usecase_firebase.admob.Banner;
 import com.khahani.usecase_firebase.admob.NullAdapterBanner;
 import com.khahani.usecase_firebase.analytic.Analytics;
+import com.khahani.usecase_firebase.creator.Creator;
 import com.whatsappear.Activities.BaseActivity;
 import com.whatsappear.BuildConfig;
 

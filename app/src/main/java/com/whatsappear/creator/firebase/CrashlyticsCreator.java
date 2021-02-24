@@ -1,8 +1,8 @@
 package com.whatsappear.creator.firebase;
 
 import com.khahani.usecase_firebase.Crashlytics;
-import com.khahani.usecase_firebase.Creator;
 import com.khahani.usecase_firebase.NullCrashlytics;
+import com.khahani.usecase_firebase.creator.Creator;
 
 public class CrashlyticsCreator extends Creator<Crashlytics> {
 

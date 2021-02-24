@@ -2,9 +2,9 @@ package com.whatsappear.creator.firebase;
 
 import android.content.Context;
 
-import com.khahani.usecase_firebase.Creator;
 import com.khahani.usecase_firebase.analytic.Analytics;
 import com.khahani.usecase_firebase.analytic.NullAnalytics;
+import com.khahani.usecase_firebase.creator.Creator;
 import com.whatsappear.BuildConfig;
 
 import java.lang.reflect.Constructor;

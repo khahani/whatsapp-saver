@@ -3,9 +3,9 @@ package com.whatsappear.creator.firebase;
 import android.content.Context;
 
 import com.khahani.usecase_firebase.BuildConfig;
-import com.khahani.usecase_firebase.Creator;
 import com.khahani.usecase_firebase.InAppMessage;
 import com.khahani.usecase_firebase.NullInAppMessage;
+import com.khahani.usecase_firebase.creator.Creator;
 
 import java.lang.reflect.Constructor;
 

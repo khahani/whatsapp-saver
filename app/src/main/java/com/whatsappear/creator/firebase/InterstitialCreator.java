@@ -2,10 +2,10 @@ package com.whatsappear.creator.firebase;
 
 import android.app.Activity;
 
-import com.khahani.usecase_firebase.Creator;
 import com.khahani.usecase_firebase.admob.Interstitial;
 import com.khahani.usecase_firebase.admob.Nullnterstitial;
 import com.khahani.usecase_firebase.analytic.Analytics;
+import com.khahani.usecase_firebase.creator.Creator;
 import com.whatsappear.Activities.BaseActivity;
 import com.whatsappear.BuildConfig;
 

@@ -1,7 +1,7 @@
 package com.whatsappear.creator.firebase;
 
 import com.khahani.usecase_firebase.BuildConfig;
-import com.khahani.usecase_firebase.Creator;
+import com.khahani.usecase_firebase.creator.Creator;
 import com.khahani.usecase_firebase.performance.NullPerformance;
 import com.khahani.usecase_firebase.performance.Performance;
 

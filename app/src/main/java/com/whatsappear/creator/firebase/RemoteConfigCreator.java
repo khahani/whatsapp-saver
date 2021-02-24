@@ -1,9 +1,9 @@
 package com.whatsappear.creator.firebase;
 
 import com.khahani.usecase_firebase.BuildConfig;
-import com.khahani.usecase_firebase.Creator;
 import com.khahani.usecase_firebase.NullRemoteConfig;
 import com.khahani.usecase_firebase.RemoteConfig;
+import com.khahani.usecase_firebase.creator.Creator;
 
 
 public class RemoteConfigCreator extends Creator<RemoteConfig> {
