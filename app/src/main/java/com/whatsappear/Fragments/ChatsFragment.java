@@ -21,7 +21,6 @@ import com.whatsappear.BuildConfig;
 import com.whatsappear.Model.Chat;
 import com.whatsappear.R;
 import com.whatsappear.creator.firebase.BannerCreator;
-import com.whatsappear.creator.firebase.InterstitialCreator;
 import com.whatsappear.db.Db;
 import com.whatsappear.db.adapter.ChatAdapter;
 
@@ -57,7 +56,6 @@ public class ChatsFragment extends BaseFragment {
         initialize(view);
         setAdapter();
         populateChats();
-        runAds();
 
     }
 
@@ -65,7 +63,6 @@ public class ChatsFragment extends BaseFragment {
         //khahani: determine which ads show based on firebase config
         if (isNotificationEnabled()) {
             initBannerAds();
-            initInterstitialAds();
         }
     }
 
@@ -82,16 +79,12 @@ public class ChatsFragment extends BaseFragment {
         banner.run();
     }
 
-    private void initInterstitialAds() {
-        //khahani: put real bannerId
-        String realInterstitialId = getString(R.string.interstitial_real_uid);
-        interstitial = new InterstitialCreator(getActivity(), realInterstitialId).factoryMethod();
-        interstitial.run();
-    }
+
 
     @Override
     public void onStart() {
         super.onStart();
+        runAds();
         db.chatDao().getAll().observe(getViewLifecycleOwner(), observer);
     }
 

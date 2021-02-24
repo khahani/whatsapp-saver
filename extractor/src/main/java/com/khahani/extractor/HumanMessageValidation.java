@@ -1,7 +1,7 @@
 package com.khahani.extractor;
 
 public class HumanMessageValidation implements Runnable {
-    private final long HUMAN_WRITING_SPEED_MILLISECOND = 700L;
+    private final long HUMAN_WRITING_SPEED_MILLISECOND = 2000L;
     private long firstTime;
     private long secondTime;
     private boolean isHuman = false;

@@ -9,11 +9,13 @@ import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.khahani.usecase_firebase.admob.Interstitial;
 import com.khahani.usecase_firebase.analytic.LogEvent;
 import com.khahani.usecase_firebase.analytic.screen.TrackScreen;
 import com.whatsappear.Adapters.MessageAdapter;
 import com.whatsappear.Model.Chat;
 import com.whatsappear.R;
+import com.whatsappear.creator.firebase.InterstitialCreator;
 import com.whatsappear.db.Db;
 import com.whatsappear.db.ReceivedMessage;
 
@@ -45,6 +47,7 @@ public class MessagesActivity extends BaseActivity {
     private RecyclerView rvMessages;
     private Db db;
     private String group;
+    private Interstitial interstitial;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,16 +79,19 @@ public class MessagesActivity extends BaseActivity {
 
         populateChats();
 
-        initAds();
+        initInterstitialAds();
+    }
+
+    private void initInterstitialAds() {
+        //khahani: put real bannerId
+        String realInterstitialId = getString(R.string.interstitial_real_uid);
+        interstitial = new InterstitialCreator(this, realInterstitialId).factoryMethod();
+        interstitial.run();
     }
 
     @Override
     protected TrackScreen initTrackScreen(LogEvent logger) {
         return new TrackScreen(logger, this);
-    }
-
-    private void initAds() {
-        //khahani: not yet implemented
     }
 
     private void setupViews() {
