@@ -13,6 +13,7 @@ import com.khahani.usecase_firebase.admob.Interstitial;
 import com.khahani.usecase_firebase.analytic.LogEvent;
 import com.khahani.usecase_firebase.analytic.screen.TrackScreen;
 import com.whatsappear.Adapters.MessageAdapter;
+import com.whatsappear.AdvertiseTimeCommand;
 import com.whatsappear.Model.Chat;
 import com.whatsappear.R;
 import com.whatsappear.creator.firebase.InterstitialCreator;
@@ -84,6 +85,11 @@ public class MessagesActivity extends BaseActivity {
 
     private void initInterstitialAds() {
         //khahani: put real bannerId
+        AdvertiseTimeCommand a = new AdvertiseTimeCommand(this);
+        a.run();
+        if (!a.shouldShow())
+            return;
+
         String realInterstitialId = getString(R.string.interstitial_real_uid);
         interstitial = new InterstitialCreator(this, realInterstitialId).factoryMethod();
         interstitial.run();
