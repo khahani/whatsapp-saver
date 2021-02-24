@@ -5,13 +5,11 @@ import android.app.Activity;
 import com.khahani.usecase_firebase.admob.Interstitial;
 import com.khahani.usecase_firebase.admob.Nullnterstitial;
 import com.khahani.usecase_firebase.analytic.Analytics;
-import com.khahani.usecase_firebase.creator.Creator;
 import com.whatsappear.Activities.BaseActivity;
-import com.whatsappear.BuildConfig;
 
 import java.lang.reflect.Constructor;
 
-public class InterstitialCreator extends Creator<Interstitial> {
+public class InterstitialCreator extends ReleaseModuleActivator<Interstitial> {
     private final Activity activity;
     private final String realInterstitialId;
 
@@ -21,10 +19,16 @@ public class InterstitialCreator extends Creator<Interstitial> {
     }
 
     @Override
-    public Interstitial factoryMethod() {
-        if (BuildConfig.DEBUG) {
-            return new Nullnterstitial();
-        }
+    protected Interstitial getNullModule() {
+        return new Nullnterstitial();
+    }
+
+    @Override
+    protected Interstitial getReleaseModule() {
+        return getInterstitial();
+    }
+
+    private Interstitial getInterstitial() {
         try {
 //        return new InterstitialImpl(activity, realInterstitialId);
 //            return new AppodealInterstitial(activity, ((BaseActivity) activity).getAnalytic());

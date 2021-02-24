@@ -8,13 +8,11 @@ import androidx.annotation.IdRes;
 import com.khahani.usecase_firebase.admob.Banner;
 import com.khahani.usecase_firebase.admob.NullAdapterBanner;
 import com.khahani.usecase_firebase.analytic.Analytics;
-import com.khahani.usecase_firebase.creator.Creator;
 import com.whatsappear.Activities.BaseActivity;
-import com.whatsappear.BuildConfig;
 
 import java.lang.reflect.Constructor;
 
-public class BannerCreator extends Creator<Banner> {
+public class BannerCreator extends ReleaseModuleActivator<Banner> {
 
     private final Activity activity;
     private final View layout;
@@ -30,10 +28,12 @@ public class BannerCreator extends Creator<Banner> {
     }
 
     @Override
-    public Banner factoryMethod() {
-        if (BuildConfig.DEBUG) {
-            return new NullAdapterBanner();
-        }
+    protected Banner getNullModule() {
+        return new NullAdapterBanner();
+    }
+
+    @Override
+    protected Banner getReleaseModule() {
         return getBanner();
     }
 

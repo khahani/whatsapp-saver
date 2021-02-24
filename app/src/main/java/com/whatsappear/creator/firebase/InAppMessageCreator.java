@@ -2,14 +2,12 @@ package com.whatsappear.creator.firebase;
 
 import android.content.Context;
 
-import com.khahani.usecase_firebase.BuildConfig;
 import com.khahani.usecase_firebase.InAppMessage;
 import com.khahani.usecase_firebase.NullInAppMessage;
-import com.khahani.usecase_firebase.creator.Creator;
 
 import java.lang.reflect.Constructor;
 
-public class InAppMessageCreator extends Creator<InAppMessage> {
+public class InAppMessageCreator extends ReleaseModuleActivator<InAppMessage> {
 
     private final Context context;
 
@@ -18,18 +16,19 @@ public class InAppMessageCreator extends Creator<InAppMessage> {
     }
 
     @Override
-    public InAppMessage factoryMethod() {
-        if (BuildConfig.DEBUG) {
-            try {
-                Constructor<?> c = Class.forName("com.khahani.firebase.InAppMessageImpl")
-                        .getConstructor(Context.class);
-                return (InAppMessage) c.newInstance(context);
-            } catch (Exception e) {
-                e.printStackTrace();
-                return new NullInAppMessage();
-            }
-        }
-
+    protected InAppMessage getNullModule() {
         return new NullInAppMessage();
+    }
+
+    @Override
+    protected InAppMessage getReleaseModule() {
+        try {
+            Constructor<?> c = Class.forName("com.khahani.firebase.InAppMessageImpl")
+                    .getConstructor(Context.class);
+            return (InAppMessage) c.newInstance(context);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new NullInAppMessage();
+        }
     }
 }

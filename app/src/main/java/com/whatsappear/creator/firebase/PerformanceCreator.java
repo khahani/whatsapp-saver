@@ -1,16 +1,17 @@
 package com.whatsappear.creator.firebase;
 
-import com.khahani.usecase_firebase.BuildConfig;
-import com.khahani.usecase_firebase.creator.Creator;
 import com.khahani.usecase_firebase.performance.NullPerformance;
 import com.khahani.usecase_firebase.performance.Performance;
 
-public class PerformanceCreator extends Creator<Performance> {
+public class PerformanceCreator extends ReleaseModuleActivator<Performance> {
+
     @Override
-    public Performance factoryMethod() {
-        if (BuildConfig.DEBUG) {
-            return new NullPerformance();
-        }
+    protected Performance getNullModule() {
+        return new NullPerformance();
+    }
+
+    @Override
+    protected Performance getReleaseModule() {
         try {
             return (Performance) Class.forName("com.khahani.firebase.performance.PerformanceImpl")
                     .newInstance();

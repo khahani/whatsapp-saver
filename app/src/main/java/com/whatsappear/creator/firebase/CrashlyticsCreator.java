@@ -2,14 +2,20 @@ package com.whatsappear.creator.firebase;
 
 import com.khahani.usecase_firebase.Crashlytics;
 import com.khahani.usecase_firebase.NullCrashlytics;
-import com.khahani.usecase_firebase.creator.Creator;
 
-public class CrashlyticsCreator extends Creator<Crashlytics> {
+public class CrashlyticsCreator extends ReleaseModuleActivator<Crashlytics> {
 
     @Override
-    public Crashlytics factoryMethod() {
+    protected Crashlytics getNullModule() {
+        return getModule();
+    }
+
+    @Override
+    protected Crashlytics getReleaseModule() {
+        return getModule();
+    }
+
+    private Crashlytics getModule() {
         return new NullCrashlytics();
-        // The line below only fire an exception that cause crash
-//            return new CrashlyticsImpl();
     }
 }

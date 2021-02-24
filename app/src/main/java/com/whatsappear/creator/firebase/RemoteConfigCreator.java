@@ -1,17 +1,18 @@
 package com.whatsappear.creator.firebase;
 
-import com.khahani.usecase_firebase.BuildConfig;
 import com.khahani.usecase_firebase.NullRemoteConfig;
 import com.khahani.usecase_firebase.RemoteConfig;
-import com.khahani.usecase_firebase.creator.Creator;
 
 
-public class RemoteConfigCreator extends Creator<RemoteConfig> {
+public class RemoteConfigCreator extends ReleaseModuleActivator<RemoteConfig> {
+
     @Override
-    public RemoteConfig factoryMethod() {
-        if (BuildConfig.DEBUG) {
-            return new NullRemoteConfig();
-        }
+    protected RemoteConfig getNullModule() {
+        return new NullRemoteConfig();
+    }
+
+    @Override
+    protected RemoteConfig getReleaseModule() {
         try {
             return (RemoteConfig) Class.forName("com.khahani.firebase.RemoteConfigImpl")
                     .newInstance();
