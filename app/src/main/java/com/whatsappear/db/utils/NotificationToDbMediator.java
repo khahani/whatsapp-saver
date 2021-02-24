@@ -79,8 +79,8 @@ public class NotificationToDbMediator extends NotificationToDbMediatorBase imple
             ex.run();
 
             this.receivedMessage = new ReceivedMessage();
-            this.receivedMessage.sender = ex.getSender();
-            this.receivedMessage.group = ex.getGroup();
+            this.receivedMessage.sender = getClearText(ex.getSender());
+            this.receivedMessage.group = getClearText(ex.getGroup());
             this.receivedMessage.text = ex.getMessage();
             this.receivedMessage.date = date;
             this.receivedMessage.postTime = postTime;
@@ -97,6 +97,13 @@ public class NotificationToDbMediator extends NotificationToDbMediatorBase imple
             Log.d("khahani", e.getMessage());
         }
 
+    }
+
+    private String getClearText(String text) {
+        RemoveRtlChar rrtl = new RemoveRtlChar();
+        rrtl.setText(text);
+        rrtl.run();
+        return rrtl.getText();
     }
 
     private boolean exists() {
