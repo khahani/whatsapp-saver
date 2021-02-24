@@ -32,14 +32,14 @@ public class ChatToDbMediator implements Performancable {
         long duplicatedId = -1;
         if (receivedMessage.isContact()) {
             for (Chat c : chats) {
-                if (c.sender.equals(receivedMessage.sender)) {
+                if (c.sender.equals(receivedMessage.sender) && c.isContact()) {
                     duplicatedId = c.cid;
                     break;
                 }
             }
         } else {
             for (Chat c : chats) {
-                if (c.group.equals(receivedMessage.group)) {
+                if (c.group.equals(receivedMessage.group) && !c.isContact()) {
                     duplicatedId = c.cid;
                     break;
                 }
@@ -52,7 +52,7 @@ public class ChatToDbMediator implements Performancable {
         chat.group = receivedMessage.group;
         chat.date = receivedMessage.date;
 
-        if (duplicatedId >= 0) {
+        if (duplicatedId >= 1) {
             chat.cid = (int) duplicatedId;
             db.chatDao().update(chat);
         } else {

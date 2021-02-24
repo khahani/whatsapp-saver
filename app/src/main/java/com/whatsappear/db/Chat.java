@@ -21,4 +21,8 @@ public class Chat {
 
     @ColumnInfo(name = "date")
     public long date;
+
+    public boolean isContact() {
+        return group.equals("c");
+    }
 }

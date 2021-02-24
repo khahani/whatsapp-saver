@@ -37,7 +37,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <com.khahani.appodeal.view.AppodealBannerView
+    <!--    <com.khahani.appodeal.view.AppodealBannerView-->
+    <!--        android:id="@+id/bannerContainer"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:maxHeight="90dp"-->
+    <!--        android:minHeight="50dp"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent" />-->
+
+    <FrameLayout
         android:id="@+id/bannerContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
