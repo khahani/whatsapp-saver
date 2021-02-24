@@ -5,7 +5,7 @@ plugins {
     id 'com.google.gms.google-services'
 }
 
-def enableReleaseModules = false
+def enableReleaseModules = true
 
 android {
     compileSdkVersion 30
