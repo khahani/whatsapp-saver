@@ -7,7 +7,6 @@ import com.whatsappear.sharedpref.AdvertiseTimeSharePreference;
 public class AdvertiseTimeCommand implements Runnable {
     private final long CONST_DURATION = 3600000L;
     private final AdvertiseTimeSharePreference advertiseTimeSharePreference;
-    private long lastSeen;
 
     public AdvertiseTimeCommand(Context context) {
         advertiseTimeSharePreference = new AdvertiseTimeSharePreference(context);
