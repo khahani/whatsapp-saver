@@ -5,7 +5,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:4.1.2"
+        classpath 'com.android.tools.build:gradle:3.5.4'
 
         // Check that you have the Google Services Gradle plugin v4.3.2 or later
         // (if not, add it).
@@ -22,6 +22,9 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven {
+            url "https://artifactory.appodeal.com/appodeal"
+        }
     }
 }
 

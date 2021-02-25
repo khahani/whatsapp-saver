@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- release: place original one -->
-    <string name="banner_real_uid">currently not available</string>
-    <string name="interstitial_real_uid">currently not available</string>
+    <string name="banner_real_uid">ca-app-pub-4377283453553684/5558440055</string>
+    <string name="interstitial_real_uid">ca-app-pub-4377283453553684/5530519896</string>
 </resources>

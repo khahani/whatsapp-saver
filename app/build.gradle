@@ -5,17 +5,18 @@ plugins {
     id 'com.google.gms.google-services'
 }
 
+def enableReleaseModules = true
 
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.testing.whatsapp"
+        applicationId "com.whatsappear"
         minSdkVersion 19
         targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+        versionCode 5
+        versionName "1.03"
         multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -23,10 +24,14 @@ android {
 
     buildTypes {
         release {
+            buildConfigField "boolean", "ENABLE_RELEASE_MODULES", "true"
+            buildConfigField "boolean", "ENABLE_CRASHLYTICS", "false" //Note: if you enable it, it make a crash happen
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
+            buildConfigField "boolean", "ENABLE_RELEASE_MODULES", enableReleaseModules.toString()
+            buildConfigField "boolean", "ENABLE_CRASHLYTICS", "false" //Note: if you enable it, it make a crash happen
             debuggable true
             minifyEnabled false
             ext.alwaysUpdateBuildId = false
@@ -44,8 +49,15 @@ android {
 dependencies {
 
     implementation project(path: ':extractor')
-    implementation project(path: ':usecase_firebase')
-    implementation project(path: ':firebase')
+    implementation project(path: ':usecase_ads')
+
+    if (enableReleaseModules) {
+        implementation project(path: ':firebase')
+        implementation project(path: ':appodeal')
+    }else{
+        releaseImplementation project(path: ':firebase')
+        releaseImplementation project(path: ':appodeal')
+    }
 
     implementation 'com.google.android.gms:play-services-tasks:17.2.1'
     implementation 'de.hdodenhof:circleimageview:3.0.0'
@@ -66,6 +78,10 @@ dependencies {
     // optional - Test helpers
     testImplementation "androidx.room:room-testing:2.2.6"
 
+    implementation "com.airbnb.android:lottie:3.6.0"
+
     implementation "androidx.multidex:multidex:2.0.1"
     implementation 'org.jsoup:jsoup:1.13.1'
+
+
 }

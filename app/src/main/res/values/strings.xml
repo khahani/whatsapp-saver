@@ -1,15 +1,15 @@
 <resources>
-    <string name="app_name">WhatsApp Saver</string>
+    <string name="app_name">WhatsAppear</string>
     <string name="chats">Chats</string>
     <string name="status">Status</string>
     <string name="calls">Calls</string>
     <string name="my_status">My Status</string>
     <string name="tap_to_add_status_update">Tap to add status update</string>
     <string name="yes">Yes</string>
-    <string name="notification_listener_service_explanation">WhatsApp Saver require notification access to read only the Whatsapp messenger messages. Unfortunately without it, we can\'t provide any service to you. Turn on notification access?</string>
+    <string name="notification_listener_service_explanation">Allow access to notifications?</string>
     <string name="notification_listener_service">Notification access</string>
     <string name="no">No</string>
-    <string name="service_name">WhatsApp Saver</string>
+    <string name="service_name">@string/app_name</string>
     <string name="title_activity_chats">Chats</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -24,6 +24,9 @@
     <string name="share">Share</string>
     <string name="share_message">\nLet me recommend you this application\n\n</string>
     <string name="choose_one">choose one</string>
+    <string name="allow">Allow</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="rate_and_review">Rate and review</string>
 
 
 </resources>

@@ -1,5 +1,10 @@
 package com.khahani.extractor;
 
+import com.khahani.extractor.sender.SenderEvaluator;
+import com.khahani.extractor.sender.SenderExtractor;
+import com.khahani.extractor.sender.SenderExtractorWithAtSign;
+import com.khahani.extractor.sender.SenderExtractorWithColon;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -67,7 +72,7 @@ public class ExtractorTest {
 
     //endregion
 
-    public static class SenderExtractorTest {
+    public static class SenderExtractorWithAtSignTest {
 
         //region fake data
         private final String[] titles = new String[]{
@@ -93,7 +98,49 @@ public class ExtractorTest {
         @Test
         public void when_a_title_is_group_then_sender_and_group_extract_correctly() {
             for (int i = 0; i < titles.length; i++) {
-                SenderExtractor s = new SenderExtractor(titles[i]);
+                SenderExtractor s = new SenderExtractorWithAtSign(titles[i]);
+                s.extract();
+                Assert.assertEquals(senders[i], s.getSender());
+                Assert.assertEquals(groups[i], s.getGroup());
+            }
+        }
+
+    }
+
+    public static class SenderExtractorWithColonTest {
+
+        //region fake data
+        private final String[] titles = new String[]{
+                "\u200F\u202AThebook\u202C\u200F:\u200F Mohammad",
+                "Thebook\u202C\u200F:\u200F محمدجان",
+                "Thebook (5 message): Mohammad",
+                "E"
+        };
+
+        private final String[] groups = new String[]{
+                "Thebook",
+                "Thebook",
+                "Thebook",
+                "c"
+        };
+
+        private final String[] senders = new String[]{
+                "Mohammad",
+                "محمدجان",
+                "Mohammad",
+                "E"
+        };
+
+        //endregion
+
+        @Test
+        public void when_a_title_is_group_then_sender_and_group_extract_correctly() {
+            for (int i = 0; i < titles.length; i++) {
+                RemoveRtlChar r = new RemoveRtlChar();
+                r.setText(titles[i]);
+                r.run();
+                titles[i] = r.getText();
+                SenderExtractor s = new SenderExtractorWithColon(titles[i]);
                 s.extract();
                 Assert.assertEquals(senders[i], s.getSender());
                 Assert.assertEquals(groups[i], s.getGroup());
@@ -244,7 +291,7 @@ public class ExtractorTest {
         }
 
         private void init(String receivedSender, String receivedMessage) {
-            SenderExtractor senderExtractor = new SenderExtractor(receivedSender);
+            SenderExtractor senderExtractor = new SenderExtractorWithAtSign(receivedSender);
             extractor.setSenderExtractor(senderExtractor);
 
             SenderEvaluator senderEvaluator = new SenderEvaluator();
@@ -273,8 +320,8 @@ public class ExtractorTest {
     }
 
     public static class FilterTest {
-        final String jsonWithTwoLanguage = "[{\"lan\":\"en\",\"invalidSenders\":[\"WhatsApp\",\"null\"],\"regexSenderValidator\":[\"([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed voice calls\",\"([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed video calls\",\"\\\\(messages ([0-9]|[0-9][0-9]|[0-9][0-9][0-9])\\\\)\"],\"invalidMessages\":[\"null\",\"Checking for new messages\",\"Incoming voice call\",\"Incoming video call\",\"Missed voice call\",\"Missed video call\",\"\uD83D\uDCF7 Photo\",\"Calling…\",\"Ringing…\",\"Ongoing voice call\",\"Ongoing video call\",\"\uD83D\uDCF9 Incoming video call\"],\"invalidMessagesRegexRequired\":[\"2 new messages\",\"2 missed voice calls\",\"3 missed calls\"]},{\"lan\":\"fa\",\"invalidSenders\":[\"واتساپ\",\"null\"],\"regexSenderValidator\":[\"([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed voice calls\",\"([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed video calls\",\"\\\\(messages ([0-9]|[0-9][0-9]|[0-9][0-9][0-9])\\\\)\"],\"invalidMessages\":[\"null\",\"Checking for new messages\",\"Incoming voice call\",\"Incoming video call\",\"Missed voice call\",\"Missed video call\",\"\uD83D\uDCF7 Photo\",\"Calling…\",\"Ringing…\",\"Ongoing voice call\",\"Ongoing video call\",\"\uD83D\uDCF9 Incoming video call\"],\"invalidMessagesRegexRequired\":[\"2 new messages\",\"2 missed voice calls\",\"3 missed calls\"]}]";
-        String json = "[{\"lan\":\"en\",\"invalidSenders\":[\"WhatsApp\",\"null\"],\"regexSenderValidator\":[\"([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed voice calls\",\"([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed video calls\",\"\\\\(messages ([0-9]|[0-9][0-9]|[0-9][0-9][0-9])\\\\)\"],\"invalidMessages\":[\"null\",\"Checking for new messages\",\"Incoming voice call\",\"Incoming video call\",\"Missed voice call\",\"Missed video call\",\"\uD83D\uDCF7 Photo\",\"Calling…\",\"Ringing…\",\"Ongoing voice call\",\"Ongoing video call\",\"\uD83D\uDCF9 Incoming video call\"],\"invalidMessagesRegexRequired\":[\"2 new messages\",\"2 missed voice calls\",\"3 missed calls\"]}]";
+        final String jsonWithTwoLanguage = "[{\"lan\":\"en\",\"invalidSenders\":[\"WhatsApp\",\"null\"],\"regexSenderValidator\":[\"([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed voice calls\",\"([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed video calls\",\"\\\\(messages ([0-9]|[0-9][0-9]|[0-9][0-9][0-9])\\\\)\"],\"invalidMessages\":[\"null\",\"Checking for new messages\",\"Incoming voice call\",\"Incoming video call\",\"Missed voice call\",\"Missed video call\",\"\uD83D\uDCF7 Photo\",\"Calling…\",\"Ringing…\",\"Ongoing voice call\",\"Ongoing video call\",\"\uD83D\uDCF9 Incoming video call\"],\"regexMessageValidators\":[\"([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) new messages\",\"([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed voice calls\",\"([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed calls\"]},{\"lan\":\"fa\",\"invalidSenders\":[\"واتساپ\",\"null\"],\"regexSenderValidator\":[\"([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed voice calls\",\"([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed video calls\",\"\\\\(messages ([0-9]|[0-9][0-9]|[0-9][0-9][0-9])\\\\)\"],\"invalidMessages\":[\"جستجو برای پیام جدید\",\"تماس صوتی ورودی\",\"تماس صوتی پاسخ داده نشده\",\"تماس تصویری ورودی\",\"تماس تصویری پاسخ داده نشده\"],\"regexMessageValidators\":[\"([0-9]|[0-9][0-9]|[0-9][0-9][0-9]) پيام در ([0-9]|[0-9][0-9]|[0-9][0-9][0-9]) گفتگو\",\"([0-9]|[0-9][0-9]|[0-9][0-9][0-9]) تماس صوتی پاسخ داده نشده\",\"([0-9]|[0-9][0-9]|[0-9][0-9][0-9]) تماس از دست رفته\",\"([0-9]|[0-9][0-9]|[0-9][0-9][0-9]) تماس تصویری پاسخ داده نشده\",\"([0-9]|[0-9][0-9]|[0-9][0-9][0-9]) پیام جدید\"]}]";
+        String json = "[{\"lan\":\"en\",\"invalidSenders\":[\"WhatsApp\",\"null\"],\"regexSenderValidator\":[\"([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed voice calls\",\"([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed video calls\",\"\\\\(messages ([0-9]|[0-9][0-9]|[0-9][0-9][0-9])\\\\)\"],\"invalidMessages\":[\"null\",\"Checking for new messages\",\"Incoming voice call\",\"Incoming video call\",\"Missed voice call\",\"Missed video call\",\"\uD83D\uDCF7 Photo\",\"Calling…\",\"Ringing…\",\"Ongoing voice call\",\"Ongoing video call\",\"\uD83D\uDCF9 Incoming video call\"],\"regexMessageValidators\":[\"([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) new messages\",\"([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed voice calls\",\"([2-9]|[1-9][0-9]|[1-9][0-9][0-9]) missed calls\"]}]";
         private final Filter filter = new Filter();
 
         @Test
@@ -306,7 +353,7 @@ public class ExtractorTest {
             Assert.assertArrayEquals(ExtractorTest.invalidSenders, filter.getInvalidSenders());
             Assert.assertArrayEquals(ExtractorTest.regexSenderValidator, filter.getRegexSenderValidator());
             Assert.assertArrayEquals(ExtractorTest.invalidMessages, filter.getInvalidMessages());
-            Assert.assertArrayEquals(ExtractorTest.invalidMessagesRegexRequired, filter.getRegexMessageValidators());
+            Assert.assertArrayEquals(ExtractorTest.regexMessageValidators, filter.getRegexMessageValidators());
         }
 
 

@@ -13,7 +13,9 @@ public class RemoveRtlChar implements Runnable {
         char[] chars = text.toCharArray();
         for (char aChar : chars) {
             if (aChar != '\u200F')
-                result.append(aChar);
+                if (aChar != '\u202C')
+                    if (aChar != '\u202A')
+                        result.append(aChar);
         }
         text = result.toString();
     }
