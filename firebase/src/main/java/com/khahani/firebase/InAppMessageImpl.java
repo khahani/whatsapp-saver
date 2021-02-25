@@ -16,9 +16,11 @@ public class InAppMessageImpl extends InAppMessage {
     private void getId() {
         FirebaseInstallations.getInstance().getId().addOnCompleteListener(task -> {
             uniqueId = task.getResult();
-            Log.d("Khahani", "InAppMessage Device Id: " + task.getResult());
-            Toast.makeText(context, String.format("InAppMessages Device Id: %s", uniqueId), Toast.LENGTH_LONG)
-                    .show();
+            if (BuildConfig.DEBUG) {
+                Log.d("Khahani", "InAppMessage Device Id: " + task.getResult());
+                Toast.makeText(context, String.format("InAppMessages Device Id: %s", uniqueId), Toast.LENGTH_LONG)
+                        .show();
+            }
         });
     }
 
