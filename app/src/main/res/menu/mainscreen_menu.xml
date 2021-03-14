@@ -6,7 +6,7 @@
         android:id="@+id/share"
         android:icon="@drawable/ic_share"
         android:title="@string/share"
-        android:visible="true"
+        android:visible="false"
         app:showAsAction="ifRoom" />
 
     <item
