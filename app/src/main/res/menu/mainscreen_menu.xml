@@ -20,7 +20,7 @@
         android:id="@+id/rate"
         android:icon="@drawable/ic_rate_and_review"
         android:title="@string/rate_and_review"
-        android:visible="true"
+        android:visible="false"
         app:showAsAction="never" />
 
 
