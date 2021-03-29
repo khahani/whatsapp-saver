@@ -15,8 +15,8 @@ import com.whatsappear.Adapters.PagerAdapter;
 import com.whatsappear.R;
 import com.whatsappear.dialog.NotificationServiceAlertDialog;
 import com.whatsappear.share.AppodealPrivacyPolicy;
-import com.whatsappear.share.RateAndReview;
 import com.whatsappear.share.ShareTheApp;
+import com.whatsappear.share.store.RateAndReview;
 
 
 public class MainActivity extends BaseActivity {

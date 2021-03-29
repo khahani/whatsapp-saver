@@ -1,4 +1,4 @@
-package com.whatsappear.share;
+package com.whatsappear.share.store;
 
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -19,15 +19,23 @@ public class RateAndReview implements Runnable {
     }
 
     private void rateAndReview() {
-        Uri uri = Uri.parse(String.format("market://details?id=%s", context.getPackageName()));
+        Uri uri = getMarketIntentUri();
         Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
         goToMarket.addFlags(getFlags());
         try {
             context.startActivity(goToMarket);
         } catch (ActivityNotFoundException e) {
             context.startActivity(new Intent(Intent.ACTION_VIEW,
-                    Uri.parse(String.format("http://play.google.com/store/apps/details?id=%s", context.getPackageName()))));
+                    getMarketSiteUri()));
         }
+    }
+
+    protected Uri getMarketIntentUri() {
+        return Uri.parse(String.format("market://details?id=%s", context.getPackageName()));
+    }
+
+    protected Uri getMarketSiteUri() {
+        return Uri.parse(String.format("http://play.google.com/store/apps/details?id=%s", context.getPackageName()));
     }
 
     private int getFlags() {
