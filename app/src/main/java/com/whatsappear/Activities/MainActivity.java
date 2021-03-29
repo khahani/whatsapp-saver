@@ -76,7 +76,7 @@ public class MainActivity extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.share) {
-            ShareTheApp shareTheApp = new ShareTheApp(this);
+            ShareTheApp shareTheApp = new com.whatsappear.share.message.Cafebazaar(this);
             shareTheApp.run();
         } else if (item.getItemId() == R.id.privacy) {
             AppodealPrivacyPolicy privacyPolicy = new AppodealPrivacyPolicy(this);

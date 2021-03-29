@@ -5,14 +5,12 @@ import android.content.Intent;
 
 import com.khahani.usecase_firebase.analytic.click.TrackClick;
 import com.whatsappear.Activities.BaseActivity;
-import com.whatsappear.Activities.BaseActivityValidator;
 import com.whatsappear.R;
 
-public class ShareTheApp implements Runnable {
-    private final Activity activity;
+public abstract class ShareTheApp implements Runnable {
+    protected final Activity activity;
 
     public ShareTheApp(Activity activity) {
-        new BaseActivityValidator(activity).run();
         this.activity = activity;
     }
 
@@ -36,9 +34,7 @@ public class ShareTheApp implements Runnable {
         }
     }
 
-    private String getMarketSiteUrl() {
-        return "https://play.google.com/store/apps/details?id=" + activity.getPackageName();
-    }
+    protected abstract String getMarketSiteUrl();
 
     @Override
     public void run() {
