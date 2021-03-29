@@ -15,8 +15,8 @@ android {
         applicationId "com.whatsappear"
         minSdkVersion 19
         targetSdkVersion 30
-        versionCode 6
-        versionName "1.03"
+        versionCode 7
+        versionName "1.04"
         multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
