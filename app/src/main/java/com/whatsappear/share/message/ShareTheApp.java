@@ -6,7 +6,6 @@ import android.content.Intent;
 import com.khahani.usecase_firebase.analytic.click.TrackClick;
 import com.whatsappear.Activities.BaseActivity;
 import com.whatsappear.Activities.BaseActivityValidator;
-import com.whatsappear.BuildConfig;
 import com.whatsappear.R;
 
 public class ShareTheApp implements Runnable {
@@ -29,12 +28,16 @@ public class ShareTheApp implements Runnable {
             shareIntent.setType("text/plain");
             shareIntent.putExtra(Intent.EXTRA_SUBJECT, activity.getString(R.string.app_name));
             String shareMessage = activity.getString(R.string.share_message);
-            shareMessage = shareMessage + "https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID + "\n\n";
+            shareMessage += getMarketSiteUrl() + "\n\n";
             shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
             activity.startActivity(Intent.createChooser(shareIntent, activity.getString(R.string.choose_one)));
         } catch (Exception e) {
             //e.toString();
         }
+    }
+
+    private String getMarketSiteUrl() {
+        return "https://play.google.com/store/apps/details?id=" + activity.getPackageName();
     }
 
     @Override
