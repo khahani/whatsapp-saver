@@ -16,6 +16,7 @@ import com.whatsappear.R;
 import com.whatsappear.dialog.NotificationServiceAlertDialog;
 import com.whatsappear.share.AppodealPrivacyPolicy;
 import com.whatsappear.share.ShareTheApp;
+import com.whatsappear.share.store.Cafebazaar;
 import com.whatsappear.share.store.RateAndReview;
 
 
@@ -81,7 +82,7 @@ public class MainActivity extends BaseActivity {
             AppodealPrivacyPolicy privacyPolicy = new AppodealPrivacyPolicy(this);
             privacyPolicy.run();
         } else if (item.getItemId() == R.id.rate) {
-            RateAndReview rateAndReview = new RateAndReview(this);
+            RateAndReview rateAndReview = new Cafebazaar(this);
             rateAndReview.run();
         }
         return super.onOptionsItemSelected(item);

@@ -5,9 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 
-public class RateAndReview implements Runnable {
-
-    private final Context context;
+public abstract class RateAndReview implements Runnable {
+    protected final Context context;
 
     public RateAndReview(Context context) {
         this.context = context;
@@ -30,13 +29,9 @@ public class RateAndReview implements Runnable {
         }
     }
 
-    protected Uri getMarketIntentUri() {
-        return Uri.parse(String.format("market://details?id=%s", context.getPackageName()));
-    }
+    protected abstract Uri getMarketIntentUri();
 
-    protected Uri getMarketSiteUri() {
-        return Uri.parse(String.format("http://play.google.com/store/apps/details?id=%s", context.getPackageName()));
-    }
+    protected abstract Uri getMarketSiteUri();
 
     private int getFlags() {
         int flags;
