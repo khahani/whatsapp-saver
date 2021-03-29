@@ -1,4 +1,4 @@
-package com.whatsappear.share;
+package com.whatsappear.share.message;
 
 import android.app.Activity;
 import android.content.Intent;

@@ -6,7 +6,7 @@
         android:id="@+id/share"
         android:icon="@drawable/ic_share"
         android:title="@string/share"
-        android:visible="false"
+        android:visible="true"
         app:showAsAction="ifRoom" />
 
     <item
@@ -20,7 +20,6 @@
         android:id="@+id/rate"
         android:icon="@drawable/ic_rate_and_review"
         android:title="@string/rate_and_review"
-        android:visible="false"
         app:showAsAction="never" />
 
 
